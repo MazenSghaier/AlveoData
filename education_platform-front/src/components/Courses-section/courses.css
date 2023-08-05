@@ -1,0 +1,133 @@
+/* courses.css */
+
+/* Existing styles */
+.single__course__item {
+  padding: 15px;
+  display: inline-block;
+  width: 30%;
+  margin-right: 10px;
+  vertical-align: top;
+  box-sizing: border-box;
+
+  opacity: 0; /* Start with 0 opacity */
+  transform: translateY(20px); /* Move the element down slightly */
+  transition: opacity 1s ease, transform 1s ease; /* Add transition properties */
+}
+
+.course__img img {
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.enroll a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #17bf9e;
+}
+
+.course__details > div {
+  /* Adjust these styles as needed */
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Add space between elements */
+}
+
+.courses__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgb(199, 246, 253);
+  border-radius: 2rem;
+  padding: 1rem;
+  overflow: hidden; /* Add this to hide both horizontal and vertical scrollbars */
+}
+
+.course__row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow: hidden; /* Add this to hide horizontal scrollbar */
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem; /* Add margin between rows */
+}
+
+.course__details i {
+  /* Styles for icons */
+  margin-right: 0.5rem;
+}
+
+.lesson,
+.students,
+.rating {
+  font-size: 0.9rem;
+  color: #0a2b1e;
+  font-weight: 500;
+}
+
+.lesson i,
+.students i,
+.rating i {
+  font-weight: 400;
+}
+
+.course__title {
+  line-height: 2rem;
+}
+
+.course__top__left h2 {
+  font-weight: 600;
+}
+
+/* Updated styles */
+/* Updated styles */
+.course__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.course__top__left {
+  flex: 1;
+  margin-right: 20px;
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+  .single__course__item {
+    width: 100%; /* Display one card in a row */
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+/* Clearfix to ensure proper card alignment */
+.course__row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Updated animation class */
+.single__course__item.animate {
+  opacity: 1; /* Fade in on scroll */
+  animation: slideInFromLeft 1.5s ease; /* Use the updated animation with a slower duration */
+}

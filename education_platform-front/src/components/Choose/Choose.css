@@ -1,0 +1,10 @@
+/* Add this CSS animation class */
+.video__animation {
+    transform: translateY(100%); /* Start from below */
+    transition: transform 1s ease; /* Add a smooth transition */
+  }
+  
+  /* Adjust the position as needed */
+  .video__animation.show {
+    transform: translateY(0); /* Move to original position */
+  }

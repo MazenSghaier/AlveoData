@@ -1,0 +1,32 @@
+/* Animation for image to appear from bottom */
+@keyframes slideFromBottom {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Animation for text to appear from left to right */
+  @keyframes slideFromLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Apply animations */
+  .logo {
+    animation: slideFromBottom 1s ease-out;
+  }
+  
+  .logo span {
+    animation: slideFromLeft 1s ease-out;
+  }

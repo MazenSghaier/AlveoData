@@ -1,0 +1,67 @@
+/* Update free-course.css */
+.free-course {
+  background-color: rgb(252, 243, 224);
+  padding: 4.4rem 4.4rem ;
+  max-width: 1450px;
+  margin: 0 auto; /* Center the component horizontally */
+  border-radius: 2rem;
+}
+
+.card-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 -0.5rem;
+}
+
+.single__free__course {
+  flex: 0 0 calc(25% - 1rem);
+  margin: 0.5rem;
+  text-align: center;
+}
+
+.single__free__course .free__course__details {
+  position: relative;
+}
+
+.single__free__course .free__course__details .d-flex {
+  position: relative;
+}
+
+.single__free__course .free__course__details .d-flex .icon {
+  position: absolute;
+  left: -10px; /* Adjust this value to control the horizontal position of the icon */
+  top: -2px; 
+}
+
+.single__free__course .free__course__img {
+  position: relative;
+}
+
+.single__free__course .free__course__img img {
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+.single__free__course .free__btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 4px 15px !important;
+  font-size: 0.8rem;
+}
+
+.single__free__course .free__course__details h6 {
+  font-weight: 600;
+  line-height: 1.8rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+/* Media query for medium screens */
+@media (max-width: 992px) {
+  .single__free__course {
+    flex: 0 0 calc(50% - 1rem);
+  }
+}

@@ -1,0 +1,47 @@
+/* hero-section.css */
+.hero__content h2 {
+  font-weight: 600;
+  line-height: 55px;
+}
+
+.hero__content {
+  padding-top: 80px;
+}
+
+.search input {
+  @apply border-none outline-none p-1 w-10/12;
+}
+
+.search {
+  @apply w-60 border border-green-500 flex justify-between items-center rounded-2xl mt-5;
+}
+/* hero-section.css */
+.bg-hero-img2 {
+  background-image: url('../../assests/images/hero-img2.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* Animation for background image to appear from bottom */
+@keyframes slideFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+}
+
+/* Animation for text to appear from left to right */
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
