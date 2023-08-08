@@ -1,11 +1,14 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { RiUserLine, RiStarFill } from "react-icons/ri";
 
-const FreeCourseCard = (props) => {
-  const { imgUrl, title, students, rating } = props.item;
+const FreeCourseCard = forwardRef(({ item, shouldAnimate }, ref) => {
+  const { imgUrl, title, students, rating } = item;
 
   return (
-    <div className="single__free__course">
+    <div
+      className={`single__free__course ${shouldAnimate ? "show-card" : ""}`}
+      ref={ref}
+    >
       <div className="free__course__img mb-5">
         <img src={imgUrl} alt="" className="w-100" />
         <button className="btn free__btn">Free</button>
@@ -32,6 +35,6 @@ const FreeCourseCard = (props) => {
       </div>
     </div>
   );
-};
+});
 
 export default FreeCourseCard;

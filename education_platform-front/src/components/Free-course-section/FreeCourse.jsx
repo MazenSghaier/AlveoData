@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Container, Row, Col } from "reactstrap";
-
+import FreeCourseCard from "./FreeCourseCard";
 import courseImg01 from "../../assests/images/web-development.png";
 import courseImg02 from "../../assests/images/kids-learning.png";
 import courseImg03 from "../../assests/images/seo.png";
 import courseImg04 from "../../assests/images/ui-ux.png";
-import FreeCourseCard from "./FreeCourseCard";
-
 import "./free-course.css";
 
 const freeCourseData = [
@@ -24,7 +22,6 @@ const freeCourseData = [
     students: 5.3,
     rating: 1.7,
   },
-
   {
     id: "03",
     title: "Search Engine Optimization - Basic",
@@ -32,7 +29,6 @@ const freeCourseData = [
     students: 5.3,
     rating: 1.7,
   },
-
   {
     id: "04",
     title: "Basic UI/UX Design - Figma",
@@ -43,8 +39,29 @@ const freeCourseData = [
 ];
 
 const FreeCourse = () => {
+  const coursesRef = useRef([]); // Initialize the ref as an empty array
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (coursesRef.current) {
+        const elementTop = coursesRef.current.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (elementTop - windowHeight + 100 < 0) {
+          setShouldAnimate(true);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <section className="free-course">
+    <section className="free-course" ref={coursesRef}>
       <Container>
         <Row>
           <Col lg="12" className="text-center mb-5">
@@ -53,15 +70,21 @@ const FreeCourse = () => {
         </Row>
 
         <Row className="card-row">
-          {freeCourseData.map((item) => (
+          {freeCourseData.map((item, index) => (
             <Col
-              lg="6" /* Display two cards in a single line */
+              lg="6"
               md="6"
               sm="6"
-              className="mb-4 single__free__course d-flex"
+              className={`mb-4 single__free__course d-flex ${
+                shouldAnimate ? "animate" : ""
+              }`}
               key={item.id}
             >
-              <FreeCourseCard item={item} />
+              <FreeCourseCard
+                item={item}
+                shouldAnimate={shouldAnimate}
+                ref={(el) => (coursesRef.current[index] = el)}
+              />
             </Col>
           ))}
         </Row>
