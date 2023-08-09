@@ -1,6 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
 import TextField from "@mui/material/TextField";
-import "../scss/form-input.scss";
 
 interface FormInputProps<T> {
   label: string;

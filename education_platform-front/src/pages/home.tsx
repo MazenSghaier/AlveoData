@@ -14,6 +14,9 @@ import Testimonials from "../components/Testimonial/Testimonials";
 import Newsletter from "../components/Newsletter/Newsletter";
 import Footer from "../components/Footer/Footer";
 
+import SignIn from "../components/Sign-Log/SignIn";
+import Login from "../components/Sign-Log/Login";
+
 const Home = () => {
   return (
     <Fragment>
