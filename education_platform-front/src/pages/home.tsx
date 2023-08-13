@@ -1,17 +1,17 @@
 import React, { Fragment } from "react"
 import Header from "../components/Header/Header";
-import HeroSection from "../components/Hero-Section/HeroSection";
-import CompanySection from "../components/Company-section/Company";
+import HeroSection from "../components/Home_Page/Hero-Section/HeroSection";
+import CompanySection from "../components/Home_Page/Company-section/Company";
 
-import About from "../components/About/About";
-import Courses from "../components/Courses-section/Courses";
-import Choose from "../components/Choose/Choose";
-import Features from "../components/Feature-section/Features";
-import FreeCourse from "../components/Free-course-section/FreeCourse";
+import About from "../components/Home_Page/About/About";
+import Courses from "../components/Home_Page/Courses-section/Courses";
+import Choose from "../components/Home_Page/Choose/Choose";
+import Features from "../components/About_Page/Feature-section/Features";
+import FreeCourse from "../components/Home_Page/Free-course-section/FreeCourse";
 
-import Testimonials from "../components/Testimonial/Testimonials";
+import Testimonials from "../components/Home_Page/Testimonial/Testimonials";
 
-import Newsletter from "../components/Newsletter/Newsletter";
+import Newsletter from "../components/About_Page/Newsletter/Newsletter";
 import Footer from "../components/Footer/Footer";
 
 

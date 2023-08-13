@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Grid, Typography, IconButton } from "@mui/material";
 import { PlayCircleOutline } from "@mui/icons-material";
 import ReactPlayer from "react-player";
-import chooseImg from "../../assests/images/why-choose-us.png";
+import chooseImg from "../../../assests/images/why-choose-us.png";
 
 const ChooseUs: React.FC = () => {
   const [showVideo, setShowVideo] = useState(false);

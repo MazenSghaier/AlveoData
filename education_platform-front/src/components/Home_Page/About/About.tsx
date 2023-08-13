@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import SubdirectoryArrowLeftRoundedIcon from '@mui/icons-material/SubdirectoryArrowLeftRounded';
-import aboutImg from "../..//assests/images/about-us.png";
+import aboutImg from "../../../assests/images/about-us.png";
 import "./about.css";
 import CountUp from "react-countup";
 

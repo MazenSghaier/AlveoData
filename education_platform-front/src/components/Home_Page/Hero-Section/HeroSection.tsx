@@ -1,6 +1,6 @@
 import React from "react";
-import heroImg from "../../assests/images/hero-img1.png";
-import heroImg2 from "../../assests/images/hero-img2.png";
+import heroImg from "../../../assests/images/hero-img1.png";
+import heroImg2 from "../../../assests/images/hero-img2.png";
 
 import Button from "@mui/material/Button";
 

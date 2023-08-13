@@ -3,7 +3,7 @@ import { Container, Grid, Typography } from "@mui/material";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import TestimonialCard from "./TestimonialCard"; // Make sure to update the import path
-import img from "../../assests/images/testimonial01.png";
+import img from "../../../assests/images/testimonial01.png";
 import "./testimonial.css";
 
 const Testimonials: React.FC = () => {
