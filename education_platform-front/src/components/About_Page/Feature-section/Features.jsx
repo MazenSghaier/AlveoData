@@ -1,38 +1,39 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
-import "./features.css";
+import { RiDraftLine, RiDiscussLine, RiContactsBookLine } from 'react-icons/ri';
+
 
 const FeatureData = [
   {
     title: "Quick Learning",
     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum molestias, aperiam doloribus aut sapiente praesentium eos iste dicta amet itaque!",
-    icon: "ri-draft-line",
+    icon: RiDraftLine,
   },
 
   {
     title: "All Time Support",
     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum molestias, aperiam doloribus aut sapiente praesentium eos iste dicta amet itaque!",
-    icon: "ri-discuss-line",
+    icon: RiDiscussLine,
   },
 
   {
     title: "Certification",
     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum molestias, aperiam doloribus aut sapiente praesentium eos iste dicta amet itaque!",
-    icon: "ri-contacts-book-line",
+    icon: RiContactsBookLine,
   },
 ];
 
 const Features = () => {
   return (
     <section>
-      <Container>
-        <Row>
+      <Container >
+        <Row className="text-center flex flex-col md:flex-row">
           {FeatureData.map((item, index) => (
             <Col lg="4" md="6" key={index}>
-              <div className="single__feature text-center px-4">
-                <h2 className="mb-3">
-                  <i class={item.icon}></i>
-                </h2>
+              <div className="single__feature px-4">
+                <div className="icon">
+                  <item.icon size={50} color="rgb(6 182 212)"/>
+                </div>
                 <h6>{item.title}</h6>
                 <p>{item.desc}</p>
               </div>
