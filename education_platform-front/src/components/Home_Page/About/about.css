@@ -16,16 +16,18 @@
     background: #26C6DA;
   }
   
-  .arrow-left {
-    left: 0;
-    transform: translateY(-50%) rotate(-45deg) translateX(-23%);
-    transform-origin: top left;
+  .lottie-animation-container-left {
+    position: absolute;
+    top: 10%;
+    left: -200px; /* Adjust this value for proper spacing */
+    transform: scaleX(-1);
   }
   
-  .arrow-right {
-    right: 0;
-    transform: translateY(-50%) rotate(45deg) translateX(23%);
-    transform-origin: top right;
+  .lottie-animation-container-right {
+    position: absolute;
+    top: 30%;
+    right: -200px; /* Adjust this value for proper spacing */
+    transform: translateY(-50%);
   }
   
   .arrow:before,

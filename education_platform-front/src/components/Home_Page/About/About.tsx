@@ -1,9 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
-import SubdirectoryArrowLeftRoundedIcon from '@mui/icons-material/SubdirectoryArrowLeftRounded';
+import Lottie from 'react-lottie';
+import animationData from '../../../lotties/lottieflow-attention-05-26C6DA-easey.json';
 import aboutImg from "../../../assests/images/about-us.png";
 import "./about.css";
 import CountUp from "react-countup";
+
 
 const About: React.FC = () => {
   const imageRef = useRef<HTMLDivElement | null>(null); // Specify the type of the ref
@@ -34,11 +36,33 @@ const About: React.FC = () => {
         <Row className="gap-4">
           {/* Column 1 */}
           <Col lg="4" md="12" className="flex flex-col items-center justify-center">
-          <div className="about__img text-center relative mb-2" ref={imageRef}>
-            <div className={`w-3/4 mx-auto relative pb-2 ${shouldAnimate ? "animate-pop-up" : ""}`}>
-              <img src={aboutImg} alt="" className="w-full rounded-lg" />
-              <div className="arrow arrow-left"></div>
-              <div className="arrow arrow-right"></div>
+            <div className="about__img text-center relative mb-2" ref={imageRef}>
+              <div className={`w-3/4 mx-auto relative pb-2 ${shouldAnimate ? "animate-pop-up" : ""}`}>
+                <img src={aboutImg} alt="" className="w-full rounded-lg" />
+                <div className="lottie-animation-container-left">
+                  <Lottie
+                    options={{
+                      loop: true,
+                      autoplay: true,
+                      animationData: animationData,
+                    }}
+                    height={150}
+                    width={150}
+                    style={{ color: '#26C6DA' }}
+                  />
+                </div>
+                <div className="lottie-animation-container-right">
+                  <Lottie
+                    options={{
+                      loop: true,
+                      autoplay: true,
+                      animationData: animationData,
+                    }}
+                    height={150}
+                    width={150}
+                    style={{ color: '#26C6DA' }}
+                  />
+                </div>
             </div>
           </div>
           </Col>
