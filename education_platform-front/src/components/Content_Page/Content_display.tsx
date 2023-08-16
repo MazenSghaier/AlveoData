@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Button, Card, CardContent, CardMedia, Container } from '@mui/material';
+import { Button, Card, CardContent, CardMedia, Container, Typography } from '@mui/material';
 import chooseImg from "../../assests/images/graphics-design.png";
 
 const ContentDisplay: React.FC = () => {
@@ -25,19 +25,22 @@ const ContentDisplay: React.FC = () => {
   ];
 
   return (
-    <Container className="mt-4">
+    <Container className="mt-4 pb-8">
+      <div className="text-3xl font-semibold mb-4">Our Content</div>
       <Slider {...settings}>
         {catalogueData.map((item, index) => (
           <div key={index} className="p-2">
-            <Card sx={{ maxWidth: 200 }}>
+            <Card sx={{ maxWidth: 400 }}>
               <CardMedia
                 component="img"
-                height="200"
+                height="500"
                 image={item.imageUrl}
                 alt={item.label}
               />
               <CardContent>
-                <p className="mb-2">{item.label}</p>
+                <Typography variant="body2" color="text.primary">
+                  {item.label}
+                </Typography>
                 <Button variant="contained" color="primary">
                   View
                 </Button>
