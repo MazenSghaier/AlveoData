@@ -36,7 +36,7 @@ const HeroSection: React.FC = () => {
   };
 
   const buttonStyle: React.CSSProperties = {
-    backgroundColor: "#26C6DA", // Custom cyan color for the button background
+    backgroundColor: "#35bbe3", // Custom cyan color for the button background
     color: "#fff", // Button text color
     borderRadius: "2rem",
     padding: "0.8rem 2rem",

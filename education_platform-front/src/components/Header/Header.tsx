@@ -9,7 +9,7 @@ import "animate.css/animate.min.css"; // Import the Animate.css styles
 const customTheme = createTheme({
   palette: {
     primary: {
-      main: "#26C6DA",
+      main: "#35bbe3",
       contrastText: "#fff"
     },
   },
