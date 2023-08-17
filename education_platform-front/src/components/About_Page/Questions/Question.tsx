@@ -34,7 +34,7 @@ const FrequentlyAskedQuestions: React.FC = () => {
   ];
 
   return (
-    <div className="max-w-md p-4">
+    <div className="max-w-sm p-4">
       <h2 className="text-2xl  font-semibold mb-4">Frequently Asked Questions</h2>
       <div className="w-screen">
         {questions.map((item, index) => (

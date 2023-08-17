@@ -18,5 +18,5 @@
   }
   
   .fade-in {
-    animation: fadeIn 2s ease-out; /* Adjust the animation duration and easing as needed */
+    animation: fadeIn 1.5s ease-out; /* Adjust the animation duration and easing as needed */
   }

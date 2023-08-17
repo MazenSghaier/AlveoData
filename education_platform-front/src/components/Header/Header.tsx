@@ -18,8 +18,8 @@ const customTheme = createTheme({
 // Define styled components
 const SignInButton = styled(Button)({
   borderRadius: "2rem",
-  marginRight: "2rem",
-  marginLeft: "2rem",
+  marginRight: "1rem",
+  marginLeft: "1rem",
 });
 
 const RegisterButton = styled(Button)({
@@ -29,15 +29,15 @@ const RegisterButton = styled(Button)({
 const navLinks = [
   {
     display: "Home",
-    url: "#",
+    url: "/",
   },
   {
     display: "About",
-    url: "#",
+    url: "/about",
   },
   {
     display: "Courses",
-    url: "#",
+    url: "/courses",
   },
   {
     display: "Pages",
