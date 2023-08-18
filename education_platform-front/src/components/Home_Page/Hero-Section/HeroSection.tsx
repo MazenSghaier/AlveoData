@@ -1,35 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import heroImg from "../../../assests/images/hero-img1.png";
 import heroImg2 from "../../../assests/images/hero-img2.png";
 
 import Button from "@mui/material/Button";
 
 const HeroSection: React.FC = () => {
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Define a breakpoint for switching components
+  const breakpoint = 1100; // For example, switch at 768px width
+
   const containerStyle: React.CSSProperties = {
-    position: "relative", // Ensure the parent container is relative for positioning the background container
-    margin: "2rem",
-    marginBottom: "2rem", // Adjust the margin-bottom to reduce space
-    paddingBottom: "2rem", // Adjust the padding-bottom to reduce space
+    position: "relative",
+    margin: "2rem auto",
+    marginBottom: "2rem", // Separate marginBottom property
+    paddingBottom: "2rem", // Separate paddingBottom property
     width: "85rem",
-    height: "40rem",
-    padding: "4rem",
+    padding: "4rem", // You can keep padding as a shorthand property
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     borderRadius: "1rem",
+    overflow: "hidden", // Hide overflow to prevent background image from overflowing
   };
 
   const backgroundContainerStyle: React.CSSProperties = {
     backgroundImage: `url(${heroImg2})`,
     backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    width: "calc(100% + 4rem)", // Add 4rem to the width (2rem for left + 2rem for right)
-    height: "100%", // Adjust the height of the background image
+    backgroundPosition: "center", 
+    width: "100vw", // Use viewport width to cover the entire container
+    height: "100vh", // Use viewport height to cover the entire container
     transform: "rotate(1deg)", // Adjust the rotation degree as desired
     position: "absolute",
     top: 0,
-    left: "-2rem", // Shift the image to the left by 2rem
+    left: "-1rem", // Shift the image to the left by 1rem
     zIndex: -1, // Place the background container behind the content
     borderRadius: "1rem",
     opacity: 0.9, // Adjust the opacity of the background image to your liking
@@ -42,34 +59,100 @@ const HeroSection: React.FC = () => {
     padding: "0.8rem 2rem",
   };
 
-  return (
-    <section>
-      <div style={containerStyle} className="lg:flex lg:justify-between">
-        <div
-          className="bg-hero-img2 animate__animated animate__fadeIn lg:w-1/2 lg:mb-0"
-          style={backgroundContainerStyle}
-        ></div>
-        <div className="lg:w-1/2 lg:pr-20 mb-8 lg:mb-0 animate__animated animate__slideInLeft">
-          <div className="hero__content">
-            <h2 className="mb-6 text-2xl lg:text-5xl font-bold text-black">
-              Anytime Anywhere <br /> Learn on your <br /> Suitable Schedule
-            </h2>
-            <p className="mb-8 text-sm lg:text-xl text-black">
-              Lorem ipsum dolor sit amet consectetur <br /> adipisicing elit.
-              Aut saepe voluptatum earum delectus <br /> deserunt id iste, quas
-              officiis et repellat!
-            </p>
-            <div className="search">
-              <Button style={buttonStyle}>Start Now</Button>
-            </div>
+  const contentStyle: React.CSSProperties = {
+    textAlign: "center",
+    maxWidth: "600px", // Adjust for responsiveness
+  };
+
+  const containerStyle2: React.CSSProperties = {
+    position: "relative",
+    margin: "2rem auto",
+    width: "85%",
+    padding: "4rem",
+    display: "flex",
+    justifyContent: "center", // Center horizontally
+    alignItems: "center",
+    borderRadius: "1rem",
+    backgroundColor: "#35bbe3", // Set background color directly
+  };
+
+  const buttonStyle2: React.CSSProperties = {
+    backgroundColor: "#fff",
+    color: "#35bbe3",
+    borderRadius: "2rem",
+    padding: "0.8rem 2rem",
+  };
+
+  const contentWithImages = (
+    <div style={containerStyle} className="lg:flex lg:justify-between">
+      <div
+        className="bg-hero-img2 animate__animated animate__fadeIn lg:w-1/2 lg:mb-0"
+        style={backgroundContainerStyle}
+      ></div>
+      <div className="lg:w-1/2 lg:pr-20 mb-8 lg:mb-0 animate__animated animate__slideInLeft">
+        <div className="hero__content">
+          <h2 className="mb-6 text-2xl lg:text-5xl font-bold text-black">
+            Anytime Anywhere <br /> Learn on your <br /> Suitable Schedule
+          </h2>
+          <p className="mb-8 text-sm lg:text-xl text-black">
+            Lorem ipsum dolor sit amet consectetur <br /> adipisicing elit.
+            Aut saepe voluptatum earum delectus <br /> deserunt id iste, quas
+            officiis et repellat!
+          </p>
+          <div className="search">
+            <Button style={buttonStyle}>Start Now</Button>
           </div>
         </div>
-        <div className="lg:w-1/2 mb-8 lg:mb-0 animate__animated animate__slideInRight">
-          <img src={heroImg} alt="" className="w-full rounded-lg shadow-lg" />
+      </div>
+      <div className="lg:w-1/2 mb-8 lg:mb-0 animate__animated animate__slideInRight">
+        <div
+          className="h-full w-full"
+          style={{
+            position: "relative",
+            paddingTop: "75%", // 4:3 aspect ratio
+          }}
+        >
+          <img
+            src={heroImg}
+            alt=""
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "contain", // Keeps the image within the container
+            }}
+          />
         </div>
       </div>
-    </section>
+    </div>
+  );  
+
+  const contentWithOutImages = (
+  <div style={containerStyle2}>
+    <div style={contentStyle}>
+      <h2 className="mb-6 text-2xl lg:text-5xl font-bold text-white">
+        Anytime Anywhere <br /> Learn on your <br /> Suitable Schedule
+      </h2>
+      <p className="mb-8 text-sm lg:text-xl text-white">
+        Lorem ipsum dolor sit amet consectetur <br /> adipisicing elit.
+        Aut saepe voluptatum earum delectus <br /> deserunt id iste, quas
+        officiis et repellat!
+      </p>
+      <div className="search">
+        <Button style={buttonStyle2}>Start Now</Button>
+      </div>
+    </div>
+  </div> 
   );
+
+  
+  return (
+    <section>
+      { windowWidth > breakpoint ? contentWithImages : contentWithOutImages }
+  </section>
+);
 };
 
 export default HeroSection;
