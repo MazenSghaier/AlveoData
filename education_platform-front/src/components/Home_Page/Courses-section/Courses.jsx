@@ -57,7 +57,7 @@ const Courses = () => {
   }, []);
 
   return (
-    <section className="courses__container" ref={coursesRef}>
+    <section className="courses__container " ref={coursesRef}>
       <Container>
         <Row className="bg-gray p-4">
           <Col className="course__top">
@@ -79,7 +79,7 @@ const Courses = () => {
           <CourseCard
             key={item.id}
             item={item}
-            shouldAnimate={shouldAnimate} // Pass the shouldAnimate prop
+            shouldAnimate={shouldAnimate} 
           />
           ))}
         </div>

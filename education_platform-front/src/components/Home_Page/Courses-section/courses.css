@@ -37,12 +37,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 98%;
   min-height: 100vh;
   background-color: rgb(199, 246, 253);
   border-radius: 2rem;
   padding: 1rem;
-  overflow: hidden; /* Add this to hide both horizontal and vertical scrollbars */
+  overflow: hidden;
+  margin: 0 auto;
+  flex-direction: column; /* Center align vertically */
 }
 
 .course__row {
@@ -107,7 +109,14 @@
     margin-right: 0;
     margin-bottom: 20px;
   }
+
+  .course__row {
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    gap: 20px; /* Add gap between cards */
+    justify-content: center; /* Center align horizontally */
+  }
 }
+
 /* Clearfix to ensure proper card alignment */
 .course__row::after {
   content: "";

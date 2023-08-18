@@ -24,7 +24,6 @@ const Home = () => {
   return (
     <Fragment>
       <Header />
-      <div style={{ display: "flex", flexDirection: "column", marginTop: "", paddingTop: "0px" }}>
         <HeroSection />
         <div className="about__img text-center relative mb-2">
           <h2 className="text-3xl ont-semibold">Who we are</h2>
@@ -55,7 +54,6 @@ const Home = () => {
         <Marker longitude={10.840769988181869} latitude={35.76446007514994} color="#35bbe3"/>
       </Map>        
       <Footer/>
-      </div>
     </Fragment>
   );
 };
