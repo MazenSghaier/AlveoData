@@ -1,20 +1,22 @@
 import React from "react";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
+import {  Typography } from "@mui/material";
+import { RiPantoneLine } from "react-icons/ri";
 
 import "./footer.css";
 
 const footerQuickLinks = [
   {
     display: "Home",
-    url: "#",
+    url: "/",
   },
   {
     display: "About US",
-    url: "#",
+    url: "/about",
   },
   {
     display: "Courses",
-    url: "#",
+    url: "/courses",
   },
   {
     display: "Blog",
@@ -47,32 +49,10 @@ const Footer = () => {
       <Container>
         <Row className="row-cols-lg-4">
           <Col lg="3" md="6" className="mb-4">
-            <h2 className=" d-flex align-items-center gap-1">
-              <i className="ri-pantone-line"></i> Learners.
-            </h2>
-            <div className="follows">
-              <p className="mb-0">Follow us on social media</p>
-              <span>
-                <a href="facebook.com">
-                  <i className="ri-facebook-line"></i>
-                </a>
-              </span>
-              <span>
-                <a href="facebook.com">
-                  <i className="ri-instagram-line"></i>
-                </a>
-              </span>
-              <span>
-                <a href="facebook.com">
-                  <i className="ri-linkedin-line"></i>
-                </a>
-              </span>
-              <span>
-                <a href="facebook.com">
-                  <i className="ri-twitter-line"></i>
-                </a>
-              </span>
-            </div>
+          <Typography variant="h5" className="flex items-center gap-1">
+              <RiPantoneLine className="text-xl" style={{ animation: "slideFromBottom 1s ease-out" }} />
+              <span className="animate__animated animate__slideInRight">Learners.</span>
+            </Typography>
           </Col>
 
           <Col lg="3" md="6" className="mb-4">
@@ -104,6 +84,32 @@ const Footer = () => {
             <p>Email: example@gmail.com</p>
           </Col>
         </Row>
+
+        
+        <div className="follows">
+              <p className="mb-0">Follow us on social media</p>
+              <span>
+                <a href="facebook.com">
+                  <i className="ri-facebook-line"></i>
+                </a>
+              </span>
+              <span>
+                <a href="facebook.com">
+                  <i className="ri-instagram-line"></i>
+                </a>
+              </span>
+              <span>
+                <a href="facebook.com">
+                  <i className="ri-linkedin-line"></i>
+                </a>
+              </span>
+              <span>
+                <a href="facebook.com">
+                  <i className="ri-twitter-line"></i>
+                </a>
+              </span>
+            </div>
+            
       </Container>
     </footer>
   );
