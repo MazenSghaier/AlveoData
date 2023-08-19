@@ -71,7 +71,7 @@ const About: React.FC = () => {
           <Col lg="8" md="12" className="flex items-center">
             <div className="about__content text-center pl-10">
               
-              <p className="text-base font-serif text-green-900 pb-2">
+              <p className="text-base font-serif text-green-900 pb-2 pt-3">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                 Excepturi cupiditate animi deserunt libero nesciunt corporis
                 explicabo nobis ex quo molestiae!

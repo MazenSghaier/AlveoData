@@ -44,7 +44,7 @@ const Courses = () => {
         const windowHeight = window.innerHeight;
         
         // Adjust this threshold to control when the animation triggers
-        if (elementTop - windowHeight + 100 < 0) {
+        if (elementTop - windowHeight + 300 < 0) {
           setShouldAnimate(true);
         }
       }

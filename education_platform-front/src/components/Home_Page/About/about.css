@@ -78,3 +78,26 @@
   .animate-pop-up {
     animation: popUpAnimation 1s forwards;
   }
+
+  @media (max-width: 768px) {
+    .about__img {
+      margin-bottom: 1rem; /* Adjust margin for smaller spacing */
+    }
+    
+    .lottie-animation-container-left,
+    .lottie-animation-container-right {
+      display: none; /* Hide the Lottie animations on phone sizes */
+    }
+  
+    .about__content {
+    text-align: center; /* Center-align text content on smaller screens */
+    padding-left: 0; /* Remove left padding on smaller screens */
+  }
+
+  .about__content p {
+    margin-top: 1rem;
+    font-size: 14px; /* Adjust font size for smaller screens */
+    line-height: 1.6; /* Adjust line height for better readability */
+    margin-bottom: 1rem; /* Adjust margin for spacing between paragraphs */
+  }
+}

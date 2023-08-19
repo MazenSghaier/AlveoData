@@ -4,11 +4,11 @@
 .single__course__item {
   padding: 15px;
   display: inline-block;
-  width: 30%;
+  width: 100%;
   margin-right: 10px;
   vertical-align: top;
   box-sizing: border-box;
-
+  min-height: 250px; 
   opacity: 0; /* Start with 0 opacity */
   transform: translateY(20px); /* Move the element down slightly */
   transition: opacity 1s ease, transform 1s ease; /* Add transition properties */
@@ -37,7 +37,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 98%;
+  width: 100%;
   min-height: 100vh;
   background-color: rgb(199, 246, 253);
   border-radius: 2rem;
@@ -105,15 +105,17 @@
 /* Media Query for Small Screens */
 @media (max-width: 768px) {
   .single__course__item {
-    width: 100%; /* Display one card in a row */
-    margin-right: 0;
-    margin-bottom: 20px;
+    width: 100%;
+    margin-right: 20px; /* Increase margin for better spacing */
+    margin-bottom: 20px; /* Add margin at the bottom */
+    padding: 20px; /* Increase padding for better card appearance */
   }
 
   .course__row {
+    display: flex;
     flex-wrap: wrap; /* Allow cards to wrap to the next line */
-    gap: 20px; /* Add gap between cards */
     justify-content: center; /* Center align horizontally */
+    gap: 20px; /* Add gap between cards */
   }
 }
 
