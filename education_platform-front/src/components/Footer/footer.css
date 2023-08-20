@@ -16,19 +16,28 @@
 }
 
 /* Social media icons */
-.follows span a {
+.follows-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.follows {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.follows a {
   text-decoration: none;
   color: #666;
   font-size: 20px;
   transition: color 0.3s ease-in-out;
 }
 
-.follows span a:hover {
+.follows a:hover {
   color: #00aaff;
-}
-
-.follows span:not(:last-child) {
-  margin-right: 15px;
 }
 
 /* Link list styles */
