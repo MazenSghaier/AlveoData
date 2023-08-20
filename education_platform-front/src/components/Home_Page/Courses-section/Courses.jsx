@@ -69,8 +69,8 @@ const Courses = () => {
                 voluptatem recusandae reprehenderit!
               </p>
             </div>
-            <div className="text-end">
-              <button className="btn">See All</button>
+            <div className="text-end hover:text-cyan-400">
+              <button className="hover:text-cyan-400" style={{backgroundColor: "#fff", color: "#35bbe3", borderRadius: "2rem", padding: "0.8rem 2rem",}}>See All</button>
             </div>
           </Col>
         </Row>

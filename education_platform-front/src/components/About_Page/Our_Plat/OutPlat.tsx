@@ -3,7 +3,7 @@ import { Container, Grid, IconButton } from "@mui/material";
 import { PlayCircleOutline } from "@mui/icons-material";
 import ReactPlayer from "react-player";
 import chooseImg from "../../../assests/images/graphics-design.png";
-
+import "./OutPlat.css"
 
 const OutPlat: React.FC = () => {
   const [showVideo, setShowVideo] = useState(false);
@@ -40,7 +40,7 @@ const OutPlat: React.FC = () => {
                   <div className="play-icon-container absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                     <IconButton
                       onClick={() => setShowVideo(true)}
-                      style={{ color: "#17bf9e", backgroundColor: "rgba(255, 255, 255, 0.8)" }}
+                      style={{ color: "#35bbe3", backgroundColor: "rgba(255, 255, 255, 0.8)" }}
                     >
                       <PlayCircleOutline fontSize="large" />
                     </IconButton>

@@ -21,22 +21,22 @@ const FrequentlyAskedQuestions: React.FC = () => {
   const questions: FAQItem[] = [
     {
       question: 'How do I sign up for an offer?',
-      answer: 'To sign up for an offer, follow these steps...',
+      answer: 'To sign up for an offer, follow these steps , To sign up for an offer, follow these steps , To sign up for an offer, follow these steps...',
     },
     {
       question: 'What payment methods are accepted?',
-      answer: 'We accept credit cards, PayPal, and more...',
+      answer: 'We accept credit cards, PayPal, and more , We accept credit cards, PayPal, and more , We accept credit cards, PayPal, and more...',
     },
     {
       question: 'Can I cancel my subscription anytime?',
-      answer: 'Yes, you can cancel your subscription at any time ...',
+      answer: 'Yes, you can cancel your subscription at any time , Yes, you can cancel your subscription at any time , Yes, you can cancel your subscription at any time ...',
     },
   ];
 
   return (
-    <div className="max-w-sm p-4">
-      <h2 className="text-2xl  font-semibold mb-4">Frequently Asked Questions</h2>
-      <div className="w-screen">
+    <div className="w-full mx-auto p-8 m-4"> 
+      <h2 className="text-2xl font-semibold mb-4">Frequently Asked Questions</h2>
+      <div>
         {questions.map((item, index) => (
           <div
             key={index}

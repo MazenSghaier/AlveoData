@@ -32,24 +32,24 @@ const AboutPage = () => {
         <Company/>
         <FrequentlyAskedQuestions/>
         <Map mapLib={maplibregl as any} 
-          initialViewState={{
-            longitude: 10.840769988181869,
-            latitude: 35.76446007514994,
-            zoom: 16
-          }}
-          style={{
-            width: "100%",
-            height: "calc(70vh - 77px)",
-            borderRadius: "10px", 
-            margin: "0 20px",    
-            border: "1px solid #ccc", 
-            overflow: "hidden"    
-          }}
-          mapStyle="https://api.maptiler.com/maps/streets/style.json?key=PSGwt6g5kB7O4biuGevk"
-        >
-        <NavigationControl position="top-left" />
-        <Marker longitude={10.840769988181869} latitude={35.76446007514994} color="#35bbe3"/>
-      </Map>  
+        initialViewState={{
+          longitude: 10.840769988181869,
+          latitude: 35.76446007514994,
+          zoom: 16
+        }}
+        style={{
+          width: "98%",
+          height: "calc(70vh - 77px)",
+          borderRadius: "10px", 
+          margin: "0 20px",    
+          border: "1px solid #ccc", 
+          overflow: "hidden"    
+        }}
+        mapStyle="https://api.maptiler.com/maps/streets/style.json?key=PSGwt6g5kB7O4biuGevk"
+      >
+      <NavigationControl position="top-left" />
+      <Marker longitude={10.840769988181869} latitude={35.76446007514994} color="#35bbe3"/>
+    </Map>  
       <Footer/>
       </div>
     </Fragment>

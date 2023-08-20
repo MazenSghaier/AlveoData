@@ -23,7 +23,7 @@
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
-  color: #17bf9e;
+  color: #2d937e;
 }
 
 .course__details > div {
@@ -39,7 +39,7 @@
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  background-color: rgb(199, 246, 253);
+  background-color: rgb(176, 245, 255);
   border-radius: 2rem;
   padding: 1rem;
   overflow: hidden;

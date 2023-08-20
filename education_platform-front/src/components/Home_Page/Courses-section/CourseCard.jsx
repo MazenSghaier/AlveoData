@@ -29,8 +29,8 @@ const CourseCard = ({ item, shouldAnimate }) => {
             <i className="ri-star-fill"></i> {rating}K
           </div>
 
-          <div className="enroll d-flex align-items-center">
-            <a href="#"> Enroll Now</a>
+          <div className="enroll d-flex align-items-center text-cyan-400">
+            <a alt="" href="#" className="text-cyan-400"> Enroll Now</a>
           </div>
         </div>
       </div>
