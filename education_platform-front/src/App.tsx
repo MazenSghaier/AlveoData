@@ -5,6 +5,7 @@ import AboutPage from './pages/about_page';
 import CoursesPage from './pages/courses_page';
 import SignIn from './components/Signup/SignIn';
 import LogIn from './components/Signup/LogIn';
+import SupportAdmin from './components/Chat-bot/SupportAdmin';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/courses" element={<CoursesPage/>} />
         <Route path="/signIn" element={<SignIn/>} />
         <Route path="/logIn" element={<LogIn/>} />
+        <Route path="/support" element={<SupportAdmin/>} />
         {/* Define other routes here */}
       </Routes>
     </Router>

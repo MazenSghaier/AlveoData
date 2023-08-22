@@ -19,6 +19,7 @@ import Testimonials from "../components/Home_Page/Testimonial/Testimonials";
 import Newsletter from "../components/About_Page/Newsletter/Newsletter";
 import Footer from "../components/Footer/Footer";
 
+import SupportEngine from "../components/Chat-bot/SupportEngine";
 
 const Home = () => {
   return (
@@ -55,6 +56,7 @@ const Home = () => {
       <Marker longitude={10.840769988181869} latitude={35.76446007514994} color="#35bbe3"/>
     </Map>        
     <Footer/>
+    <SupportEngine />
   </Fragment>
 );
 };
