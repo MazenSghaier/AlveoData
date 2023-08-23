@@ -1,39 +1,40 @@
-import React , {useState, useRef, useEffect} from "react";
+import React, { useRef, useEffect, useState } from "react";
 
-import Avatar from "./Avatar"
-import SupportWindow from "./SupportWindow";
+import SupportWindow from './SupportWindow'
+
+import Avatar from './Avatar'
 
 const SupportEngine = () => {
-    const ref =useRef(null)
-    const [visible , setVisible] = useState(false)
-    
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (ref.current && !ref.current.contains(event.target)) {
-              setVisible(false)
+    const wrapperRef = useRef(null);
+    useOutsideAlerter(wrapperRef);
+    const [visible, setVisible] = useState(false)
+
+    function useOutsideAlerter(ref) {
+        useEffect(() => {
+            function handleClickOutside(event) {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    setVisible(false)
+                }
             }
-          }
-          // Bind the event listener
-          document.addEventListener("mousedown", handleClickOutside);
-          return () => {
-            // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
-          };
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
         }, [ref]);
+    }
 
     return (
-        <div ref={ref}>
-
+        <div ref={wrapperRef}>
             <SupportWindow visible={visible} />
+
             <Avatar 
-            onClick={()=>setVisible(true)}
-            style={{ 
-                position:"fixed" ,
-                bottom:"24px" , 
-                right:"24px"
+                onClick={() => setVisible(true)}
+                style={{
+                    position: 'fixed',
+                    bottom: '24px',
+                    right: '24px',
                 }}
             />
-        
         </div>
     )
 }

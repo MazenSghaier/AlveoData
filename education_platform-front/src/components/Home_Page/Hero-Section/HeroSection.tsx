@@ -25,8 +25,10 @@ const HeroSection: React.FC = () => {
 
   const containerStyle: React.CSSProperties = {
     position: "relative",
-    margin: "2rem auto",
-    marginBottom: "2rem", // Separate marginBottom property
+    marginTop: "2rem",
+    marginRight: "auto",
+    marginBottom: "2rem",
+    marginLeft: "auto",
     paddingBottom: "2rem", // Separate paddingBottom property
     width: "85rem",
     padding: "4rem", // You can keep padding as a shorthand property
@@ -66,7 +68,10 @@ const HeroSection: React.FC = () => {
 
   const containerStyle2: React.CSSProperties = {
     position: "relative",
-    margin: "2rem auto",
+    marginTop: "2rem",
+    marginRight: "auto",
+    marginBottom: "2rem",
+    marginLeft: "auto",
     width: "85%",
     padding: "4rem",
     display: "flex",

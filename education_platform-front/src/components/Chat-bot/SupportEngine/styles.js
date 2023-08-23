@@ -1,4 +1,4 @@
-import farina from './../../../assests/farina.jpg'
+import farina from "./../../../assests/farina.jpg"
 
 export const styles = {
     chatWithMeButton: {

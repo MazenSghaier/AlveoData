@@ -25,16 +25,15 @@ const ChatEngine = props => {
             }}
         >
             {
-                showChat && props.chat && props.chat.id && (
-                    <ChatEngineWrapper>
-                        <Socket 
-                            projectID={process.env.REACT_APP_CE_PROJECT_ID}
-                            userName={props.user.email}
-                            userSecret={props.user.email}
-                        />
-                        <ChatFeed activeChat={props.chat.id} />
-                    </ChatEngineWrapper>
-                )
+                showChat &&
+                <ChatEngineWrapper>
+                    <Socket 
+                        projectID={process.env.REACT_APP_CE_PROJECT_ID}
+                        userName={props.user.email}
+                        userSecret={props.user.email}
+                    />
+                    <ChatFeed activeChat={props.chat.id} />
+                </ChatEngineWrapper>
             }
         </div>
     )
