@@ -16,10 +16,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+
+import { useNavigate } from 'react-router-dom';
 
 import { HomeOutlined , PersonOutlined , BookOutlined , SettingsOutlined , SupportAgentOutlined} from '@mui/icons-material'
+import { useAppStore } from '../AppSotre';
 
 const drawerWidth = 240;
 
@@ -77,15 +78,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function MiniDrawer() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  //const [open, setOpen] = React.useState(true);
+  const nav = useNavigate();
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const open = useAppStore((state) => state.dopen);
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -93,13 +89,13 @@ export default function MiniDrawer() {
       
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton >
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
-        </DrawerHeader>
+      </DrawerHeader>
         <Divider />
         <List>
-            <ListItem  disablePadding sx={{ display: 'block' }}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => {nav("/")}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -121,7 +117,7 @@ export default function MiniDrawer() {
             </ListItem>
         </List>
         <List>
-            <ListItem  disablePadding sx={{ display: 'block' }}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => {nav("/profile")}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -143,7 +139,7 @@ export default function MiniDrawer() {
             </ListItem>
         </List>
         <List>
-            <ListItem  disablePadding sx={{ display: 'block' }}>
+            <ListItem  disablePadding sx={{ display: 'block' }} >
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -166,7 +162,7 @@ export default function MiniDrawer() {
         </List>
         <Divider />
         <List>
-            <ListItem  disablePadding sx={{ display: 'block' }}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => {nav("/settings")}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
