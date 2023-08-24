@@ -15,6 +15,7 @@ import Company from "../components/Company-section/Company";
 import FrequentlyAskedQuestions from "../components/About_Page/Questions/Question";
 
 import Footer from "../components/Footer/Footer";
+import SupportEngine from "../components/Chat-bot/SupportEngine";
 
 
 const AboutPage = () => {
@@ -51,6 +52,7 @@ const AboutPage = () => {
       <Marker longitude={10.840769988181869} latitude={35.76446007514994} color="#35bbe3"/>
     </Map>  
       <Footer/>
+      <SupportEngine />
       </div>
     </Fragment>
   );

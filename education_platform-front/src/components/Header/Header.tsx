@@ -75,7 +75,7 @@ const Header: React.FC = () => {
                   <li key={index} className="nav__item">
                     <a
                       href={item.url}
-                      className="text-lg text-slate-950 hover:text-cyan-400"
+                      className="counter text-xm font-semibold hover:text-cyan-400"
                     >
                       {item.display}
                     </a>
