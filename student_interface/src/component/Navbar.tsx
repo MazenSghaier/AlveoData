@@ -12,17 +12,18 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import { NotificationsNoneOutlined} from '@mui/icons-material';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useAppStore } from '../AppSotre';
+import { RiPantoneLine } from "react-icons/ri";
+import { MailOutline } from '@mui/icons-material';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: alpha(theme.palette.primary.light, 0.25),
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
@@ -41,10 +42,11 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  color: '#35bbe3',
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
+  
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -61,7 +63,8 @@ const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme }) => ({
   zIndex: theme.zIndex.drawer + 1,
-  
+  backgroundColor: 'white',
+  boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
 }));
 
 export default function Navbar() {
@@ -131,9 +134,9 @@ export default function Navbar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="large" aria-label="show 4 new mails" >
           <Badge badgeContent={4} color="error">
-            <MailIcon />
+            <MailOutline />
           </Badge>
         </IconButton>
         <p>Messages</p>
@@ -142,10 +145,10 @@ export default function Navbar() {
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
-          color="inherit"
+          color="primary"
         >
           <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
+            <NotificationsNoneOutlined />
           </Badge>
         </IconButton>
         <p>Notifications</p>
@@ -156,7 +159,7 @@ export default function Navbar() {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
+          
         >
           <AccountCircle />
         </IconButton>
@@ -172,10 +175,11 @@ export default function Navbar() {
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
+            
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{ mr:2 , color: '#35bbe3', }}
             onClick={()=> updateOpen(!dopen)}
+            
           >
             <MenuIcon />
           </IconButton>
@@ -183,9 +187,15 @@ export default function Navbar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
+              color: '#35bbe3', 
+            }}
           >
-            MUI
+            <RiPantoneLine className="text-xl2"  />
+            <span >Learners.</span>
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -197,19 +207,19 @@ export default function Navbar() {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Box sx={{ display: { xs: 'none', md: 'flex'  } }}>
+            <IconButton size="large" aria-label="show 4 new mails" >
               <Badge badgeContent={4} color="error">
-                <MailIcon />
+                <MailOutline sx={{ color: '#35bbe3', }}  />
               </Badge>
             </IconButton>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
-              color="inherit"
+              
             >
               <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
+                <NotificationsNoneOutlined sx={{ color: '#35bbe3', }}/>
               </Badge>
             </IconButton>
             <IconButton
@@ -219,7 +229,7 @@ export default function Navbar() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
+              sx={{ color: '#35bbe3', }}
             >
               <AccountCircle />
             </IconButton>
@@ -231,7 +241,7 @@ export default function Navbar() {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
+              
             >
               <MoreIcon />
             </IconButton>
