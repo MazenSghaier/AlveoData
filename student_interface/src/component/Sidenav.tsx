@@ -4,11 +4,14 @@ import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import  { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 
+import {  Row, Col } from "reactstrap";
+
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
+import Grid from '@mui/material/Grid';
 
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -19,8 +22,16 @@ import ListItemText from '@mui/material/ListItemText';
 
 import { useNavigate } from 'react-router-dom';
 
-import { HomeOutlined , PersonOutlined , BookOutlined , SettingsOutlined , SupportAgentOutlined} from '@mui/icons-material'
+import { HomeOutlined , PersonOutlined , BookOutlined , SettingsOutlined , SupportAgentOutlined, Padding} from '@mui/icons-material'
 import { useAppStore } from '../AppSotre';
+import { makeStyles } from '@mui/styles';
+
+
+import youTube from '../assests/Social_media/youtube.png';
+import twitter from '../assests/Social_media/twitter.png';
+import facebook from '../assests/Social_media/facebook.png';
+import linkedin from '../assests/Social_media/linkedin.png';
+import instagram from '../assests/Social_media/instagram.png';
 
 const drawerWidth = 240;
 
@@ -76,10 +87,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const useStyles: any = makeStyles((theme: Theme) => ({
+  listItem: {
+    justifyContent: 'center', // Center the buttons horizontally
+  },
+}));
+
 export default function MiniDrawer() {
   const theme = useTheme();
   //const [open, setOpen] = React.useState(true);
   const nav = useNavigate();
+  const classes = useStyles();
 
   const open = useAppStore((state) => state.dopen);
 
@@ -108,11 +126,12 @@ export default function MiniDrawer() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color: '#35bbe3'
                   }}
                 >
                   <HomeOutlined/>
                 </ListItemIcon>
-                <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Home" sx={{ color: '#35bbe3', opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
         </List>
@@ -130,11 +149,12 @@ export default function MiniDrawer() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color: '#35bbe3'
                   }}
                 >
                   <PersonOutlined/>
                 </ListItemIcon>
-                <ListItemText primary="Profile" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Profile" sx={{ color: '#35bbe3', opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
         </List>
@@ -152,11 +172,12 @@ export default function MiniDrawer() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color: '#35bbe3'
                   }}
                 >
                   <BookOutlined/>
                 </ListItemIcon>
-                <ListItemText primary="Courses" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Courses" sx={{ color: '#35bbe3', opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
         </List>
@@ -175,11 +196,12 @@ export default function MiniDrawer() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color: '#35bbe3'
                   }}
                 >
                   <SettingsOutlined/>
                 </ListItemIcon>
-                <ListItemText primary="Settings" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Settings" sx={{ color: '#35bbe3' , opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
         </List>
@@ -197,16 +219,63 @@ export default function MiniDrawer() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    color: '#35bbe3'
                   }}
                 >
                   <SupportAgentOutlined/>
                 </ListItemIcon>
-                <ListItemText primary="Support" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Support" sx={{ color: '#35bbe3' , opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
          
         </List>
+        <Divider />
+        <Box sx={{ display: 'block', paddingTop: 6, justifyContent: 'center', textAlign: 'center' }}>
+      <Grid container spacing={4}>
+        <Grid item xs={12}>
+          <Box sx={{ display: 'block', paddingY: 2 }}>
+            <Typography variant="h6" sx={{ color: '#35bbe3', fontSize: '.85rem', marginBottom: 1 }}>
+              Contact Number:
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: '#ffffff',
+                fontSize: '.85rem',
+                backgroundColor: '#35bbe3',
+                border: '2px solid #35bbe3',
+                borderRadius: '2rem',
+                padding: '0.5rem 1rem',
+                display: 'inline-block',
+              }}
+            >
+              +123456789
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
 
+          <Row className="justify-center items-center mt-4">
+            <Col lg="12" md="12" className="mb-4 text-center">
+              <div className="flex flex-col space-y-4 mx-auto">
+                <Typography variant="h6" sx={{ color: '#35bbe3', fontSize: '.85rem' }}>
+                  Our Social Media
+                </Typography>
+                <div className="flex justify-center space-x-4">
+                  <a href="/">
+                    <img alt="" src={facebook} className="w-10 h-10" />
+                  </a>
+                  <a href="/">
+                    <img alt="" src={youTube} className="w-10 h-10" />
+                  </a>
+                  <a href="/">
+                    <img alt="" src={twitter} className="w-10 h-10" />
+                  </a>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Box>
       </Drawer>
       
     </Box>

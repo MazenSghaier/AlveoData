@@ -12,7 +12,7 @@ export default function Profile() {
         
         <Sidenav/>
         <Box component="main" sx={{flexGrow: 1,p: 3}}>
-          <div>Profile</div>
+          <div className='mt-4'>Profile</div>
         </Box>
 
       </Box>
