@@ -15,6 +15,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { NotificationsNoneOutlined} from '@mui/icons-material';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useAppStore } from '../AppSotre';
+import { useContactAndSocial } from '../AppSotre';
 import { RiPantoneLine } from "react-icons/ri";
 import { MailOutline } from '@mui/icons-material';
 
@@ -70,6 +71,9 @@ const AppBar = styled(MuiAppBar, {
 export default function Navbar() {
   const updateOpen = useAppStore((state) => state.updateOpen);
   const dopen = useAppStore((state) => state.dopen);
+  const updateShow = useContactAndSocial((state) => state.updateShow);
+  const show = useContactAndSocial((state) => state.show);
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
@@ -178,7 +182,7 @@ export default function Navbar() {
             
             aria-label="open drawer"
             sx={{ mr:2 , color: '#35bbe3', }}
-            onClick={()=> updateOpen(!dopen)}
+            onClick={()=> {updateOpen(!dopen);updateShow(!show)}}
             
           >
             <MenuIcon />
