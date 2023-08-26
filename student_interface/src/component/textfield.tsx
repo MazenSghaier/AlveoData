@@ -8,8 +8,10 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Grid from '@mui/material/Grid';
+
+
+import CountrySelect from './Country';
 
 export default function InputAdornments() {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -27,63 +29,77 @@ export default function InputAdornments() {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap' , mt:4 , mb: 4 }}>
       <div>
-        <TextField
-          label="First Name"
-          id="outlined-start-adornment"
-          sx={{ m: 2, width: '40ch' }}
-          InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
-          }}
-        />
-        <TextField
-          label="Last Name"
-          id="outlined-start-adornment"
-          sx={{ m: 2, width: '40ch' }}
-          InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
-          }}
-        />
-
-        <TextField
-          label="Phone Number"
-          id="outlined-start-adornment"
-          sx={{ m: 2, width: '40ch' }}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">+</InputAdornment>,
-          }}
-        />
-        <TextField
-          label="Email"
-          id="outlined-start-adornment"
-          sx={{ m: 2, width: '40ch' }}
-          InputProps={{
-            startAdornment: <InputAdornment position="start"></InputAdornment>,
-          }}
-        />
-
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <TextField
+            label="First Name"
+            id="outlined-start-adornment"
+            sx={{ width: '70%' , m:2 }}
+            InputProps={{
+              startAdornment: <InputAdornment position="start"></InputAdornment>,
+            }}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            label="Last Name"
+            id="outlined-start-adornment"
+            sx={{ width: '70%' , m:2 }}
+            InputProps={{
+              startAdornment: <InputAdornment position="start"></InputAdornment>,
+            }}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            label="Phone Number"
+            id="outlined-start-adornment"
+            sx={{ width: '70%' , m:2 }}
+            InputProps={{
+              startAdornment: <InputAdornment position="start">+</InputAdornment>,
+            }}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            label="Email"
+            id="outlined-start-adornment"
+            sx={{ width: '70%' , m:2 }}
+            InputProps={{
+              startAdornment: <InputAdornment position="start"></InputAdornment>,
+            }}
+          />
+        </Grid>
+        <Grid item xs={6}>
         <TextField
           label="Birthday Date"
           id="outlined-start-adornment"
-          sx={{ m: 2, width: '40ch' }}
+          sx={{ width: '70%' , m:2  }}
           InputProps={{
             startAdornment: <InputAdornment position="start"></InputAdornment>,
           }}
         />
-        <FormControl sx={{ m: 2, width: '40ch', position: 'relative'}}>
-            <InputLabel id="demo-simple-select-label">Sexe</InputLabel>
-            <Select
+        </Grid>
+        <Grid item xs={6}>
+            <FormControl sx={{ width: '70%', m: 2, position: 'relative' }}>
+              <InputLabel id="demo-simple-select-label">Sexe</InputLabel>
+              <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={sexe}
                 label="Sexe"
                 onChange={handleChange}
-            >
+                sx={{ width: '100%' }} // Fix the width of the Sexe component
+              >
                 <MenuItem value={"mas"}>Man</MenuItem>
                 <MenuItem value={"fem"}>Woman</MenuItem>
-            </Select>
-        </FormControl>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6}><CountrySelect/></Grid>
+        </Grid>
       </div>
     </Box>
   );
