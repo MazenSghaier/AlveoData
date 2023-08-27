@@ -1,4 +1,8 @@
 import React from 'react'
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
+
 import Sidenav from '../component/Sidenav'
 import { Box } from '@mui/material'
 import Navbar from '../component/Navbar'
@@ -22,6 +26,7 @@ import java from './../assests/Courses/java.png'
 import machine_learning from './../assests/Courses/machine_learning.png'
 import probability from './../assests/Courses/probability.png'
 import python from './../assests/Courses/python.png'
+import Course from './Course';
 
 const courses = [
     {cours : statistics , name :"Statistics"},
@@ -38,66 +43,82 @@ const courses = [
     ];
 
 export default function Courses() {
+    const nav = useNavigate();
   return (
     <>
-    <Navbar/>
-      <Box height={90} /> 
-      <Box sx={{ display: "flex"}}>
-        
-        <Sidenav/>
-
-        <Box component="main" sx={{flexGrow: 1,p: 3}}>
-            <Typography variant="h2" sx={{ color: '#35bbe3', fontSize: '1.8rem', marginBottom: 1 , fontFamily: 'sans-serif', fontWeight:'bold'}}>
-               Courses
-            </Typography>
-            <Grid container spacing={2} sx={ {m:4, justifyContent: 'center', alignItems: 'center' }}>
-                {courses.map((course, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
-                    <Card
+      <Navbar />
+      <Box height={90} />
+      <Box sx={{ display: 'flex' }}>
+        <Sidenav />
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <Typography
+            variant="h2"
+            sx={{
+              color: '#35bbe3',
+              fontSize: '1.8rem',
+              marginBottom: 1,
+              fontFamily: 'sans-serif',
+              fontWeight: 'bold',
+            }}
+          >
+            Courses
+          </Typography>
+          <Grid
+            container
+            spacing={3}
+            sx={{ m: 2, justifyContent: 'center', alignItems: 'center' }}
+          >
+            {courses.map((course, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Link to={`/course/${index}`} className="custom-link">
+                  <Card
                     sx={{
-                        objectFit: 'contain',
-                        height: '100%',
-                        width: '60%', 
-                        display: 'flex',
-                        flexDirection: 'column',
-                        borderRadius: '12px',
-                        boxShadow: '0px 4px 8px rgba(0, 0, 0, .4)',
-                        
+                      objectFit: 'contain',
+                      height: '100%',
+                      width: '60%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      borderRadius: '12px',
+                      boxShadow: '0px 4px 8px rgba(0, 0, 0, .4)',
+                      '&:hover': {
+                        backgroundColor: '#c9f3ff',
+                      },
                     }}
-                    >
+                  >
                     <CardMedia
-                        component="img"
-                        sx={{
+                      component="img"
+                      sx={{
                         objectFit: 'cover',
-                        width: '30%', 
+                        width: '30%',
                         borderTopLeftRadius: '8px',
                         borderTopRightRadius: '8px',
-                        flex: '1', 
-                        height:'30%',
+                        flex: '1',
+                        height: '30%',
                         margin: 'auto',
                         marginTop: '15px',
-                        }}
-                        image={course.cours}
-                        title={course.name}
+                      }}
+                      image={course.cours}
+                      title={course.name}
                     />
                     <CardContent>
-                        <Typography
+                      <Typography
                         sx={{
-                            fontFamily: 'sans-serif',
-                            color: '#35bbe3',
-                            fontSize: '1rem', 
+                          fontFamily: 'sans-serif',
+                          color: '#35bbe3',
+                          fontSize: '1rem',
+                          fontWeight:'bold'
                         }}
-                        >
+                      >
                         {course.name}
-                        </Typography>
-                        <LinearBuffer />
+                      </Typography>
+                      <LinearBuffer />
                     </CardContent>
-                    </Card>
-                </Grid>
-                ))}
-            </Grid>
+                  </Card>
+                </Link>
+              </Grid>
+            ))}
+          </Grid>
         </Box>
-
       </Box>
     </>
   )

@@ -6,7 +6,8 @@ import Sidenav from './component/Sidenav';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
-import Courses from './pages/Courses'
+import Courses from './pages/Courses';
+import Course from './pages/Course';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/profile' element={<Profile/>} ></Route>
           <Route path='/courses' element={<Courses/>} ></Route>
           <Route path='/settings' element={<Settings/>} ></Route>
+          <Route path="/course/:id" element={ <Course/>} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -134,7 +134,7 @@ export default function MiniDrawer() {
                   >
                     <HomeOutlined/>
                   </ListItemIcon>
-                  <ListItemText primary="Home" sx={{ color: 'white', opacity: open ? 1 : 0 }} />
+                  <ListItemText primary="Home" sx={{ fontFamily:'sans-serif' ,fontWeight:'bold', color: 'white', opacity: open ? 1 : 0 }} />
                 </ListItemButton>
               </ListItem>
           </List>
@@ -157,7 +157,7 @@ export default function MiniDrawer() {
                   >
                     <PersonOutlined/>
                   </ListItemIcon>
-                  <ListItemText primary="Profile" sx={{ color: 'white', opacity: open ? 1 : 0 }} />
+                  <ListItemText primary="Profile" sx={{fontSize: '.9rem', fontFamily:'sans-serif' ,fontWeight:'bold', color: 'white', opacity: open ? 1 : 0 }} />
                 </ListItemButton>
               </ListItem>
           </List>
@@ -180,7 +180,7 @@ export default function MiniDrawer() {
                   >
                     <BookOutlined/>
                   </ListItemIcon>
-                  <ListItemText primary="Courses" sx={{ color: 'white', opacity: open ? 1 : 0 }} />
+                  <ListItemText primary="Courses" sx={{ fontSize: '.9rem', fontFamily:'sans-serif' ,fontWeight:'bold', color: 'white', opacity: open ? 1 : 0 }} />
                 </ListItemButton>
               </ListItem>
           </List>
@@ -204,7 +204,7 @@ export default function MiniDrawer() {
                   >
                     <SettingsOutlined/>
                   </ListItemIcon>
-                  <ListItemText primary="Settings" sx={{ color: 'white' , opacity: open ? 1 : 0 }} />
+                  <ListItemText primary="Settings" sx={{ fontSize: '.9rem', fontFamily:'sans-serif' ,fontWeight:'bold', color: 'white' , opacity: open ? 1 : 0 }} />
                 </ListItemButton>
               </ListItem>
           </List>
@@ -227,7 +227,7 @@ export default function MiniDrawer() {
                   >
                     <SupportAgentOutlined/>
                   </ListItemIcon>
-                  <ListItemText primary="Support" sx={{ color: 'white' , opacity: open ? 1 : 0 }} />
+                  <ListItemText primary="Support" sx={{ fontSize: '.9rem', fontFamily:'sans-serif' ,fontWeight:'bold', color: 'white' , opacity: open ? 1 : 0 }} />
                 </ListItemButton>
               </ListItem>
           
@@ -237,7 +237,7 @@ export default function MiniDrawer() {
           <Grid container spacing={4}>
             <Grid item xs={12}>
               <Box sx={{ display: 'block', paddingY: 2 }}>
-                <Typography variant="h6" sx={{ color: ' white', fontSize: '.85rem', marginBottom: 1 }}>
+                <Typography variant="h6" sx={{ fontFamily:'sans-serif' ,fontWeight:'bold', color: ' white', fontSize: '.85rem', marginBottom: 1 }}>
                   Contact Number:
                 </Typography>
                 <Typography
@@ -261,7 +261,7 @@ export default function MiniDrawer() {
               <Row className="justify-center items-center mt-4">
                 <Col lg="12" md="12" className="mb-4 text-center">
                   <div className="flex flex-col space-y-4 mx-auto">
-                    <Typography variant="h6" sx={{ color: 'white', fontSize: '.85rem' }}>
+                    <Typography variant="h6" sx={{ fontFamily:'sans-serif' ,fontWeight:'bold', color: 'white', fontSize: '.85rem' }}>
                       Our Social Media
                     </Typography>
                     <div className="flex justify-center space-x-4">
