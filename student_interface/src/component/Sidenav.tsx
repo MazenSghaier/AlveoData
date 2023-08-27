@@ -108,177 +108,177 @@ export default function MiniDrawer() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={open}  PaperProps={{ sx: { backgroundColor: "#35bbe3"  }}}>
         <DrawerHeader>
           <IconButton >
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
-      </DrawerHeader>
-        <Divider />
-        <List>
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => {nav("/")}}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+        </DrawerHeader>
+          <Divider />
+          <List>
+              <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => {nav("/")}}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                    color: '#35bbe3'
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  <HomeOutlined/>
-                </ListItemIcon>
-                <ListItemText primary="Home" sx={{ color: '#35bbe3', opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-        </List>
-        <List>
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => {nav("/profile")}}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                      color: 'white'
+                    }}
+                  >
+                    <HomeOutlined/>
+                  </ListItemIcon>
+                  <ListItemText primary="Home" sx={{ color: 'white', opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+          </List>
+          <List>
+              <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => {nav("/profile")}}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                    color: '#35bbe3'
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  <PersonOutlined/>
-                </ListItemIcon>
-                <ListItemText primary="Profile" sx={{ color: '#35bbe3', opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-        </List>
-        <List>
-            <ListItem  disablePadding sx={{ display: 'block' }} >
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                      color: 'white'
+                    }}
+                  >
+                    <PersonOutlined/>
+                  </ListItemIcon>
+                  <ListItemText primary="Profile" sx={{ color: 'white', opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+          </List>
+          <List>
+              <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => {nav("/courses")}} >
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                    color: '#35bbe3'
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  <BookOutlined/>
-                </ListItemIcon>
-                <ListItemText primary="Courses" sx={{ color: '#35bbe3', opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-        </List>
-        <Divider />
-        <List>
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => {nav("/settings")}}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                      color: 'white'
+                    }}
+                  >
+                    <BookOutlined/>
+                  </ListItemIcon>
+                  <ListItemText primary="Courses" sx={{ color: 'white', opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+          </List>
+          <Divider />
+          <List>
+              <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => {nav("/settings")}}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                    color: '#35bbe3'
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  <SettingsOutlined/>
-                </ListItemIcon>
-                <ListItemText primary="Settings" sx={{ color: '#35bbe3' , opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-        </List>
-        <List>
-            <ListItem  disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                      color: 'white'
+                    }}
+                  >
+                    <SettingsOutlined/>
+                  </ListItemIcon>
+                  <ListItemText primary="Settings" sx={{ color: 'white' , opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+          </List>
+          <List>
+              <ListItem  disablePadding sx={{ display: 'block' }}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                    color: '#35bbe3'
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  <SupportAgentOutlined/>
-                </ListItemIcon>
-                <ListItemText primary="Support" sx={{ color: '#35bbe3' , opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-         
-        </List>
-        <Divider />
-      <Box sx={{ display: 'block', paddingTop: 6, justifyContent: 'center', textAlign: 'center' , transition: 'max-height 0.3s ease-in-out',maxHeight: show ? '1000px' : '0',overflow: 'hidden',}}>
-        <Grid container spacing={4}>
-          <Grid item xs={12}>
-            <Box sx={{ display: 'block', paddingY: 2 }}>
-              <Typography variant="h6" sx={{ color: '#35bbe3', fontSize: '.85rem', marginBottom: 1 }}>
-                Contact Number:
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  color: '#ffffff',
-                  fontSize: '.85rem',
-                  backgroundColor: '#35bbe3',
-                  border: '2px solid #35bbe3',
-                  borderRadius: '2rem',
-                  padding: '0.5rem 1rem',
-                  display: 'inline-block',
-                }}
-              >
-                +123456789
-              </Typography>
-            </Box>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                      color: 'white'
+                    }}
+                  >
+                    <SupportAgentOutlined/>
+                  </ListItemIcon>
+                  <ListItemText primary="Support" sx={{ color: 'white' , opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+          
+          </List>
+          <Divider />
+        <Box sx={{ display: 'block', paddingTop: 6, justifyContent: 'center', textAlign: 'center' , transition: 'max-height 0.3s ease-in-out',maxHeight: show ? '1000px' : '0',overflow: 'hidden',}}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <Box sx={{ display: 'block', paddingY: 2 }}>
+                <Typography variant="h6" sx={{ color: ' white', fontSize: '.85rem', marginBottom: 1 }}>
+                  Contact Number:
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: '#35bbe3',
+                    fontSize: '.85rem',
+                    backgroundColor: 'white',
+                    border: '2px solid white',
+                    borderRadius: '2rem',
+                    padding: '0.5rem 1rem',
+                    display: 'inline-block',
+                  }}
+                >
+                  +123456789
+                </Typography>
+              </Box>
+            </Grid>
           </Grid>
-        </Grid>
 
-            <Row className="justify-center items-center mt-4">
-              <Col lg="12" md="12" className="mb-4 text-center">
-                <div className="flex flex-col space-y-4 mx-auto">
-                  <Typography variant="h6" sx={{ color: '#35bbe3', fontSize: '.85rem' }}>
-                    Our Social Media
-                  </Typography>
-                  <div className="flex justify-center space-x-4">
-                    <a href="/">
-                      <img alt="" src={facebook} className="w-10 h-10" />
-                    </a>
-                    <a href="/">
-                      <img alt="" src={youTube} className="w-10 h-10" />
-                    </a>
-                    <a href="/">
-                      <img alt="" src={twitter} className="w-10 h-10" />
-                    </a>
+              <Row className="justify-center items-center mt-4">
+                <Col lg="12" md="12" className="mb-4 text-center">
+                  <div className="flex flex-col space-y-4 mx-auto">
+                    <Typography variant="h6" sx={{ color: 'white', fontSize: '.85rem' }}>
+                      Our Social Media
+                    </Typography>
+                    <div className="flex justify-center space-x-4">
+                      <a href="/">
+                        <img alt="" src={facebook} className="w-10 h-10" />
+                      </a>
+                      <a href="/">
+                        <img alt="" src={youTube} className="w-10 h-10" />
+                      </a>
+                      <a href="/">
+                        <img alt="" src={twitter} className="w-10 h-10" />
+                      </a>
+                    </div>
                   </div>
-                </div>
-              </Col>
-            </Row>
-          </Box>
+                </Col>
+              </Row>
+            </Box>
       </Drawer>
       
     </Box>

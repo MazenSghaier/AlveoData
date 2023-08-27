@@ -7,7 +7,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
-import InputAdornments from  './../component/textfield';
+import InputAdornments from  '../component/textfield';
 import Grid from '@mui/material/Grid';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 export default function Profile() {
