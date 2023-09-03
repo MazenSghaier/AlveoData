@@ -1,11 +1,11 @@
 import React , {useState} from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@mui/styles';
+
 import ReactPlayer from "react-player";
 import { Container } from "@mui/material";
 import './Player.css'
 
-import { Slider, withStyles, Button,  Tooltip,  Popover,Grid } from "@material-ui/core";
+import { makeStyles, Slider, withStyles, Button,  Tooltip,  Popover,Grid } from "@material-ui/core";
 
 import FastForward from '@mui/icons-material/FastForward';
 import FastRewind from '@mui/icons-material/FastRewind';
@@ -13,8 +13,27 @@ import Pause from '@mui/icons-material/Pause';
 import PlayArrow from '@mui/icons-material/PlayArrow';
 import SkipNext from '@mui/icons-material/SkipNext';
 import VolumeUp from '@mui/icons-material/VolumeUp';
- 
- const PrettoSlider = withStyles({
+import VolumeOff from '@mui/icons-material/VolumeOff';
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+
+const useStyles = makeStyles({
+  volumeSlider: {
+    width: "100px",
+    color: "#35bbe3",
+  },
+
+  bottomIcons: {
+    color: "#999",
+    padding: "12px 8px",
+
+    "&:hover": {
+      color: "#fff",
+    },
+  },
+});
+
+const PrettoSlider = withStyles({
   root: {
     height: "20px",
     color: "#35bbe3",
@@ -29,7 +48,7 @@ import VolumeUp from '@mui/icons-material/VolumeUp';
     border: "2px solid currentColor",
     marginTop: -3,
     marginLeft: -12,
-  "&:focus, &:hover, &$active": {
+    "&:focus, &:hover, &$active": {
       boxShadow: "inherit",
     },
   },
@@ -46,78 +65,146 @@ import VolumeUp from '@mui/icons-material/VolumeUp';
     height: 5,
     borderRadius: 4,
   },
- })(Slider);
+})(Slider);
 
-
-const Control = ({onPlayPause , playing ,onRewind , onForward}) => {
-
-  const useStyles= makeStyles((theme) => ({
-    volumeSlider: {
-      width: "100px",
-      color: "#35bbe3",
-    },
-    bottomIcons: {
-      color: "#999",
-      padding: "12px 8px",
-      "&:hover": {
-        color: "#fff",
-      },
-    },
-  }));
-
+const Control = ({
+  onPlayPause,
+  playing,
+  onRewind,
+  onForward,
+  played,
+  onSeek,
+  onSeekMouseUp,
+  onVolumeChangeHandler,
+  onVolumeSeekUp,
+  volume,
+  mute,
+  onMute,
+  duration,
+  currentTime,
+  onMouseSeekDown,
+  controlRef,
+}) => {
   const classes = useStyles();
 
+  const [selectedQuality, setSelectedQuality] = useState("auto");
+  const [selectedSpeed, setSelectedSpeed] = useState(1);
+
+  const qualityOptions = ["auto", "360p", "720p", "1080p"];
+  const speedOptions = [0.5, 1, 1.5, 2];
+
+  const handleQualityChange = (event) => {
+    const newQuality = event.target.value;
+    setSelectedQuality(newQuality);
+    // You can implement logic to set the video quality based on the selected option
+    // For example, using ReactPlayer's setPlaybackQuality method
+  };
   
-
-  return (
-    <Container maxWidth="md" justify="center">
-        <div className="mid__container">
-            <div className="icon__btn">
-                <FastRewind fontSize="medium" onDoubleClick={onRewind}/>
-            </div>
-
-            <div className="icon__btn" onClick={onPlayPause}>
-               
-                <Pause fontSize="medium" />
-            </div>
-
-            <div className="icon__btn">
-                <FastForward fontSize="medium" onDoubleClick={onForward}/>
-            </div>
-
-        </div>
-        <div className="bottom__container">
-            <div className="slider__container">
-                <PrettoSlider />
-            </div>
-            <div className="control__box">
-                <div className="inner__controls">
-                <div className="icon__btn">
-                    <PlayArrow fontSize="medium" />
-                </div>
-                <div className="icon__btn">
-                    <SkipNext fontSize="medium" />
-                </div>
-                <div className="icon__btn">
-                    <VolumeUp fontSize="medium" />
-                </div>
-
-                <Slider className={`${classes.volumeSlider}`} />
-                <span className='spano'>5/20</span>
-                </div>
-            </div>
-        </div>
-    </Container>
-  );
-}
-
-// Add prop type validation for the Control component
-Control.propTypes = {
-    onPlayPause: PropTypes.func.isRequired,
-    playing: PropTypes.bool.isRequired,
-    onRewind: PropTypes.func.isRequired,
-    onForward: PropTypes.func.isRequired,
+  const handleSpeedChange = (event) => {
+    const newSpeed = event.target.value;
+    setSelectedSpeed(newSpeed);
+    // You can implement logic to set the video playback speed based on the selected option
+    // For example, using ReactPlayer's setPlaybackRate method
   };
 
-export default Control;
+  return (
+    <div className="control_Container" ref ={controlRef}>
+      <div className="top_container">
+        <h2 style={{ color:'white' }}>Video PLayer</h2>
+      </div>
+      <div className="mid__container">
+        <div className="icon__btn" onClick={onRewind}>
+          <FastRewind fontSize="medium" />
+        </div>
 
+        <div className="icon__btn" onClick={onPlayPause}>
+          {playing ? (
+            <Pause fontSize="medium" />
+          ) : (
+            <PlayArrow fontSize="medium" />
+          )}{" "}
+        </div>
+
+        <div className="icon__btn">
+          <FastForward fontSize="medium" onClick={onForward} />
+        </div>
+      </div>
+      <div className="bottom__container">
+        <div className="slider__container">
+          <PrettoSlider
+            min={0}
+            max={100}
+            value={played * 100}
+            onChange={onSeek}
+            onChangeCommitted={onSeekMouseUp}
+            onMouseDown={onMouseSeekDown}
+          />
+        </div>
+        <div className="control__box">
+          <div className="inner__controls">
+            <div className="icon__btn" onClick={onPlayPause}>
+              {playing ? (
+                <Pause fontSize="medium" />
+              ) : (
+                <PlayArrow fontSize="medium" />
+              )}{" "}
+            </div>
+
+            <div className="icon__btn">
+              <SkipNext fontSize="medium" />
+            </div>
+
+            <div className="icon__btn" onClick={onMute}>
+            {mute ? (
+                  <VolumeOff fontSize="medium" />
+                ) : (
+                  <VolumeUp fontSize="medium" />
+                )}
+            </div>
+
+            <Slider
+              className={`${classes.volumeSlider}`}
+              onChange={onVolumeChangeHandler}
+              value={volume * 100}
+              onChangeCommitted={onVolumeSeekUp}
+            />
+
+            <span className='spano'>{ currentTime} : {duration}</span>
+
+            <div className="quality__speed">
+            <div className="quality">
+              <label>Quality:</label>
+              <select
+                value={selectedQuality}
+                onChange={handleQualityChange}
+              >
+                {qualityOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="speed">
+              <label>Speed:</label>
+              <select
+                value={selectedSpeed}
+                onChange={handleSpeedChange}
+              >
+                {speedOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Control;
