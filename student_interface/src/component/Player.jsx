@@ -1,16 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactPlayer from "react-player";
 import { Container } from "@mui/material";
-import {formatTime} from './Format'
+import {formatTime} from './Tools/Format'
 import './Player.css'
 import Comments from "./comments/Comments";
 import Control from './Control';
-import { data } from './videos'
+import { data } from './Tools/videos'
 
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-
-
 
 
 let count = 0;

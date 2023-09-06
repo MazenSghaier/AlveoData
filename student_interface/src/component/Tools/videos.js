@@ -1,12 +1,12 @@
-import image_0 from '../assests/images/image_0.jpg';
-import image_1 from '../assests/images/image_1.jpg';
-import image_2 from '../assests/images/image_2.jpg';
-import image_3 from '../assests/images/image_3.jpg';
-import image_4 from '../assests/images/image_4.jpg';
-import image_5 from '../assests/images/image_5.jpg';
-import image_6 from '../assests/images/image_6.jpg';
-import image_7 from '../assests/images/image_7.jpg';
-import image_8 from '../assests/images/image_8.jpg';
+import image_0 from '../../assests/images/image_0.jpg';
+import image_1 from '../../assests/images/image_1.jpg';
+import image_2 from '../../assests/images/image_2.jpg';
+import image_3 from '../../assests/images/image_3.jpg';
+import image_4 from '../../assests/images/image_4.jpg';
+import image_5 from '../../assests/images/image_5.jpg';
+import image_6 from '../../assests/images/image_6.jpg';
+import image_7 from '../../assests/images/image_7.jpg';
+import image_8 from '../../assests/images/image_8.jpg';
 
 
 

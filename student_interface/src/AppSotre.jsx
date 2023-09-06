@@ -7,7 +7,7 @@ const appStore = (set) => ({
 });
 
 const showContactAndSocial = (set) => ({
-  show: true,
+  show: false,
   updateShow: (show) => set((state) => ({ show: show })),
 });
 
