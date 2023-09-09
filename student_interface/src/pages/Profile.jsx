@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import Sidenav from '../component/Sidenav';
 import { Box, Button, Divider, Typography } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
@@ -10,15 +10,27 @@ import Avatar from '@mui/material/Avatar';
 import InputAdornments from  '../component/textfield';
 import Grid from '@mui/material/Grid';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-
+import { useDispatch } from 'react-redux';
+import { getUser } from '../actions/user';
+import { useSelector } from 'react-redux';
 
 export default function Profile() {
 
+  const user = useSelector(state => state.user);
+  console.log(user.user[0].username);
+
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
   const toggleShow = () => {
     setShow(!show);
   };
+
+  useEffect(() =>{
+
+    dispatch(getUser());
+    
+  },[dispatch])
 
   return (
     <>
@@ -53,7 +65,7 @@ export default function Profile() {
             </Box>
             <CardContent>
               <Typography variant="h5" sx={{ color:"#35bbe3" ,fontSize: '1.25rem', fontWeight: 'bold' }}>
-                Mazen Sghaier
+                {user.user[0].username}
               </Typography>
               <Typography variant="subtitle1" sx={{ fontSize: '.8rem', color: 'gray', mt: 1 }}>
                  Member

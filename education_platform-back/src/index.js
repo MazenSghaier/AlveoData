@@ -30,7 +30,7 @@ mongoose.connect(ConnectionURL, {
   });
 
 
-app.use('/users',usersRoutes);
+app.use('/users', usersRoutes);
 
 app.get("/", (req,res) => {
     console.log("[TEST]!");

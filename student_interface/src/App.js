@@ -3,11 +3,15 @@ import {Routes,Route, BrowserRouter} from "react-router-dom"
 import './App.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import Courses from './pages/Courses';
 import Course from './pages/Course';
+
+
+
 
 
 function App() {
