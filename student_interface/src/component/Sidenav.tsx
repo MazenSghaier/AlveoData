@@ -233,7 +233,7 @@ export default function MiniDrawer() {
           
           </List>
           <Divider />
-        <Box sx={{ display: 'block', paddingTop: 6, justifyContent: 'center', textAlign: 'center' , transition: 'max-height 0.3s ease-in-out',maxHeight: show ? '1000px' : '0',overflow: 'hidden',}}>
+        <Box sx={{ display: 'block', paddingTop: 6, justifyContent: 'center', textAlign: 'center' , transition: 'max-height 0.3s ease-in-out',maxHeight: show ? '0' : '1000px',overflow: 'hidden',}}>
           <Grid container spacing={4}>
             <Grid item xs={12}>
               <Box sx={{ display: 'block', paddingY: 2 }}>

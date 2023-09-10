@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 export default function Profile() {
 
   const user = useSelector(state => state.user);
-  console.log(user.user[0].username);
+  console.log(user);
 
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -65,7 +65,7 @@ export default function Profile() {
             </Box>
             <CardContent>
               <Typography variant="h5" sx={{ color:"#35bbe3" ,fontSize: '1.25rem', fontWeight: 'bold' }}>
-                {user.user[0].username}
+                Mazen sghaier
               </Typography>
               <Typography variant="subtitle1" sx={{ fontSize: '.8rem', color: 'gray', mt: 1 }}>
                  Member

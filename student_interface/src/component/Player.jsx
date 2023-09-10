@@ -21,7 +21,7 @@ const Player = ({ url }) => {
   const [pause , setPause] = useState(false)
 
   const [videoState, setVideoState] = useState({
-    playing: true,
+    playing: false,
     muted: false,
     volume: 0.5,
     playbackRate: 1.0,
@@ -188,13 +188,15 @@ const Player = ({ url }) => {
               <div class="videos">
                   {data.map((data,index) => (
                     <div key={index} class="video" data-id={data.id} onClick={PausePlayHandler}>
-                      <div key={index} data-id={data.id} className="icon__btn" >
-                        {pause ? (
-                            <PauseCircleIcon fontSize="large" />
-                          ) : (
-                            <PlayCircleIcon fontSize="large" />
-                          )}{" "} 
-                          <img style={{width:'100%', height:'100%'}} src={data.image} alt=""/>
+                      <div key={index} data-id={data.id} className="icon__btn flex" >
+                          <div className='mr-4'>
+                            {pause ? (
+                                <PauseCircleIcon fontSize="large" />
+                              ) : (
+                                <PlayCircleIcon fontSize="large" />
+                              )}{" "} 
+                          </div>
+                          <img style={{width:'5rem', height:'3rem'}} src={data.image} alt=""/>
                       </div>
                       <h3 class="title">{data.title}</h3>
                       <p class="time">{data.duration}</p>
@@ -206,7 +208,7 @@ const Player = ({ url }) => {
 
           {/*comments section starts */}
           <Comments commentsUrl="http://localhost:3004/comments"
-        currentUserId="1"/>
+              currentUserId="1"/>
            {/*Comments section ends */}
     </main>
   );

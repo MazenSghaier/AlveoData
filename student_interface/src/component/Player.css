@@ -4,6 +4,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-bottom: 120px;
+  z-index: 2;
  }
  
  .player__wrapper {
@@ -125,12 +127,10 @@
 }
 
 .container {
-  width: 80vw;
-
+  width: 90vw;
   display: grid;
   grid-template-columns: 1.8fr 1.2fr;
   gap: 1rem;
-  
   padding: .5rem 1rem;
   text-transform: capitalize;
 }
