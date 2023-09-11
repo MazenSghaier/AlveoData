@@ -19,7 +19,7 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number })
 }
 
 export default function LinearWithValueLabel() {
-  const [progress, setProgress] = React.useState(0);
+  const [progress, setProgress] = React.useState(10);
 
   return (
     <Box sx={{ width: '100%' }}>

@@ -5,7 +5,7 @@ import Navbar from '../component/Navbar'
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CustomCard from '../component/CustomCard';
-import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
 import CardMedia from '@mui/material/CardMedia';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
@@ -45,16 +45,16 @@ export default function Home() {
         <Grid container spacing={2} >
           
           <Grid item xs={6} md={8} >
-            <Card sx={{ width: 500, }}>
+            <Card sx={{ width: 500, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 16px' }}>
                 <div>
-                  <Link href="/" sx={{ p: 0 }}>
+                  <Link href="/" sx={{ p: 0, color: '#35bbe3', fontSize: '.9rem', }}>
                     Last uploaded videos
                   </Link>
                 </div>
                 <div>
                   {/* Add your additional link here */}
-                  <Link href="/your-additional-link" sx={{ p: 2 }}>
+                  <Link href="/your-additional-link" sx={{ p: 2, color: '#35bbe3', fontSize: '.9rem',}}>
                     Courses
                   </Link>
                 </div>
@@ -83,16 +83,16 @@ export default function Home() {
           </Grid>
 
           <Grid item xs={6} md={8}>
-            <Card sx={{ width: 500 }}>
+            <Card sx={{ width: 500, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 16px' }}>
                     <div>
-                      <Link href="/" >
+                      <Link href="/" sx={{ p: 0, color: '#35bbe3', fontSize: '.9rem', }}>
                         Free Videos
                       </Link>
                     </div>
                     <div>
                       {/* Add your additional link here */}
-                      <Link href="/your-additional-link" sx={{ p: 2 }}>
+                      <Link href="/your-additional-link" sx={{ p: 2 , color: '#35bbe3', fontSize: '.9rem',}}>
                         Courses
                       </Link>
                     </div>
@@ -107,8 +107,8 @@ export default function Home() {
         </Grid>
         <Grid container spacing={2} >
           
-          <Grid item xs={6} md={8} >
-          <Card sx={{ width: 300 }}>
+        <Grid item xs={6} md={8}>
+          <Card sx={{ width: 300, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)' }}>
             <Typography sx={{ p: 2, color: '#35bbe3', fontWeight: 'bold' }}>
               My progress
             </Typography>
@@ -124,8 +124,12 @@ export default function Home() {
                     p: 2,
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src={course.cours} alt={course.name} style={{ width: '30px', height: '30px', marginRight: '8px' }} />
+                  <div style={{display: 'grid', alignItems: 'center' }}>
+                    <img
+                      src={course.cours}
+                      alt={course.name}
+                      style={{ width: '30px', height: '30px', marginRight: '8px' }}
+                    />
                     <div>
                       <Typography
                         sx={{
@@ -143,9 +147,20 @@ export default function Home() {
                 </Card>
               </Link>
             ))}
+           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '10px' }}>
+            <Button
+              variant="outlined"
+              sx={{ color:"#35bbe3" }}
+              onClick={() => {
+                // Handle the click event here
+              }}
+            >
+              View More
+            </Button>
+          </div>
           </Card>
+        </Grid>
 
-          </Grid>
 
         </Grid>
         </Stack>
