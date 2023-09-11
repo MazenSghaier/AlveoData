@@ -65,7 +65,7 @@ const FreeCourse = () => {
       <Container>
         <Row>
           <Col lg="12" className="text-center mb-5">
-            <h2 className="fw-bold">Our Free Courses</h2>
+            <h2 className="italic  lg:text-2xl font-semibold">Our Free Courses</h2>
           </Col>
         </Row>
 

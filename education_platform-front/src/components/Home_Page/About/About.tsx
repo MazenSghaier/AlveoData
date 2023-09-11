@@ -69,22 +69,15 @@ const About: React.FC = () => {
 
           {/* Column 2 */}
           <Col lg="8" md="12" className="flex items-center">
-            <div className="about__content text-center pl-10">
-              
-              <p className="text-base font-serif text-green-900 pb-2 pt-3">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Excepturi cupiditate animi deserunt libero nesciunt corporis
-                explicabo nobis ex quo molestiae!
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Excepturi cupiditate animi deserunt libero nesciunt corporis
-                explicabo nobis ex quo molestiae!
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Excepturi cupiditate animi deserunt libero nesciunt corporis
-                explicabo nobis ex quo molestiae!
+            <div className="about__content text-center">
+              <p className="italic lg:text-xl font-semibold  pb-2 pt-3">
+                Educational platforms offer a diverse range of scientific courses,
+                catering to individuals with a passion for understanding the natural world. 
+                These courses span various disciplines,
+                from algebra and analysis to web development and data science.
               </p>
-
-               {/* Counters */}
-               <div className="about__counter mt-6 flex justify-center">
+              {/* Counters */}
+              <div className="about__counter mt-6 flex justify-center">
                 {/* All Counters in One Row */}
                 <div className="flex gap-5 items-center">
                   <div className="single__counter">

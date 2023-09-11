@@ -62,11 +62,11 @@ const Courses = () => {
         <Row className="bg-gray p-4">
           <Col className="course__top">
             <div className="course__top__left">
-              <h2>Our Popular Courses</h2>
+              <h2 className="italic  lg:text-2xl font-semibold">Our Popular Courses</h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-                consequatur libero quod voluptatibus ullam quia quas, vitae
-                voluptatem recusandae reprehenderit!
+              At our educational platform, we offer a diverse range of courses to satisfy your thirst for knowledge. 
+              From scientific explorations to practical skills like web development and data science, our courses cater to all interests. 
+              Join us to embark on a learning journey that unlocks your potential.
               </p>
             </div>
             <div className="text-end hover:text-cyan-400">

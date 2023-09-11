@@ -96,16 +96,16 @@ const HeroSection: React.FC = () => {
       ></div>
       <div className="lg:w-1/2 lg:pr-20 mb-8 lg:mb-0 animate__animated animate__slideInLeft">
         <div className="hero__content">
-          <h2 className="mb-6 text-2xl lg:text-5xl font-bold text-black">
+          <h2 className="mb-6 italic  lg:text-5xl font-semibold text-sky-600">
             Anytime Anywhere <br /> Learn on your <br /> Suitable Schedule
           </h2>
-          <p className="mb-8 text-sm lg:text-xl text-black">
-            Lorem ipsum dolor sit amet consectetur <br /> adipisicing elit.
-            Aut saepe voluptatum earum delectus <br /> deserunt id iste, quas
-            officiis et repellat!
+          <p className="mb-8 font-sans text-lg text-sky-950">
+            Harness the power of technology with computer science courses, 
+            covering programming languages, 
+            software development, and artificial intelligence.
           </p>
           <div className="search">
-            <Button style={buttonStyle}>Start Now</Button>
+            <Button style={buttonStyle} >Start Now</Button>
           </div>
         </div>
       </div>

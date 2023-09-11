@@ -1,4 +1,6 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
+
 import Sidenav from '../component/Sidenav'
 import { Box, Divider, Stack } from '@mui/material'
 import Navbar from '../component/Navbar'
@@ -12,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import LinearBuffer from '../component/Progressbar'
 import image_1 from '../assests/images/image_1.jpg'
 
+
 import statistics from './../assests/Courses/statistics.png'
 import matlab from './../assests/Courses/matlab.png'
 import c_plus from './../assests/Courses/c_plus.png'
@@ -19,7 +22,7 @@ import algebra from './../assests/Courses/algebra.png'
 import analysis from './../assests/Courses/analysis.png'
 
 const courses = [
-  {cours : statistics , name :"Statistics"},
+   {cours : statistics , name :"Statistics"},
    {cours : matlab, name :"Matlab"},
    {cours : c_plus, name :"C++"},
    {cours : algebra, name :"Algebra"},
@@ -33,6 +36,9 @@ const style = {
 };
 
 export default function Home() {
+
+  const nav = useNavigate();
+
   return (
     <>
     <Navbar/>
@@ -54,7 +60,7 @@ export default function Home() {
                 </div>
                 <div>
                   {/* Add your additional link here */}
-                  <Link href="/your-additional-link" sx={{ p: 2, color: '#35bbe3', fontSize: '.9rem',}}>
+                  <Link href="/Courses" sx={{ p: 2, color: '#35bbe3', fontSize: '.9rem',}}>
                     Courses
                   </Link>
                 </div>
@@ -92,7 +98,7 @@ export default function Home() {
                     </div>
                     <div>
                       {/* Add your additional link here */}
-                      <Link href="/your-additional-link" sx={{ p: 2 , color: '#35bbe3', fontSize: '.9rem',}}>
+                      <Link href="/Courses" sx={{ p: 2 , color: '#35bbe3', fontSize: '.9rem',}}>
                         Courses
                       </Link>
                     </div>
@@ -113,7 +119,7 @@ export default function Home() {
               My progress
             </Typography>
             {courses.map((course, index) => (
-              <Link to={`/course/${index}`} className="custom-link" key={index}>
+              <Link href={`/course/${index}`} className="custom-link" key={index}>
                 <Card
                   sx={{
                     display: 'flex',
@@ -151,9 +157,7 @@ export default function Home() {
             <Button
               variant="outlined"
               sx={{ color:"#35bbe3" }}
-              onClick={() => {
-                // Handle the click event here
-              }}
+              onClick={() => {nav("/Courses")}}
             >
               View More
             </Button>

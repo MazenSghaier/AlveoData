@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@craco/craco": "^7.1.0",
+    "@craco/craco": "^5.9.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.8",
@@ -29,7 +29,7 @@
     "postcss": "^8.4.29",
     "prop-types": "15.8.1",
     "react": "^18.2.0",
-    "react-chat-engine": "^1.11.28",
+    "react-chat-engine": "^1.8.13",
     "react-cookie": "^6.1.1",
     "react-countup": "^6.4.2",
     "react-dom": "^18.2.0",

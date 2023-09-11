@@ -139,7 +139,7 @@ export default function Navbar() {
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" >
-          <Badge badgeContent={4} color="error">
+          <Badge badgeContent={1} color="error">
             <MailOutline />
           </Badge>
         </IconButton>
@@ -148,10 +148,10 @@ export default function Navbar() {
       <MenuItem>
         <IconButton
           size="large"
-          aria-label="show 17 new notifications"
+          aria-label="show 1 new notifications"
           color="primary"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={1} color="error">
             <NotificationsNoneOutlined />
           </Badge>
         </IconButton>
@@ -213,16 +213,16 @@ export default function Navbar() {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex'  } }}>
             <IconButton size="large" aria-label="show 4 new mails" >
-              <Badge badgeContent={4} color="error">
+              <Badge badgeContent={1} color="error">
                 <MailOutline sx={{ color: '#35bbe3', }}  />
               </Badge>
             </IconButton>
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
+              aria-label="show 0 new notifications"
               
             >
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={1} color="error">
                 <NotificationsNoneOutlined sx={{ color: '#35bbe3', }}/>
               </Badge>
             </IconButton>
