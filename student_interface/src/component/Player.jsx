@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactPlayer from "react-player";
+import { findDOMNode } from 'react-dom'
 import { Container } from "@mui/material";
+import screenfull from 'screenfull'
 import {formatTime} from './Tools/Format'
 import './Player.css'
 import Comments from "./comments/Comments";
@@ -19,6 +21,7 @@ const Player = ({ url }) => {
   const controlRef = useRef(null);
 
   const [pause , setPause] = useState(false)
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
   const [videoState, setVideoState] = useState({
     playing: false,
@@ -135,6 +138,35 @@ const Player = ({ url }) => {
     setVideoState({ ...videoState, buffer: false });
   };
 
+  const handleClickFullscreen = () => {
+    const videoPlayer = videoPlayerRef.current; // Get the video player element
+
+  // Check if the video player is currently in full-screen
+  if (
+    document.fullscreenElement === videoPlayer ||
+    document.mozFullScreenElement === videoPlayer ||
+    document.webkitFullscreenElement === videoPlayer
+  ) {
+    // Exit full-screen mode for the video player
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  } else {
+    // Enter full-screen mode for the video player
+    if (videoPlayer.requestFullscreen) {
+      videoPlayer.requestFullscreen();
+    } else if (videoPlayer.mozRequestFullScreen) {
+      videoPlayer.mozRequestFullScreen();
+    } else if (videoPlayer.webkitRequestFullscreen) {
+      videoPlayer.webkitRequestFullscreen();
+    }
+  }
+};
+
   return (
     <main class="container">
       {/*Video section starts */}
@@ -175,6 +207,8 @@ const Player = ({ url }) => {
               duration={formatDuration}
               currentTime={formatCurrentTime}
               onMouseSeekDown={onSeekMouseDownHandler}
+              toggleFullScreen={handleClickFullscreen}
+              isFullScreen={isFullScreen}
             />
           </div>
         </Container>

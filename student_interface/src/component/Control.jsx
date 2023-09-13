@@ -14,6 +14,8 @@ import PlayArrow from '@mui/icons-material/PlayArrow';
 import SkipNext from '@mui/icons-material/SkipNext';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import VolumeOff from '@mui/icons-material/VolumeOff';
+import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
@@ -84,6 +86,8 @@ const Control = ({
   currentTime,
   onMouseSeekDown,
   controlRef,
+  toggleFullScreen,
+  isFullScreen
 }) => {
   const classes = useStyles();
 
@@ -197,6 +201,15 @@ const Control = ({
                   </option>
                 ))}
               </select>
+            </div>
+            <div className="icon__btn" onClick={toggleFullScreen}>
+              {isFullScreen ? (
+                // Display an exit full-screen icon
+                <FullscreenExitIcon fontSize="medium" />
+              ) : (
+                // Display a full-screen icon
+                <FullscreenIcon fontSize="medium" />
+              )}
             </div>
           </div>
           </div>
