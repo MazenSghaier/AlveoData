@@ -57,7 +57,7 @@ const Home = () => {
       </Map>    
     </div>    
     <Footer/>
-    <SupportEngine />
+ 
   </Fragment>
 );
 };

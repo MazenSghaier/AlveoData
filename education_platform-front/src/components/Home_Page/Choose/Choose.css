@@ -8,3 +8,20 @@
   .video__animation.show {
     transform: translateY(0); /* Move to original position */
   }
+
+  /* Animation class */
+.animate-your-animation-class {
+  animation: popUpAnimation 1s forwards;
+}
+
+/* Keyframes for the animation */
+@keyframes popUpAnimation {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -17,20 +17,26 @@ const FreeCourseCard = forwardRef(({ item, shouldAnimate }, ref) => {
       <div className="free__course__details">
         <h6>{title}</h6>
 
-        <div className="d-flex align-items-center justify-content-between">
-          <div className="d-flex align-items-center">
-            <span className="icon">
+        <div style={{display:'flex', justifyContent:'center', alignContent:'center'}}>
+
+            <div className="students">
               <RiUserLine />
-            </span>{" "}
-            {students}k
+                <span >
+                  {" "}{students}k
+                </span>
+            </div>
+
+        </div>
+
+        <div style={{display:'flex', justifyContent:'center', alignContent:'center'}}>
+
+          <div className="rating">
+            <RiStarFill />
+              <span >
+                {" "} {rating}k
+              </span>
           </div>
 
-          <div className="d-flex align-items-center">
-            <span className="icon">
-              <RiStarFill />
-            </span>{" "}
-            {rating}k
-          </div>
         </div>
       </div>
     </div>

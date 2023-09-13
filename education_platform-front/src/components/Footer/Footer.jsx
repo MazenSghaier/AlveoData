@@ -49,7 +49,7 @@ const footerInfoLinks = [
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="footer" style={{ display:'flex', alignContent:'center', justifyContent:'center'}}>
       <Container>
       <Row className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 p-3"> 
           <Col lg="3" md="6" className="mb-4">

@@ -26,10 +26,7 @@ const CoursesPage = () => {
         <Content_display/>
         
         <Content_display/>
-        
-        <Content_display/>
-        
-        <Content_display/>
+
         <FrequentlyAskedQuestions/>
 
         <div style={{ display: 'flex', justifyContent:'center', alignContent:'center'}}>

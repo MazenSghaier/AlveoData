@@ -16,7 +16,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 }) => {
   return (
     <div>
-      <div className="single__testimonial">
+      <div className="single__testimonial m-16">
         <Typography variant="h6" component="h6" className="mb-3 fw-bold">
           {title}
         </Typography>

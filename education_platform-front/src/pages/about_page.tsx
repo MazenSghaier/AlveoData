@@ -25,7 +25,7 @@ const AboutPage = () => {
       {/*<div style={{ display: "flex", flexDirection: "column", marginTop: "8rem", paddingTop: "0px" }}>*/}
       <div className="flex flex-col mt-32 pt-0">
       <div className="about__img text-center relative mb-2">
-          <h2 className="text-3xl ont-semibold">Who we are</h2>
+          <h2 className="italic  lg:text-4xl font-semibold text-sky-500">Who we are</h2>
         </div>
         <OurPlat/>
         <OurStorySection/>

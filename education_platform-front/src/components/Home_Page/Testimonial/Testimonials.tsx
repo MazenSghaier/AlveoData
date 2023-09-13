@@ -40,9 +40,9 @@ const Testimonials: React.FC = () => {
               </div>
 
               <div className="testimonial__content w-1/2">
-                <Typography variant="h4" component="h2" gutterBottom>
+                <h2 className="italic  lg:text-4xl font-semibold p-6 text-sky-500">
                   Our Students Voice
-                </Typography>
+                </h2>
 
                 <Carousel
                   infiniteLoop
@@ -51,6 +51,7 @@ const Testimonials: React.FC = () => {
                   autoPlay
                   interval={3000}
                   transitionTime={500}
+                  
                 >
                   {testimonialsData.map((testimonial, index) => (
                     <TestimonialCard

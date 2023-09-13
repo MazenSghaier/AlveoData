@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from "reactstrap";
 import courseImg1 from "../../../assests/images/web-design.png";
 import courseImg2 from "../../../assests/images/graphics-design.png";
@@ -34,6 +35,7 @@ const coursesData = [
 ];
 
 const Courses = () => {
+  const nav = useNavigate();
   const coursesRef = useRef(null);
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
@@ -62,15 +64,21 @@ const Courses = () => {
         <Row className="bg-gray p-4">
           <Col className="course__top">
             <div className="course__top__left">
-              <h2 className="italic  lg:text-2xl font-semibold">Our Popular Courses</h2>
-              <p>
+              <h2 className="italic  lg:text-2xl font-semibold text-black">Our Popular Courses</h2>
+              <p className="non-italic lg:text-base font-meduim text-black">
               At our educational platform, we offer a diverse range of courses to satisfy your thirst for knowledge. 
               From scientific explorations to practical skills like web development and data science, our courses cater to all interests. 
               Join us to embark on a learning journey that unlocks your potential.
               </p>
             </div>
             <div className="text-end hover:text-cyan-400">
-              <button className="hover:text-cyan-400" style={{backgroundColor: "#fff", color: "#35bbe3", borderRadius: "2rem", padding: "0.8rem 2rem",}}>See All</button>
+              <button 
+                  className="hover:text-cyan-400" 
+                  style={{backgroundColor: "#fff", color: "#35bbe3", borderRadius: "2rem", padding: "0.8rem 2rem",}} 
+                  onClick={() => {nav("/courses")}}
+              >
+                See All
+              </button>
             </div>
           </Col>
         </Row>

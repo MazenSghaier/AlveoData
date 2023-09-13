@@ -70,7 +70,7 @@ const About: React.FC = () => {
           {/* Column 2 */}
           <Col lg="8" md="12" className="flex items-center">
             <div className="about__content text-center">
-              <p className="italic lg:text-xl font-semibold  pb-2 pt-3">
+              <p className="non-italic lg:text-xl font-meduim text-black pb-2 pt-3">
                 Educational platforms offer a diverse range of scientific courses,
                 catering to individuals with a passion for understanding the natural world. 
                 These courses span various disciplines,
@@ -81,21 +81,21 @@ const About: React.FC = () => {
                 {/* All Counters in One Row */}
                 <div className="flex gap-5 items-center">
                   <div className="single__counter">
-                    <span className="counter text-2xl font-semibold text-green-900">
+                    <span className="counter text-2xl font-semibold ">
                       <CountUp start={0} end={25} duration={2} suffix="K" />
                     </span>
-                    <p className="counter__title text-base text-green-900">Completed Projects</p>
+                    <p className="counter__title text-base ">Completed Projects</p>
                   </div>
 
                   <div className="single__counter">
-                    <span className="counter text-2xl font-semibold text-green-900">
+                    <span className="counter text-2xl font-semibold ">
                       <CountUp start={0} end={12} duration={2} suffix="M" />
                     </span>
-                    <p className="counter__title text-base text-green-900">Patient Around World</p>
+                    <p className="counter__title text-base ">Patient Around World</p>
                   </div>
 
                   <div className="single__counter">
-                    <span className="counter text-2xl font-semibold text-green-900">
+                    <span className="counter text-2xl font-semibold ">
                       <CountUp start={0} end={95} duration={2} suffix="M" />
                     </span>
                     <p className="counter__title text-base text-green-900">Ideas Raised Funds</p>

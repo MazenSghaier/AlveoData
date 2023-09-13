@@ -23,7 +23,7 @@
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
-  color: #2d937e;
+  color: #2d5193;
 }
 
 .course__details > div {
@@ -72,6 +72,33 @@
   font-size: 0.9rem;
   color: #0a2b1e;
   font-weight: 500;
+}
+
+.rating{
+  display: flex; /* Use flexbox to align items horizontally */
+  align-items: center; /* Center align items vertically */
+}
+
+.rating span {
+  margin-left: 0.2rem; /* Add spacing between the icon and text */
+}
+
+.lesson {
+  display: flex; /* Use flexbox to align items horizontally */
+  align-items: center; /* Center align items vertically */
+}
+
+.lesson span {
+  margin-left: 0.2rem; /* Add spacing between the icon and text */
+}
+
+.students {
+  display: flex; /* Use flexbox to align items horizontally */
+  align-items: center; /* Center align items vertically */
+}
+
+.students span {
+  margin-left: 0.2rem; /* Add spacing between the icon and text */
 }
 
 .lesson i,

@@ -40,10 +40,6 @@ const navLinks = [
     url: "/courses",
   },
   {
-    display: "Pages",
-    url: "#",
-  },
-  {
     display: "Blog",
     url: "#",
   },
@@ -75,7 +71,7 @@ const Header: React.FC = () => {
                   <li key={index} className="nav__item">
                     <a
                       href={item.url}
-                      className="counter text-xm font-semibold hover:text-cyan-400"
+                      className="counter text-xl font-meduim hover:text-cyan-400"
                     >
                       {item.display}
                     </a>
@@ -95,9 +91,9 @@ const Header: React.FC = () => {
 
             {/* Mobile Menu */}
             <div className="mobile__menu md:hidden">
-              <button onClick={toggleMobileMenu} className="focus:outline-none">
-                <RiMenuLine className="text-xl text-green-800" />
-              </button>
+              <Button onClick={toggleMobileMenu} className="focus:outline-none">
+                <RiMenuLine className="text-xl text-cyan-800" />
+              </Button>
               {showMobileMenu && (
                 <div className="mobile__menu-items absolute top-20 left-0 right-0 bg-white text-slate-950 divide-y gap-6">
                   <ul className="px-4 py-2 divide-y">
