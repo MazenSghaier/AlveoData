@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 import usersRoutes from './Routes/routerUsers.js'
+import coursesRoutes from './Routes/routerCourses.js'
 
 import { UserModel } from './Module/User.js'
 
@@ -31,6 +32,8 @@ mongoose.connect(ConnectionURL, {
 
 
 app.use('/users', usersRoutes);
+
+app.use('/courses', coursesRoutes);
 
 app.get("/", (req,res) => {
     console.log("[TEST]!");

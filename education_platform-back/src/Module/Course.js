@@ -8,7 +8,8 @@ const courseSchema = new mongoose.Schema({
   courseDescription: String,
   Level: String,
   Course_Pic: String,
-  Last_update: Date,
+  Course_Video: String,
+  Last_update: String,
 });
 
 

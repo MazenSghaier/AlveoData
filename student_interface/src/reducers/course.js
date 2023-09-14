@@ -1,4 +1,5 @@
-export const user =( user = [ ] , action ) => {
+
+export const course =( course = [ ] , action ) => {
 
     switch (action.type) {
 
@@ -8,10 +9,10 @@ export const user =( user = [ ] , action ) => {
 
         case 'CREATE':
 
-            return user;
+            return course;
 
         default:
             
-            return user;
+            return course;
     }
 }

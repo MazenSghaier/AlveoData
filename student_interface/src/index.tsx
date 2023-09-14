@@ -6,11 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { configureStore, applyMiddleware, compose } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import reducers from './reducers/index.js'
+import reducers_1 from './reducers/Userreducer.js'
+import reducers_2 from './reducers/CourseReducer.js'
 
 const store = configureStore({
   reducer: {
-    user: reducers
+    user: reducers_1,
+    course : reducers_2,
   },
   middleware: [thunk],
 });

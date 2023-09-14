@@ -59,8 +59,8 @@ const Header: React.FC = () => {
           <div className="navigation flex items-center justify-between h-full">
           <div className="logo animate__animated animate__fadeIn">
             <Typography variant="h5" className="flex items-center gap-1">
-              <RiPantoneLine className="text-xl" style={{ animation: "slideFromBottom 1s ease-out" }} />
-              <span className="animate__animated animate__slideInRight">Learners.</span>
+              <RiPantoneLine className="text-xl linear-wipe " style={{ animation: "slideFromBottom 1s ease-out" }} />
+              <span className="animate__animated linear-wipe animate__slideInRight">Learners.</span>
             </Typography>
           </div>
 

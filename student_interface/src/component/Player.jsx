@@ -4,6 +4,10 @@ import { findDOMNode } from 'react-dom'
 import { Container } from "@mui/material";
 import screenfull from 'screenfull'
 import {formatTime} from './Tools/Format'
+import { useDispatch } from 'react-redux';
+import { getCourse } from '../actions/course';
+import { useSelector } from 'react-redux';
+
 import './Player.css'
 import Comments from "./comments/Comments";
 import Control from './Control';
@@ -19,9 +23,21 @@ const Player = ({ url }) => {
 
   const videoPlayerRef = useRef(null);
   const controlRef = useRef(null);
+  
+  const user = useSelector(state => state.user);
+  console.log(user);
+
+  const dispatch = useDispatch();
 
   const [pause , setPause] = useState(false)
   const [isFullScreen, setIsFullScreen] = useState(false);
+
+  useEffect(() =>{
+
+    dispatch(getCourse());
+    
+  },[dispatch])
+
 
   const [videoState, setVideoState] = useState({
     playing: false,

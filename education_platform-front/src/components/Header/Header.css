@@ -30,3 +30,20 @@
   .logo span {
     animation: slideFromLeft 1s ease-out;
   }
+
+  .linear-wipe {
+    background: linear-gradient(to right, #006afe 20%, #0088ff 40%, #54d3fa 60%, #006afe 80%);
+    background-size: 200% auto;
+    color: #0f0a3c;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
+    animation: shine 1.3s linear infinite;
+  }
+  @keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+  }
