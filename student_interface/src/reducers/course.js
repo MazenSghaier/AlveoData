@@ -1,5 +1,5 @@
-
-export const course =( course = [ ] , action ) => {
+const initialState = [];
+export const course =( state = initialState, action) => {
 
     switch (action.type) {
 
@@ -9,10 +9,10 @@ export const course =( course = [ ] , action ) => {
 
         case 'CREATE':
 
-            return course;
+            return state;
 
         default:
             
-            return course;
+            return state;
     }
 }

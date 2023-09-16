@@ -1,4 +1,15 @@
-export const user =( user = [ ] , action ) => {
+const initialState = {
+    // Initial user data here
+    FirstName: '',
+    LastName: '',
+    Phone: '',
+    Email: '',
+    birthdate: '',
+    gender: '',
+    country: '',
+  };
+
+export const user = ( user = initialState , action ) => {
 
     switch (action.type) {
 
@@ -6,9 +17,9 @@ export const user =( user = [ ] , action ) => {
 
             return action.payload;
 
-        case 'CREATE':
+        case 'UPDATE':
 
-            return user;
+            return action.payload;
 
         default:
             

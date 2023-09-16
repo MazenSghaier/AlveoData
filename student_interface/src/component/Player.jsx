@@ -24,8 +24,8 @@ const Player = ({ url }) => {
   const videoPlayerRef = useRef(null);
   const controlRef = useRef(null);
   
-  const user = useSelector(state => state.user);
-  console.log(user);
+  const course = useSelector(state => state.course);
+  console.log(course);
 
   const dispatch = useDispatch();
 
@@ -183,6 +183,8 @@ const Player = ({ url }) => {
   }
 };
 
+
+console.log(course.course[0])
   return (
     <main class="container">
       {/*Video section starts */}
@@ -225,6 +227,7 @@ const Player = ({ url }) => {
               onMouseSeekDown={onSeekMouseDownHandler}
               toggleFullScreen={handleClickFullscreen}
               isFullScreen={isFullScreen}
+              
             />
           </div>
         </Container>

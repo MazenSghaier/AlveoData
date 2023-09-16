@@ -13,6 +13,30 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { useDispatch } from 'react-redux';
 import { getUser } from '../actions/user';
 import { useSelector } from 'react-redux';
+import { styled } from '@mui/material/styles';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(40%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: .5,
+});
+
+const StyledButton = styled(Button)({
+  backgroundColor: '#35bbe3',
+  margin:6,
+  color: 'white',
+  '&:hover': {
+    backgroundColor: 'white', 
+    color: '#35bbe3',
+  },
+});
 
 export default function Profile() {
 
@@ -85,6 +109,8 @@ export default function Profile() {
             </CardContent>
             <Divider sx={{ w: '8rem', mt: 3, mb:3 }} />
             <Button
+              color="secondary"
+              size="medium"
               variant="outlined"
               onClick={toggleShow}
               sx={{
@@ -106,54 +132,43 @@ export default function Profile() {
         </Box>
         {show && (
           
-        <Box sx={{ ml: 3, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-          <Grid item xs={6}>
-            <Badge
-              overlap="circular"
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
-              badgeContent={<div style={{ width: 10, height: 10, backgroundColor: '#46d008', borderRadius: '50%' , mt:8}} />}
-            >
-            </Badge> 
-            <Avatar src="/your-image-url.jpg" />
-              <input
-                accept="image/*"
-                style={{ display: 'none' }}
-                id="icon-button-file"
-                type="file"
-              />
-              <label htmlFor="icon-button-file">
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <PhotoCameraIcon sx={{ color:'#35bbe3' }} />
-                  <Typography variant="body2" sx={{ fontSize: '.8rem', color: 'gray', mt: 2 }}> ABC123 </Typography>
-                </IconButton>
-              </label>
-          </Grid>
-          <Typography>Personal Information</Typography>
-          <InputAdornments />
+          <Box sx={{ ml: 3, display: 'flex', flexDirection: 'column' }}>
           <Button
-              variant="outlined"
-              onClick={toggleShow}
-              sx={{
-                width: '6rem',
-                mt: 3,
-                backgroundColor: '#35bbe3',
-                display: 'block', 
-                margin: '0 auto',
-                color:'white',
-                '&:hover': {
-                  color: '#35bbe3', 
-                },
-              }}
-            >
-              Modify
-            </Button> 
+            variant="outlined"
+            onClick={toggleShow}
+            sx={{
+              width: '6rem',
+              mt: 3,
+              backgroundColor: '#35bbe3',
+              color: 'white',
+              '&:hover': {
+                color: '#35bbe3',
+              },
+            }}
+          >
+            Back
+          </Button>       
+            <Grid item xs={12} sm={6} sx={{display:'flex', alignContent:'center', justifyContent:'center'}}>
+              <Badge
+                overlap="circular"
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+                badgeContent={<div style={{ width: 10, height: 10, backgroundColor: '#46d008', borderRadius: '50%' , mt:8}} />}
+              >
+                <Avatar src="/your-image-url.jpg" />
+              </Badge>
+
+              <StyledButton size="small" component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                Upload photo
+                <VisuallyHiddenInput sx={{color: '#35bbe3' , pl:'2'}}  type="image" />
+              </StyledButton>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Typography variant="h6">Personal Information</Typography>
+              <InputAdornments />
+            </Grid>
         </Box>
         )}
       </Box>
