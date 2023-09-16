@@ -1,5 +1,6 @@
 import { error } from 'console';
 import { UserModel } from './../Module/User.js'
+import mongoose from 'mongoose';
 
 
 
@@ -61,4 +62,15 @@ export const findUser = (req,res) => {
     const { id } = req.params;
 
     users = users.filter((user) => user.id !== id)
+}
+
+export const updateUser = async (req,res) => {
+    const { id: _id } = req.params
+    const user = req.body;
+
+    if(mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No user with that id')
+
+    const updatedUser = UserModel.findByIdAndUpdate( _id , user , { new : true } );
+
+    res.json(updatedUser)
 }
