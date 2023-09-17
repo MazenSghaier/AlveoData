@@ -2,15 +2,17 @@ import mongoose from 'mongoose';
 
 // Define a Mongoose schema for Person
 const userSchema = new mongoose.Schema({
-  username: String,
-  password: String,
+  username: { type: String, required:  true },
+  password: { type: String, required:  true },
   FName: String,
   LName: String,
-  Email: String,
-  BD: String,
-  Regrestration_Date: String,
+  Email: { type: String, required:  true },
+  birthday: { type: String, required:  true },
+  joinDate: { type: String, required:  true },
+  level : { type: String, required:  true },
   Status: String,
   Profile_Pic: String,
+  id: { type: String },
 });
 
 

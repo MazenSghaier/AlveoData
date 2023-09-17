@@ -18,6 +18,7 @@ const corsOptions = {
   credentials: true, // Allow cookies, if your API uses cookies for authentication
 };
 
+
 app.use(cors(corsOptions));
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
@@ -42,3 +43,5 @@ app.get("/", (req, res) => {
   console.log("[TEST]!");
   res.send('Hello from home page');
 });
+
+mongoose.set('useFindAndModify', false);

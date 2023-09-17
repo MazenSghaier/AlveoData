@@ -63,6 +63,7 @@ const SignIn = () => {
     country: "",
     terms: "agreed",
     joinDate:"",
+    level:'',
   })
 
   const formik = useFormik<FormValues>({
@@ -114,6 +115,7 @@ const SignIn = () => {
           country: values.country,
           terms: "agreed",
           joinDate: `${currentDay}-${currentMonth}-${currentYear}`,
+          level:'entry'
         });
       
         console.log(user);
