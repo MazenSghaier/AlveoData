@@ -1,11 +1,23 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-export default function CountrySelect() {
+interface CountrySelectProps {
+  value: CountryType | null; // Change the type to CountryType | null
+  onChange: (newValue: CountryType | null) => void; // Adjust the type of newValue
+}
+
+export default function CountrySelect(props: CountrySelectProps) {
+  const { value, onChange } = props;
+
+
   return (
     <Autocomplete
+    value={value} // Use the value prop directly
+    onChange={(_, newValue) => {
+      onChange(newValue); // Call the onChange callback with the selected country
+    }}
       id="country-select-demo"
       sx={{ width: 300 }}
       options={countries}
@@ -36,6 +48,8 @@ export default function CountrySelect() {
     />
   );
 }
+
+
 
 interface CountryType {
   code: string;
