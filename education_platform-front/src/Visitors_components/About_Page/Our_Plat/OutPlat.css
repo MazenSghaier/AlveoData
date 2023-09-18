@@ -1,0 +1,37 @@
+/* VideoSection.css */
+
+.video-section {
+    /* Add your styles for the video section */
+  }
+  
+  .video-container {
+    /* Add your styles for the video container */
+  }
+  
+.centered-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px; /* Adjust this height to match your video height */
+  }
+  
+  .play-icon-container {
+    /* Add your styles for the play icon container */
+  }
+
+.animate-image {
+    animation: slideUp 1s ease-out forwards;
+    animation-delay: 0.5s; /* Delay the animation slightly */
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  

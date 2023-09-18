@@ -1,0 +1,58 @@
+/* In your features.css */
+.container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 35vh; /* Set the container height */
+  padding: 0 1rem; /* Adjust horizontal padding for responsiveness */
+  overflow: hidden; /* Hide overflowing content on smaller screens */
+  padding-left: 8rem;
+}
+
+.row {
+  display: flex;
+  justify-content: center; /* Center the features horizontally */
+}
+
+.single__feature {
+  flex: 1; /* Allow each feature to grow equally within the available space */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  text-align: center;
+  margin: 0 1rem; /* Add spacing between feature elements */
+}
+
+.single__feature .icon {
+  margin-bottom: 10px;
+}
+
+.single__feature h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.single__feature h6 {
+  font-weight: 600;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align elements to the left in vertical mode */
+    height: auto; /* Reset container height for smaller screens */
+    padding: 1rem 0.5rem; /* Adjust vertical and horizontal padding */
+    overflow: visible; /* Allow content to overflow vertically */
+  }
+
+  .row {
+    flex-direction: column; /* Stack features vertically */
+    align-items: center; /* Center features vertically in responsive mode */
+  }
+  
+  .single__feature {
+    flex: 0 0 auto; /* Reset feature width for vertical mode */
+    margin: 1rem 0; /* Add spacing between feature elements */
+  }
+}

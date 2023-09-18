@@ -1,0 +1,107 @@
+/* Add this CSS to your global stylesheet or HTML <style> tag */
+.about__content{
+  width: 60%; /* Adjust the width as needed */
+  margin: 0 auto; /* Center horizontally */
+  text-align: center;
+}
+.about__img {
+    position: relative;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .arrow {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 3px;
+    background: #26C6DA;
+  }
+  
+  .lottie-animation-container-left {
+    position: absolute;
+    top: 10%;
+    left: -200px; /* Adjust this value for proper spacing */
+    transform: scaleX(-1);
+  }
+  
+  .lottie-animation-container-right {
+    position: absolute;
+    top: 30%;
+    right: -200px; /* Adjust this value for proper spacing */
+    transform: translateY(-50%);
+  }
+  
+  .arrow:before,
+  .arrow:after {
+    background: #26C6DA;
+    content: '';
+    display: block;
+    height: 3px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+  }
+  
+  .arrow:before {
+    transform: rotate(45deg) translateX(-23%);
+    transform-origin: top left;
+  }
+  
+  .arrow:after {
+    transform: rotate(-45deg) translateX(23%);
+    transform-origin: top right;
+  }
+  
+  @keyframes arrow-movement {
+    0% {
+      opacity: 0;
+      top: 45%;
+    }
+    70% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes popUpAnimation {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .animate-pop-up {
+    animation: popUpAnimation 1s forwards;
+  }
+
+  @media (max-width: 768px) {
+    .about__img {
+      margin-bottom: 1rem; /* Adjust margin for smaller spacing */
+    }
+    
+    .lottie-animation-container-left,
+    .lottie-animation-container-right {
+      display: none; /* Hide the Lottie animations on phone sizes */
+    }
+  
+    .about__content {
+    text-align: center; /* Center-align text content on smaller screens */
+    padding-left: 0; /* Remove left padding on smaller screens */
+  }
+
+  .about__content p {
+    margin-top: 1rem;
+    font-size: 14px; /* Adjust font size for smaller screens */
+    line-height: 1.6; /* Adjust line height for better readability */
+    margin-bottom: 1rem; /* Adjust margin for spacing between paragraphs */
+  }
+}

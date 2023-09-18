@@ -1,0 +1,11 @@
+.testimonial__content h2 {
+  font-weight: 600;
+}
+.carousel .control-dots .dot {
+  background-color: rgb(83, 183, 255);
+}
+
+/* To change the color when the button is active (selected) */
+.carousel .control-dots .dot.selected {
+  background-color: #35bbe3;
+}

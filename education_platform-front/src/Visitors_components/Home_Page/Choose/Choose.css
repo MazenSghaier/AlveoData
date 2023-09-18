@@ -1,0 +1,27 @@
+/* Add this CSS animation class */
+.video__animation {
+    transform: translateY(100%); /* Start from below */
+    transition: transform 1s ease; /* Add a smooth transition */
+  }
+  
+  /* Adjust the position as needed */
+  .video__animation.show {
+    transform: translateY(0); /* Move to original position */
+  }
+
+  /* Animation class */
+.animate-your-animation-class {
+  animation: popUpAnimation 1s forwards;
+}
+
+/* Keyframes for the animation */
+@keyframes popUpAnimation {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

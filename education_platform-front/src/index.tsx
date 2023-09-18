@@ -5,10 +5,25 @@ import theme from './theme';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { configureStore, applyMiddleware, compose } from '@reduxjs/toolkit';
+import thunk from 'redux-thunk';
+import reducers_1 from './reducers/Userreducer.js'
+import reducers_2 from './reducers/CourseReducer.js'
+
+const store = configureStore({
+  reducer: {
+    user: reducers_1,
+    course : reducers_2,
+  },
+  middleware: [thunk],
+});
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </ThemeProvider>,
   document.getElementById('root')
 );
