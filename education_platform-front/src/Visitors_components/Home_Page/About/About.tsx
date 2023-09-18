@@ -11,7 +11,14 @@ const About: React.FC = () => {
   const imageRef = useRef<HTMLDivElement | null>(null); // Specify the type of the ref
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
+  const storedProfile = localStorage.getItem('profile');
+
+// Parse the storedProfile if it exists; otherwise, set it to an empty string
+  const parsedProfile = storedProfile ? JSON.parse(storedProfile) : '';
+  const [user, setUser] = useState(parsedProfile);
+
   useEffect(() => {
+    console.log(user)
     const handleScroll = () => {
       if (imageRef.current) {
         const elementTop = imageRef.current.getBoundingClientRect().top;

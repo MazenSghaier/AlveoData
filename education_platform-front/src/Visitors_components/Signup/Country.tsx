@@ -23,6 +23,7 @@ export default function CountrySelect(props: CountrySelectProps) {
       options={countries}
       autoHighlight
       getOptionLabel={(option) => option.label}
+      isOptionEqualToValue={(option, value) => option.code === value.code}
       renderOption={(props, option) => (
         <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
           <img

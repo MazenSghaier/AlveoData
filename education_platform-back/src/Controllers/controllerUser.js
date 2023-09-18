@@ -4,7 +4,6 @@ import mongoose from 'mongoose';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-import UserModal from "../models/user.js";
 
 const secret = 'test';
 
@@ -12,7 +11,7 @@ export const signin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const oldUser = await UserModal.findOne({ email });
+    const oldUser = await UserModel.findOne({ Email });
 
     if (!oldUser) return res.status(404).json({ message: "User doesn't exist" });
 
@@ -20,7 +19,7 @@ export const signin = async (req, res) => {
 
     if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
 
-    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, { expiresIn: "1h" });
+    const token = jwt.sign({ Email: oldUser.Email, id: oldUser._id }, secret, { expiresIn: "1h" });
 
     res.status(200).json({ result: oldUser, token });
   } catch (err) {
@@ -29,18 +28,18 @@ export const signin = async (req, res) => {
 };
 
 export const signup = async (req, res) => {
-  const { email, password, name, birthday,country,joinDate,level } = req.body;
+  const { Email, password, username, birthday,country,terms,joinDate,level } = req.body;
 
   try {
-    const oldUser = await UserModal.findOne({ email });
+    const oldUser = await UserModel.findOne({ Email });
 
     if (oldUser) return res.status(400).json({ message: "User already exists" });
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const result = await UserModal.create({ email, password: hashedPassword, name, birthday,country,joinDate,level});
+    const result = await UserModel.create({ Email, password: hashedPassword, username, birthday,country,terms,joinDate,level});
 
-    const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "1h" } );
+    const token = jwt.sign( { Email: result.Email, id: result._id }, secret, { expiresIn: "1h" } );
 
     res.status(201).json({ result, token });
   } catch (error) {
@@ -96,28 +95,3 @@ export const postUser = (req,res) => {
    }
 };
 
-export const findUser = (req,res) => {
-    const {id} =req.params;
- 
-     const foundUser = users.find((user) => user.id === id);
- 
- 
-     res.send(foundUser);
- };
-
- export const deleteUser =  (req,res) => {
-    const { id } = req.params;
-
-    users = users.filter((user) => user.id !== id)
-}
-
-export const updateUser = async (req,res) => {
-    const { id: _id } = req.params
-    const user = req.body;
-
-    if(mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No user with that id')
-
-    const updatedUser = UserModel.findByIdAndUpdate( _id , user , { new : true } );
-
-    res.json(updatedUser)
-}

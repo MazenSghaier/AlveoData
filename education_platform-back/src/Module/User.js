@@ -4,14 +4,12 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
   username: { type: String, required:  true },
   password: { type: String, required:  true },
-  FName: String,
-  LName: String,
   Email: { type: String, required:  true },
   birthday: { type: String, required:  true },
+  country: { type: String, required:  true },
   joinDate: { type: String, required:  true },
   level : { type: String, required:  true },
-  Status: String,
-  Profile_Pic: String,
+  terms: { type: String, required:  true },
   id: { type: String },
 });
 

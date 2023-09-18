@@ -43,5 +43,3 @@ app.get("/", (req, res) => {
   console.log("[TEST]!");
   res.send('Hello from home page');
 });
-
-mongoose.set('useFindAndModify', false);

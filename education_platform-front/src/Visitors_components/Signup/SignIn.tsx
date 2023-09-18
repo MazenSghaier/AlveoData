@@ -6,6 +6,9 @@ import { GoogleLogin } from 'react-google-login'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 
 import CountrySelect from './Country'
 
@@ -13,6 +16,8 @@ import formImage from "../../assests/images/why-choose-us.png";
 import { Button } from "@mui/material";
 import Icon from './icon'
 import { useState } from "react";
+import { signup } from '../../actions/user';
+import { AUTH } from '../../constants/actionTypes';
 
 interface FormValues {
   name: string;
@@ -45,6 +50,9 @@ function formatDateToString(date:any) {
 
 const SignIn = () => {
 
+  const [isSignup, setIsSignup] = useState(false);
+  const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
+
   const googleSuccess = async () => {
     console.log("Need google api")
   };
@@ -56,8 +64,8 @@ const SignIn = () => {
   const navigate = useNavigate(); // Use useNavigate to get the navigation function
 
   const [user,setUser] = useState ({
-    name: "",
-    email: "",
+    username: "",
+    Email: "",
     password: "",
     birthday:"",
     country: "",
@@ -97,21 +105,18 @@ const SignIn = () => {
     }),
 
     onSubmit: async (values) => {
-
+        
       try{
 
         console.log("Form submitted");
         console.log("Form values: ", values);
       
-        // Format the birthday date from the DatePicker component
-        const formattedBirthday = formatDateToString(new Date(values.birthday));
-      
         // Update the user state with form values including the formatted birthday
         setUser({
-          name: values.name,
-          email: values.email,
+          username: values.name,
+          Email: values.email,
           password: values.password,
-          birthday: formattedBirthday, // Set the formatted birthday
+          birthday: values.birthday,
           country: values.country,
           terms: "agreed",
           joinDate: `${currentDay}-${currentMonth}-${currentYear}`,
@@ -119,8 +124,13 @@ const SignIn = () => {
         });
       
         console.log(user);
+       dispatch(signup(user, navigate));
         
-    }catch(e){}
+        
+    }catch(e){ 
+
+      console.log(e)
+    }
     },
   })
 
