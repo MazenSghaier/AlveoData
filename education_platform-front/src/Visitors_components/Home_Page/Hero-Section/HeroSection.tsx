@@ -88,6 +88,7 @@ const HeroSection: React.FC = () => {
     color: "#35bbe3",
     borderRadius: "2rem",
     padding: "0.8rem 2rem",
+    margin:'1.5rem'
   };
 
   const contentWithImages = (

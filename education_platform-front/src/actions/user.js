@@ -24,13 +24,13 @@ export const updatedUser = (user) => async (dispatch) => {
     }
   }
 
-export const signin = (formData, router) => async (dispatch) => {
+export const signin = (formData) => async (dispatch) => {
     try {
       const { data } = await api.signIn(formData);
   
       dispatch({ type: AUTH, payload: data });
   
-      router.push('/students');
+      
     } catch (error) {
       console.log(error);
     }

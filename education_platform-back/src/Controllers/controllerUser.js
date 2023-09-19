@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 const secret = 'test';
 
 export const signin = async (req, res) => {
-  const { email, password } = req.body;
+  const { Email, password } = req.body;
 
   try {
     const oldUser = await UserModel.findOne({ Email });

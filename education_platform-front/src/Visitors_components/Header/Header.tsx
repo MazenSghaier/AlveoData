@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate } from "react-router-dom"; // Import useNavigate
 import { Container, Typography, Button } from "@mui/material";
 import { RiPantoneLine, RiMenuLine } from "react-icons/ri";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -46,6 +47,9 @@ const navLinks = [
 ];
 
 const Header: React.FC = () => {
+
+  const navigate = useNavigate();
+
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -80,11 +84,11 @@ const Header: React.FC = () => {
               </ul>
 
               <div className="nav__right">
-                <SignInButton variant="outlined" color="primary">
+                <SignInButton variant="outlined" color="primary" onClick={()=> navigate('/SignIn')}>
                   Sign In
                 </SignInButton>
-                <RegisterButton variant="contained" color="primary">
-                  Register
+                <RegisterButton variant="contained" color="primary" onClick={()=> navigate('/LogIn')}>
+                  Log In
                 </RegisterButton>
               </div>
             </nav>
@@ -109,13 +113,13 @@ const Header: React.FC = () => {
                     ))}
                   </ul>
                   <div className="px-4 py-2">
-                    <SignInButton variant="outlined" color="primary">
+                    <SignInButton variant="outlined" color="primary" onClick={()=> navigate('/SignIn')}>
                       Sign In
                     </SignInButton>
                   </div>
                   <div className="px-4 py-2">
-                    <RegisterButton variant="contained" color="primary">
-                      Register
+                    <RegisterButton variant="contained" color="primary"  onClick={()=> navigate('/LogIn')}>
+                     Log In
                     </RegisterButton>
                   </div>
                 </div>

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {useNavigate } from "react-router-dom"; // Import useNavigate
@@ -14,10 +15,13 @@ import CountrySelect from './Country'
 
 import formImage from "../../assests/images/why-choose-us.png";
 import { Button } from "@mui/material";
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import Icon from './icon'
 import { useState } from "react";
 import { signup } from '../../actions/user';
 import { AUTH } from '../../constants/actionTypes';
+
+import './styles.css'
 
 interface FormValues {
   name: string;
@@ -29,6 +33,9 @@ interface FormValues {
   terms: string;
 }
 
+interface Stateof extends SnackbarOrigin {
+  open: boolean;
+}
 
 const date = new Date();
 
@@ -37,7 +44,6 @@ let currentDay= String(date.getDate()).padStart(2, '0');
 let currentMonth = String(date.getMonth()+1).padStart(2,"0");
 
 let currentYear = date.getFullYear();
-
 
 function formatDateToString(date:any) {
   // Use the Intl.DateTimeFormat API to format the date as a string
@@ -51,6 +57,8 @@ function formatDateToString(date:any) {
 const SignIn = () => {
 
   const [isSignup, setIsSignup] = useState(false);
+  const [error, setError] = useState(""); 
+
   const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
 
   const googleSuccess = async () => {
@@ -62,6 +70,21 @@ const SignIn = () => {
   };
  
   const navigate = useNavigate(); // Use useNavigate to get the navigation function
+
+  const [message, setMessage] = React.useState<Stateof>({
+    open: false,
+    vertical: 'bottom',
+    horizontal: 'center',
+  });
+  const { vertical, horizontal, open } = message;
+
+  const handleClick = (newState: SnackbarOrigin) => () => {
+    setMessage({ ...newState, open: true });
+  };
+
+  const handleClose = () => {
+    setMessage({ ...message, open: false });
+  };
 
   const [user,setUser] = useState ({
     username: "",
@@ -124,12 +147,25 @@ const SignIn = () => {
         });
       
         console.log(user);
-       dispatch(signup(user, navigate));
-        
-        
+        if(user.Email !== ''){
+
+            dispatch(signup(user, navigate));
+            setError("Login was successful");
+            setMessage({ ...message, open: true });
+            setTimeout(() => {
+              // Navigate after 4 seconds
+              navigate('/students'); // Replace '/students' with your desired route
+            }, 3000);
+          }
+          else{
+            setError("Login was not successful , try again");
+            setMessage({ ...message, open: true });
+          }
+
     }catch(e){ 
 
       console.log(e)
+      setError("An error occurred during sign-up. Please try again.");
     }
     },
   })
@@ -141,7 +177,20 @@ const SignIn = () => {
       exit={{ opacity: 0 }}
       className="absolute w-full"
     >
+        {error && 
 
+            <Snackbar
+              anchorOrigin={{ vertical, horizontal }}
+              open={open}
+              onClose={handleClose}
+              message={error}
+              key={vertical + horizontal}
+              ContentProps={{
+                className: 'custom-snackbar', // Apply your custom class here
+              }}
+
+            />
+        }
       <div className="h-screen items-center flex justify-center">
         <form
           onSubmit={formik.handleSubmit}

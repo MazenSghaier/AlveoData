@@ -15,6 +15,8 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import image_1 from '../assests/images/image_1.jpg'
 
+import Lottie from 'react-lottie';
+import animationData from '../lotties/lottieflow-loading-04-2-35bbe3-easey.json';
 
 import statistics from './../assests/Courses/statistics.png'
 import matlab from './../assests/Courses/matlab.png'
