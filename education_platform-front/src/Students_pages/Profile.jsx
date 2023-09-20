@@ -40,8 +40,6 @@ const StyledButton = styled(Button)({
 
 export default function Profile() {
 
-  const user = useSelector(state => state.user);
-  console.log(user);
 
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -50,11 +48,9 @@ export default function Profile() {
     setShow(!show);
   };
 
-  useEffect(() =>{
-
-    dispatch(getUser());
-    
-  },[dispatch])
+  const user = JSON.parse(localStorage.getItem('profile'))
+  console.log(user);
+  
 
   return (
     <>

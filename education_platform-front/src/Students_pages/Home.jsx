@@ -41,7 +41,9 @@ const style = {
 export default function Home() {
 
   const nav = useNavigate();
-
+  const user = JSON.parse(localStorage.getItem('profile'))
+  console.log(user);
+  
   return (
     <>
     <Navbar/>

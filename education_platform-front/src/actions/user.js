@@ -1,12 +1,12 @@
 import * as api from '../api/apiUser';
 import { AUTH } from '../constants/actionTypes';
 
-export const getUser = () => async (dispatch) => {
+export const getUser = (id) => async (dispatch) => {
 
     try{
-        const { data } = await api.fetchUser();
+        const { data } = await api.fetchUser(id);
 
-        dispatch({ type: 'FETCH_ALL', payload: data}) ;
+        dispatch({ type: 'FETCH', payload: data}) ;
 
     }catch(err){
 
@@ -29,20 +29,18 @@ export const signin = (formData) => async (dispatch) => {
       const { data } = await api.signIn(formData);
   
       dispatch({ type: AUTH, payload: data });
-  
       
     } catch (error) {
       console.log(error);
     }
   };
   
-  export const signup = (formData, router) => async (dispatch) => {
+  export const signup = (formData) => async (dispatch) => {
     try {
       const { data } = await api.signUp(formData);
   
       dispatch({ type: AUTH, data });
-  
-      router.push('/students');
+
     } catch (error) {
       console.log(error);
     }

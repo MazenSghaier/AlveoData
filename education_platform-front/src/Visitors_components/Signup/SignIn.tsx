@@ -145,8 +145,8 @@ const SignIn = () => {
         console.log(user);
         if(user.Email !== ''){
             setIsSignin(true);
-            dispatch(signup(user, navigate));
-            setError("Login was successful");
+            dispatch(signup(user));
+            setError("Sign up was successful");
             setMessage({ ...message, open: true });
             setTimeout(() => {
               setIsSignin(false);
@@ -157,7 +157,7 @@ const SignIn = () => {
             }, 4000);
           }
           else{
-            setError("Login was not successful , try again");
+            setError("Sign up was not successful , try again");
             setMessage({ ...message, open: true });
           }
 
@@ -398,7 +398,7 @@ const SignIn = () => {
               />
               <button
                 type="submit"
-                className="bg-cyan-500 hover:bg-cyan-300 font-latoBold text-sm text-white py-3 mt-6 rounded-lg w-full"
+                className="bg-cyan-500 hover:bg-cyan-700 font-latoBold text-sm text-white py-3 mt-6 rounded-lg w-full"
                 
               >
                 Start learning today!

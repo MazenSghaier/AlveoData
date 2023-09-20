@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 
-const secret = 'test';
+const secret = 'ntesti';
 
 export const signin = async (req, res) => {
   const { Email, password } = req.body;
@@ -50,18 +50,21 @@ export const signup = async (req, res) => {
 };
 
 
-export const getUser = async (req,res) => {
+export const getUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const getuser = await UserModel.findById(id);
+    console.log(getuser);
 
-   try{
+    if (!getuser) {
+      res.status(404).json({ message: 'User not found' });
+      return;
+    }
 
-        const getuser = await UserModel.find();
-        console.log(getuser)
-
-        res.status(200).json(getuser)
-
-   }catch(err){
-    res.status(404).json({ message: error.message})
-   }
+    res.status(200).json(getuser);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
 };
 
 export const postUser = (req,res) => {

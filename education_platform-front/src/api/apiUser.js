@@ -10,7 +10,7 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchUser = () => API.get('/users');
+export const fetchUser = (id) => API.get(`/users/${id}`);
 export const changeUser = (id, updatedUser) => API.patch(`/users/${id}`, updatedUser);
 export const signIn = (formData) => API.post('/users/signin', formData);
 export const signUp = (formData) => API.post('/users/signup', formData);

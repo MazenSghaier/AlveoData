@@ -1,7 +1,20 @@
+import { useState } from "react";
+import * as React from 'react';
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { motion as m } from "framer-motion";
+
+import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
+
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+
+import Lottie from 'react-lottie';
+import animationData from '../../lotties/lottieflow-loading-04-2-35bbe3-easey.json';
+
+import { signin } from '../../actions/user';
 
 import formImage from "../../assests/images/graphics-design.png";
 
@@ -10,27 +23,42 @@ interface FormValues {
   password: string;
 }
 
+interface Stateof extends SnackbarOrigin {
+  open: boolean;
+}
 
 
 const LogIn = () => {
+  const [isSignin, setIsSignin] = useState(false);
+  const [error, setError] = useState(""); 
 
-  const quotes = [
-    "Around 2.5 quintillion bytes worth of data is generated each day. ",
-    "90% of the data in the world has been generated in the last two years.",
-    "An AI-powered software was created that could predict the results of the Oscars with 90% accuracy.",
-    "There are approximately 400,000 bytes of data for every grain of sand on earth.",
-    "Data science was identified as the skill with the largest skill gap, according to a 2021 report by the World Economic Forum.",
-    "In 2020 the number of data science job listings outstripped the number of people searching for such jobs by a factor of 3 to 1.",
-    "The average salary for a data scientist is $100,000 USD according to the Bureau of Labor Statistics, and that of an analyst is $70,000 USD.",
-    "Bachelor’s degrees in data science were practically non-existent five years ago, according to Discover Data Science. Now over 50 higher education institutions in the US currently offer one.",
-    "99% of organizations are actively investing in data transformation initiatives.",
-    "Online learning is used by 63% of companies to train their employees in new skills and keep their existing ones sharp."
-    // Add more quotes as needed
-  ];
+  const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
+  const googleSuccess = async () => {
+    console.log("Need google api")
+  };
+
+  const googleFailure = () => {
+    console.log("Google Sign In was unsuccessful. Try again later")
+  };
  
   const navigate = useNavigate(); // Use useNavigate to get the navigation function
-  const randomIndex = Math.floor(Math.random() * quotes.length);
-  const randomQuote = quotes[randomIndex];
+
+  const [message, setMessage] = React.useState<Stateof>({
+    open: false,
+    vertical: 'bottom',
+    horizontal: 'center',
+  });
+
+  const { vertical, horizontal, open } = message;
+
+  const [user, setUser] = useState({
+    Email: "",
+    password: "",
+  })
+
+  const handleClose = () => {
+    setMessage({ ...message, open: false });
+  };
 
   const formik = useFormik<FormValues>({
     initialValues: {
@@ -42,7 +70,7 @@ const LogIn = () => {
       email: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),
-    password: Yup.string()
+      password: Yup.string()
       .min(8, "Password must be at least 8 characters")
       .required("Password is required"),
     }),
@@ -50,12 +78,39 @@ const LogIn = () => {
     onSubmit: (values) => {
         console.log("form submitted");
         console.log(values);
-  
-        if (navigate) {
-            navigate("/", { state: values }); // Use navigate function for navigation
-        }
-      },
-    });
+
+        try{
+
+          setUser({
+            Email: values.email,
+            password: values.password,
+          });
+
+          console.log(user);
+          if(user.Email !== ''){
+            setIsSignin(true);
+            dispatch(signin(user));
+            setError("Login was successful");
+            setMessage({ ...message, open: true });
+            setTimeout(() => {
+              setIsSignin(false);
+            }, 2000);
+            setTimeout(() => {
+
+              navigate('/students'); 
+            }, 2000);
+          }
+          else{
+            setError("Login was not successful , try again");
+            setMessage({ ...message, open: true });
+          }
+    }catch(e){ 
+
+      console.log(e)
+      setError("An error occurred during log-in. Please try again.");
+    }
+    },
+  });
 
   return (
     <m.div
@@ -64,25 +119,52 @@ const LogIn = () => {
       exit={{ opacity: 0 }}
       className="absolute w-full"
     >
+      {isSignin ? ( // Conditionally render loading animation or form
+      <div className="flex items-center justify-center h-screen">
+        {error && 
 
-      <div className="h-screen items-center flex justify-center">
-        <form
-          onSubmit={formik.handleSubmit}
-          className="bg-white flex rounded-lg w-1/2 font-latoRegular"
-        >
-          <div className="flex-1 text-gray-700 p-20">
-            <h1 className="text-3xl pb-2 font-latoBold">
-              Lets get going 👋
-            </h1>
-            <p className="text-lg font-sans text-gray-500">
-            {randomQuote}
-            </p>
-            <div className="mt-6">
+          <Snackbar
+            anchorOrigin={{ vertical, horizontal }}
+            open={open}
+            onClose={handleClose}
+            message={error}
+            key={vertical + horizontal}
+            ContentProps={{
+              className: 'custom-snackbar', // Apply your custom class here
+            }}
+
+          />
+          }
+        <Lottie
+          options={{
+            loop: true,
+            autoplay: true,
+            animationData: animationData, // Replace with your animation data
+          }}
+          height={150}
+          width={150}
+          style={{ color: '#26C6DA' }}
+        />
+      </div> 
+        ) : (
+      <div className="h-screen flex items-center ">
+      <form  
+        onSubmit={formik.handleSubmit}
+        className="bg-white flex flex-col md:flex-row rounded-lg font-latoRegular"
+      >
+        <div className="flex-1 text-gray-700 p-1 md:p-20 md:w-1/2 md:mx-auto"> {/* Adjusted width and added mx-auto */}
+          <h1 className="text-3xl md:text-4xl pb-2 font-latoBold">
+            Let's get going 👋
+          </h1>
+          <p className="text-base w-8/12 md:text-lg text-gray-500">
+              Online learning is used by 63% of companies to train their employees in new skills and keep their existing ones sharp.
+          </p>
+          <div className="mt-3">
               {/* Email input field */}
-              <div className="pb-4">
+              <div className="pb-2">
                 <label
                   htmlFor="email"
-                  className={`block font-latoBold text-sm pb-2 ${
+                  className={`block font-latoBold text-sm pb-1 ${
                     formik.touched.email && formik.errors.email
                       ? "text-red-400"
                       : ""
@@ -92,9 +174,9 @@ const LogIn = () => {
                     ? formik.errors.email
                     : "Email"}
                 </label>
-                <p></p>
+                <p className="text-sm font-latoBold text-red-400 "></p>
                 <input
-                  className="border-2 border-gray-500 p-2 rounded-md w-4/5 focus:border-cyan-400 focus:ring-cyan-400"
+                  className="border-2 border-gray-500 p-2 rounded-md w-7/12 focus:border-cyan-400 focus:ring-cyan-400"
                   type="email"
                   name="email"
                   placeholder="Enter your email address"
@@ -104,7 +186,7 @@ const LogIn = () => {
                 />
               </div>
               {/* Password input field */}
-              <div className="pb-4">
+              <div className="pb-2">
                 <label
                   htmlFor="password"
                   className={`block font-latoBold text-sm pb-2 ${
@@ -118,7 +200,7 @@ const LogIn = () => {
                     : "Password"}
                 </label>
                 <input
-                  className="border-2 border-gray-500 p-2 rounded-md w-4/5 focus:border-cyan-400 focus:ring-cyan-400"
+                  className="border-2 border-gray-500 p-2 rounded-md w-7/12 focus:border-cyan-400 focus:ring-cyan-400"
                   type="password"
                   name="password"
                   placeholder="Enter your password"
@@ -127,7 +209,7 @@ const LogIn = () => {
                   onBlur={formik.handleBlur}
                 />
               </div>
-              <div className="flex  w-full pb-4">
+              <div className="flex w-full pb-2">
                 <a
                   href="/forgot-password" // Replace with the actual URL of the "Forgot Password" page
                   className="text-gray-500 hover:underline font-latoBold text-sm"
@@ -137,23 +219,25 @@ const LogIn = () => {
               </div>
               <button
                 type="submit"
-                className="bg-cyan-500 hover:bg-cyan-300 font-latoBold text-sm text-white py-3 mt-6 rounded-lg w-full"
+                className="bg-cyan-500 hover:bg-cyan-700 font-latoBold text-sm text-white py-3 mt-6 rounded-lg w-7/12"
               >
                 Back to learning today!
               </button>
-            </div>
+              </div>
+              </div>
+              <div className="relative flex-1 flex items-center justify-center">
+                <img
+                  className="object-cover rounded-lg w-full h-3/12 md:w-auto"
+                  src={formImage}
+                  alt="form-learn"
+                  
+                />
+              </div>
+            </form>
           </div>
-          <div className="relative flex-1 flex items-center justify-center">
-            <img
-              className="object-cover rounded-lg w-full h-4/6"
-              src={formImage}
-              alt="form-learn"
-            />
-          </div>
-          
-        </form>
-      </div>
-    </m.div>
-  );
-}
-export default LogIn;
+      )}
+      </m.div>
+   );
+ }
+ 
+ export default LogIn;
