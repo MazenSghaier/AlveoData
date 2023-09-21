@@ -176,32 +176,6 @@ const Control = ({
             <span className='spano'>{ currentTime} : {duration}</span>
 
             <div className="quality__speed">
-            <div className="quality">
-              <label>Quality:</label>
-              <select
-                value={selectedQuality}
-                onChange={handleQualityChange}
-              >
-                {qualityOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="speed">
-              <label>Speed:</label>
-              <select
-                value={selectedSpeed}
-                onChange={handleSpeedChange}
-              >
-                {speedOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </div>
             <div className="icon__btn" onClick={toggleFullScreen}>
               {isFullScreen ? (
                 // Display an exit full-screen icon

@@ -6,6 +6,8 @@ import Sidenav from '../Students_component/Sidenav'
 import CustomCard from '../Students_component/CustomCard';
 import LinearBuffer from '../Students_component/Progressbar'
 
+import { useSelector } from 'react-redux';
+
 import { Box, Divider, Stack } from '@mui/material'
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
@@ -43,7 +45,8 @@ export default function Home() {
   const nav = useNavigate();
   const user = JSON.parse(localStorage.getItem('profile'))
   console.log(user);
-  
+  const authData = useSelector((state) => state.user);
+  console.log('Redux Store Auth Data:', authData);
   return (
     <>
     <Navbar/>

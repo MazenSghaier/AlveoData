@@ -51,7 +51,7 @@ const LogIn = () => {
 
   const { vertical, horizontal, open } = message;
 
-  const [user, setUser] = useState({
+  const [login, setLogin] = useState({
     Email: "",
     password: "",
   })
@@ -81,15 +81,15 @@ const LogIn = () => {
 
         try{
 
-          setUser({
+          setLogin({
             Email: values.email,
             password: values.password,
           });
 
-          console.log(user);
-          if(user.Email !== ''){
+          console.log(login);
+          if(login.Email !== ''){
             setIsSignin(true);
-            dispatch(signin(user));
+            dispatch(signin(login));
             setError("Login was successful");
             setMessage({ ...message, open: true });
             setTimeout(() => {
