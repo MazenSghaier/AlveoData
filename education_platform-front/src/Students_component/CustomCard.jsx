@@ -7,11 +7,15 @@ import Link from '@mui/material/Link';
 
 const CustomCard = ({ title, description, imageSource, linkText, linkUrl }) => {
   return (
-    <Card sx={{ display: 'flex', boxShadow: 'none' , padding:2, height:100}}> 
+    <Card sx={{ display: 'flex', boxShadow: 'none', padding: 2, height: 100 }}>
       {/* Left side with the image */}
       <CardMedia
         component="img"
-        sx={{ width: 100  }}
+        sx={{
+          width: '100%', // Make the image responsive by setting width to 100%
+          maxWidth: '200px', // Limit the maximum width of the image
+          height: 'auto', // Allow the image's height to adjust proportionally
+        }}
         image={imageSource}
         alt={title}
       />

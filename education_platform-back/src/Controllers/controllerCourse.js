@@ -1,54 +1,89 @@
+import express from 'express';
 import { error } from 'console';
 import { CourseModel } from '../Module/Course.js';
 
+const router = express.Router();
 
-export const getCourse = async (req,res) => {
-
-   try{
-        const getcourse = await CourseModel.find();
-        console.log(getcourse)
-
-        res.status(200).json(getcourse)
-
-   }catch(err){
-    res.status(404).json({ message: error.message})
-   }
-};
-
-export const postCourse = async (req,res) => {
-
-    // Create a new Person document
-    const Course = new CourseModel({
-        courseName: 'Linear agression',
-        courseDescription: 'hashed_password_here',
-        Level: 'karkar',
-        Course_Pic: 'image_9.jpg',
-        Course_Video: 'Video_6.mp4',
-        Last_update: '2022-11-11',
-    });
-
+export const getCourses = async (req, res) => { 
     try {
-        // Attempt to save the course to the database
-        await Course.save();
-        console.log('Course saved successfully.');
-        res.status(201).json(Course); // Respond with the saved course
-    } catch (err) {
-        console.error('Error saving Course:', err);
-        res.status(500).json({ message: 'Error saving Course.' });
+        const CourseModels = await CourseModel.find();
+                
+        res.status(200).json(CourseModels);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
     }
-};
-
-export const findCourse = (req,res) => {
-    const {id} =req.params;
+}
  
-     const findcourse = courses.find((course) => course.id === id);
- 
- 
-     res.send(findcourse);
- };
-
- export const deleteCourse =  (req,res) => {
+export const getCourse = async (req, res) => { 
     const { id } = req.params;
 
-    courses = courses.filter((course) => course.id !== id)
+    try {
+        const course = await CourseModel.findById(id);
+        
+        res.status(200).json(course);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
 }
+
+export const createCourse = async (req, res) => {
+    const course = req.body;
+
+    const newCourseModel = new CourseModel({ ...course, creator: req.userId, createdAt: new Date().toISOString() })
+
+    try {
+        await newCourseModel.save();
+
+        res.status(201).json(newCourseModel );
+    } catch (error) {
+        res.status(409).json({ message: error.message });
+    }
+}
+
+export const updateCourse = async (req, res) => {
+    const { id } = req.params;
+    const { title, message, creator, selectedFile, tags } = req.body;
+    
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No course with id: ${id}`);
+
+    const updatedCourse = { creator, title, message, tags, selectedFile, _id: id };
+
+    await CourseModel.findByIdAndUpdate(id, updatedCourse, { new: true });
+
+    res.json(updatedCourse);
+}
+
+export const deleteCourse = async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Course with id: ${id}`);
+
+    await CourseModel.findByIdAndRemove(id);
+
+    res.json({ message: "Course deleted successfully." });
+}
+
+export const likeCourse = async (req, res) => {
+    const { id } = req.params;
+
+    if (!req.userId) {
+        return res.json({ message: "Unauthenticated" });
+      }
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Course with id: ${id}`);
+    
+    const course = await CourseModel.findById(id);
+
+    const index = course.likes.findIndex((id) => id ===String(req.userId));
+
+    if (index === -1) {
+      course.likes.push(req.userId);
+    } else {
+      course.likes = course.likes.filter((id) => id !== String(req.userId));
+    }
+    const updatedCourse = await CourseModel.findByIdAndUpdate(id, course, { new: true });
+    res.status(200).json(updatedCourse);
+}
+
+
+export default router;

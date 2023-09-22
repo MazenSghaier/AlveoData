@@ -1,17 +1,15 @@
-import express from 'express'
-import { v4 as uuidv4 } from 'uuid'
-import { postCourse , getCourse, findCourse, deleteCourse } from '../Controllers/controllerCourse.js'
+import express from 'express';
+
+import { getCourses, getCourse, createCourse, updateCourse, likeCourse, deleteCourse } from '../Controllers/controllerCourse.js';
 
 const router = express.Router();
 
-const courses =[]
+import auth from "../middleware/auth.js";
 
-router.get("/", getCourse);
+router.get('/', getCourses);
+router.post('/',auth,  createCourse);
+router.patch('/:id', auth, updateCourse);
+router.delete('/:id', auth, deleteCourse);
+router.patch('/:id/likeCourse', auth, likeCourse);
 
-router.post('/',postCourse);
-
-router.get('/:id',findCourse)
-
-router.delete('/:id', deleteCourse)
-
-export default router ;
+export default router;

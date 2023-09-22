@@ -17,7 +17,7 @@ export const getUser = (id) => async (dispatch) => {
 export const updatedUser = (user) => async (dispatch) => {
     try{
         const {data} = await api.changeUser(user);
-        dispatch({ type:'UPDATE', payload: data});
+        dispatch({ type:'UPDATE', data});
   
     }catch (error){
         console.log(error)
@@ -27,7 +27,7 @@ export const updatedUser = (user) => async (dispatch) => {
 export const signin = (formData) => async (dispatch) => {
     try {
       const { data } = await api.signIn(formData);
-      console.log('User Data:', data);
+
       dispatch({ type: AUTH, data });
       
     } catch (error) {

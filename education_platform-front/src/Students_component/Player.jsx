@@ -5,13 +5,14 @@ import { Container } from "@mui/material";
 import screenfull from 'screenfull'
 import {formatTime} from './Tools/Format'
 import { useDispatch } from 'react-redux';
-import { getCourse } from '../actions/course';
+
 import { useSelector } from 'react-redux';
+
+import "@fontsource/poppins/400-italic.css"; 
 
 import './Player.css'
 import Comments from "./comments/Comments";
 import Control from './Control';
-import { data } from './Tools/videos'
 
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
@@ -19,24 +20,25 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
 let count = 0;
 
-const Player = ({ url }) => {
+const Player = () => {
+
+  const course = useSelector(state => state.course);
+
+  const data =course.course;
+
+  console.log(data);
+
 
   const videoPlayerRef = useRef(null);
   const controlRef = useRef(null);
-  
-  const course = useSelector(state => state.course);
-  console.log(course);
 
-  const dispatch = useDispatch();
+  const [pause , setPause] = useState(data.map(() => false));
 
-  const [pause , setPause] = useState(false)
   const [isFullScreen, setIsFullScreen] = useState(false);
 
-  useEffect(() =>{
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(null);
 
-    dispatch(getCourse());
-    
-  },[dispatch])
+  const [curresntVideo, setCurrentVideo] = useState(data[0].video);
 
 
   const [videoState, setVideoState] = useState({
@@ -64,9 +66,13 @@ const Player = ({ url }) => {
   const formatCurrentTime = formatTime(currentTime);
   const formatDuration = formatTime(duration);
 
-  const PausePlayHandler = () => {
+  const PausePlayHandler = (index,video) => {
     //plays and pause the video (toggling)
-    setPause(!pause);
+    const newpauseStates = [...pause];
+    newpauseStates[index] = !newpauseStates[index];
+    setPause(newpauseStates);
+    setCurrentVideo(video)
+    setCurrentVideoIndex(index);
   };
 
   const playPauseHandler = () => {
@@ -183,10 +189,8 @@ const Player = ({ url }) => {
   }
 };
 
-
-console.log(course.course[0])
   return (
-    <main class="container">
+    <main className="container">
       {/*Video section starts */}
       <div className="video_container">
         <Container maxWidth="md" justify="center">
@@ -194,7 +198,7 @@ console.log(course.course[0])
             <ReactPlayer
               ref={videoPlayerRef}
               className="player"
-              url={url}
+              url={`../assests/videos/${curresntVideo}`}
               width="100%"
               height="100%"
               playing={playing}
@@ -235,24 +239,24 @@ console.log(course.course[0])
       {/*Video section ends */}
 
       {/*Play List section starts */}
-      <section class="video-playlist">
-              <h3 class="title">Title of Video Playlist</h3>
-              <p>10 lessions &nbsp; . &nbsp; 50m 48s</p>
+      <section className="video-playlist">
+              <h3 className="title">Title of Video Playlist</h3>
+              <p className='duration'>10 lessions &nbsp; . &nbsp; 50m 48s</p>
               <div class="videos">
-                  {data.map((data,index) => (
-                    <div key={index} class="video" data-id={data.id} onClick={PausePlayHandler}>
-                      <div key={index} data-id={data.id} className="icon__btn flex" >
+                  {data.map((video,index) => (
+                    <div key={video.id} className="video" data-id={video.id}  onClick={() =>PausePlayHandler(index ,video.video)}>
+                      <div key={video.id} className="icon__btn flex" >
                           <div className='mr-4'>
-                            {pause ? (
+                            {currentVideoIndex === index && pause[index]  ? (
                                 <PauseCircleIcon fontSize="large" />
                               ) : (
                                 <PlayCircleIcon fontSize="large" />
                               )}{" "} 
                           </div>
-                          <img style={{width:'5rem', height:'3rem'}} src={data.image} alt=""/>
+                          <img style={{width:'5rem', height:'3rem'}} src={`../assests/image/${data.image}`} alt=""/>
                       </div>
-                      <h3 class="title">{data.title}</h3>
-                      <p class="time">{data.duration}</p>
+                      <h3 className="title">{video.title}</h3>
+                      <p className="time">{video.duration}</p>
                     </div>
                   ))}
               </div>

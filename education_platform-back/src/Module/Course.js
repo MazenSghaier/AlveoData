@@ -4,12 +4,12 @@ import mongoose from 'mongoose';
 
 // Define a Mongoose schema for Person
 const courseSchema = new mongoose.Schema({
-  courseName: String,
-  courseDescription: String,
-  Level: String,
-  Course_Pic: String,
-  Course_Video: String,
-  Last_update: String,
+  title: { type: String, required:  true },
+  name: { type: String, required:  true },
+  image: { type: String, required:  true },
+  video: { type: String, required:  true },
+  duration: { type: String, required:  true },
+  id: { type: String },
 });
 
 

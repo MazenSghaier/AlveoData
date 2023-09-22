@@ -85,22 +85,22 @@ export default function Profile() {
             </Box>
             <CardContent>
               <Typography variant="h5" sx={{ color:"#35bbe3" ,fontSize: '1.25rem', fontWeight: 'bold' }}>
-                Mazen sghaier
+                {user.result.username.toUpperCase()}
               </Typography>
               <Typography variant="subtitle1" sx={{ fontSize: '.8rem', color: 'gray', mt: 1 }}>
                  Member
               </Typography>
               <Typography variant="body2" sx={{ fontSize: '.8rem', color: 'gray', mt: 2 }}>
-                <Typography color="black">User ID:</Typography> ABC123
+                <Typography color="black">User ID:</Typography> {user.result._id}
               </Typography>
               <Typography variant="body2" sx={{ fontSize: '.8rem', color: 'gray', mt: 1 }}>
-              <Typography color="black">Email:</Typography> mazen@example.com
+              <Typography color="black">Email:</Typography> {user.result.Email}
               </Typography>
               <Typography variant="body2" sx={{ fontSize: '.8rem', color: 'gray', mt: 1 }}>
-                <Typography color="black" >Phone:</Typography> +123 456 7890
+                <Typography color="black" >Join Date:</Typography>{user.result.joinDate}
               </Typography>
               <Typography variant="body2" sx={{ fontSize: '.8rem', color: 'gray', mt: 1 }}>
-                <Typography color="black" >Address:</Typography> 123 Street, City, Country
+                <Typography color="black" >Country:</Typography> {user.result.country.toUpperCase()}
               </Typography>
             </CardContent>
             <Divider sx={{ w: '8rem', mt: 3, mb:3 }} />

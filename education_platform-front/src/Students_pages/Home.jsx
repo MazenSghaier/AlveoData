@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import Navbar from '../Students_component/Navbar'
@@ -6,7 +6,12 @@ import Sidenav from '../Students_component/Sidenav'
 import CustomCard from '../Students_component/CustomCard';
 import LinearBuffer from '../Students_component/Progressbar'
 
+import { getCourse } from '../actions/course';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+
+
+import "@fontsource/poppins/400-italic.css";
 
 import { Box, Divider, Stack } from '@mui/material'
 import Grid from '@mui/material/Grid';
@@ -17,8 +22,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import image_1 from '../assests/images/image_1.jpg'
 
-import Lottie from 'react-lottie';
-import animationData from '../lotties/lottieflow-loading-04-2-35bbe3-easey.json';
+
 
 import statistics from './../assests/Courses/statistics.png'
 import matlab from './../assests/Courses/matlab.png'
@@ -43,10 +47,16 @@ const style = {
 export default function Home() {
 
   const nav = useNavigate();
+  
+  const user1 = useSelector(state => state.user);
   const user = JSON.parse(localStorage.getItem('profile'))
+  const course = useSelector(state => state.course);
+
   console.log(user);
-  const authData = useSelector((state) => state.user);
-  console.log('Redux Store Auth Data:', authData);
+  console.log(user1);
+  console.log(course);
+
+
   return (
     <>
     <Navbar/>
@@ -58,17 +68,17 @@ export default function Home() {
       <Stack direction='row'>
         <Grid container spacing={2} >
           
-          <Grid item xs={6} md={8} >
+          <Grid item xs={6} md={8} lg={12} >
             <Card sx={{ width: 500, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 16px' }}>
                 <div>
-                  <Link href="/" sx={{ p: 0, color: '#35bbe3', fontSize: '.9rem', }}>
+                  <Link href="/" sx={{ p: 0, color: '#35bbe3', fontSize: '.9rem', fontWeight: 'bold',}}>
                     Last uploaded videos
                   </Link>
                 </div>
                 <div>
                   {/* Add your additional link here */}
-                  <Link href="/Students" sx={{ p: 2, color: '#35bbe3', fontSize: '.9rem',}}>
+                  <Link href="/Students" sx={{ p: 2, color: '#35bbe3', fontSize: '.9rem',fontWeight: 'bold',}}>
                     Courses
                   </Link>
                 </div>
@@ -96,17 +106,17 @@ export default function Home() {
             </Card>
           </Grid>
 
-          <Grid item xs={6} md={8}>
+          <Grid item xs={6} md={8} lg={12}>
             <Card sx={{ width: 500, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 16px' }}>
                     <div>
-                      <Link href="/" sx={{ p: 0, color: '#35bbe3', fontSize: '.9rem', }}>
+                      <Link href="/" sx={{ p: 0, color: '#35bbe3', fontSize: '.9rem', fontWeight: 'bold',}}>
                         Free Videos
                       </Link>
                     </div>
                     <div>
                       {/* Add your additional link here */}
-                      <Link href="/Students" sx={{ p: 2 , color: '#35bbe3', fontSize: '.9rem',}}>
+                      <Link href="/Students" sx={{ p: 2 , color: '#35bbe3', fontSize: '.9rem',fontWeight: 'bold',}}>
                         Courses
                       </Link>
                     </div>
@@ -121,8 +131,8 @@ export default function Home() {
         </Grid>
         <Grid container spacing={2} >
           
-        <Grid item xs={6} md={8}>
-          <Card sx={{ width: 300, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)' }}>
+        <Grid item xs={12} md={12} lg={6} sx={{ p:5 }}>
+          <Card sx={{ width: 300, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)'}}>
             <Typography sx={{ p: 2, color: '#35bbe3', fontWeight: 'bold' }}>
               My progress
             </Typography>
@@ -147,11 +157,11 @@ export default function Home() {
                     <div>
                       <Typography
                         sx={{
-                          fontFamily: 'sans-serif',
                           color: '#35bbe3',
                           fontSize: '1rem',
                           fontWeight: 'bold',
                         }}
+                        style={{fontFamily: 'Poppins, sans-serif'}}
                       >
                         {course.name}
                       </Typography>
@@ -164,7 +174,12 @@ export default function Home() {
            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '10px' }}>
             <Button
               variant="outlined"
-              sx={{ color:"#35bbe3" }}
+              sx={{
+                
+                color: '#35bbe3',
+                fontSize: '.8rem',
+                fontWeight: 'bold',
+              }}
               onClick={() => {nav("/Students")}}
             >
               View More
