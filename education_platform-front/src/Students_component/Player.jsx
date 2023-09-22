@@ -17,6 +17,7 @@ import Control from './Control';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
+import img from '../assests/images/image_0.jpg'
 
 let count = 0;
 
@@ -28,7 +29,8 @@ const Player = () => {
 
   console.log(data);
 
-
+  const url = `${process.env.PUBLIC_URL}/assests/videos/${data[1].video}`
+  console.log(url)
   const videoPlayerRef = useRef(null);
   const controlRef = useRef(null);
 
@@ -38,7 +40,7 @@ const Player = () => {
 
   const [currentVideoIndex, setCurrentVideoIndex] = useState(null);
 
-  const [curresntVideo, setCurrentVideo] = useState(data[0].video);
+  const [curresntVideo, setCurrentVideo] = useState(url);
 
 
   const [videoState, setVideoState] = useState({
@@ -198,7 +200,7 @@ const Player = () => {
             <ReactPlayer
               ref={videoPlayerRef}
               className="player"
-              url={`../assests/videos/${curresntVideo}`}
+              url={`${process.env.PUBLIC_URL}/assests/videos/${curresntVideo}`}
               width="100%"
               height="100%"
               playing={playing}
@@ -253,7 +255,7 @@ const Player = () => {
                                 <PlayCircleIcon fontSize="large" />
                               )}{" "} 
                           </div>
-                          <img style={{width:'5rem', height:'3rem'}} src={`../assests/image/${data.image}`} alt=""/>
+                          <img style={{ width: '5rem', height: '3rem' }} src={`${process.env.PUBLIC_URL}/assests/images/${video.image}`} alt="" />
                       </div>
                       <h3 className="title">{video.title}</h3>
                       <p className="time">{video.duration}</p>
