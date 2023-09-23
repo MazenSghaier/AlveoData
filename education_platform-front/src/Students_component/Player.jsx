@@ -4,9 +4,10 @@ import { findDOMNode } from 'react-dom'
 import { Container } from "@mui/material";
 import screenfull from 'screenfull'
 import {formatTime} from './Tools/Format'
-import { useDispatch } from 'react-redux';
 
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import {updateVideoProgress} from '../actions/videos'
 
 import "@fontsource/poppins/400-italic.css"; 
 
@@ -17,11 +18,11 @@ import Control from './Control';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
-import img from '../assests/images/image_0.jpg'
-
 let count = 0;
 
 const Player = () => {
+
+  const dispatch =useDispatch();
 
   const course = useSelector(state => state.course);
 
@@ -29,7 +30,7 @@ const Player = () => {
 
   console.log(data);
 
-  const url = `${process.env.PUBLIC_URL}/assests/videos/${data[1].video}`
+  const url = `${process.env.PUBLIC_URL}/assests/videos/${data[0].video}`
   console.log(url)
   const videoPlayerRef = useRef(null);
   const controlRef = useRef(null);
@@ -68,6 +69,7 @@ const Player = () => {
   const formatCurrentTime = formatTime(currentTime);
   const formatDuration = formatTime(duration);
 
+
   const PausePlayHandler = (index,video) => {
     //plays and pause the video (toggling)
     const newpauseStates = [...pause];
@@ -104,6 +106,11 @@ const Player = () => {
     if (!seeking) {
       setVideoState({ ...videoState, ...state });
     }
+    const currentTiming = state.playedSeconds; // Get the current time in seconds
+    // Update Redux store with currentTime
+    dispatch(updateVideoProgress(currentTiming));
+    // Save currentTime in localStorage
+    localStorage.setItem('videoProgress', currentTime.toString())
   };
 
   const seekHandler = (e, value) => {
@@ -191,6 +198,22 @@ const Player = () => {
   }
 };
 
+useEffect(() => {
+  // Retrieve the saved video progress from local storage
+  const savedProgress = localStorage.getItem('videoProgress');
+
+  if (savedProgress && videoPlayerRef.current ) {
+    // Parse the saved progress as a float
+    const savedProgressFloat = parseFloat(savedProgress);
+
+    // Check if savedProgressFloat is not NaN before seeking
+    if (!isNaN(savedProgressFloat)) {
+      // Set the video's current time to the saved progress
+      videoPlayerRef.current.seekTo(savedProgressFloat);
+    }
+  }
+}, []);
+
   return (
     <main className="container">
       {/*Video section starts */}
@@ -209,6 +232,7 @@ const Player = () => {
               onProgress={progressHandler}
               onBuffer={bufferStartHandler}
               onBufferEnd={bufferEndHandler}
+             
             />
 
             {buffer && <p>Loading</p>}

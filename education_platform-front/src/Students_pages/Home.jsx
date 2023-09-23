@@ -50,6 +50,9 @@ export default function Home() {
   
   const user1 = useSelector(state => state.user);
   const user = JSON.parse(localStorage.getItem('profile'))
+  
+  const videoaz = JSON.parse(localStorage.getItem('videoProgress'))
+  console.log(videoaz)
 
   console.log(user);
   console.log(user1);

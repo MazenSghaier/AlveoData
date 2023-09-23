@@ -3,6 +3,7 @@ import { combineReducers} from 'redux'
 import thunk from 'redux-thunk';
 import reducers_1 from '../reducers/Userreducer.js';
 import reducers_2 from '../reducers/CourseReducer.js';
+import reducers_3 from '../reducers/videoReducer.js';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // Choose a storage method (e.g., local storage)
 
@@ -18,6 +19,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, combineReducers({
   user: reducers_1,    // Reducer for user-related state
   course: reducers_2,  // Reducer for course-related state
+  video: reducers_3,  // Reducer for videos-related state
 }));
 
 // Configure the Redux store with reducers and middleware
