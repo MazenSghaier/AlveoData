@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
@@ -14,6 +14,10 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
+
+import { getCourse } from '../actions/course';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import statistics from './../assests/Courses/statistics.png'
 import matlab from './../assests/Courses/matlab.png'
@@ -44,6 +48,18 @@ const courses = [
 
 export default function Courses() {
     const nav = useNavigate();
+
+    const course = useSelector(state => state.course);
+
+    console.log(course);
+  
+    const dispatch = useDispatch();
+    useEffect(() =>{
+  
+        dispatch(getCourse());
+        
+      },[dispatch])
+
   return (
     <>
       <Navbar />

@@ -13,19 +13,8 @@ import Courses from './Students_pages/Courses';
 import Course from './Students_pages/Course';
 import FreeCourse from './Visitors_components/Home_Page/Free-course-section/FreeCourse'; 
 
-import { getCourse } from './actions/course';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 
 function App() {
-
-    const dispatch = useDispatch();
-    useEffect(() =>{
-
-        dispatch(getCourse());
-        
-      },[dispatch])
-      
 
  return (
   <Router>

@@ -50,12 +50,16 @@ export default function Home() {
   
   const user1 = useSelector(state => state.user);
   const user = JSON.parse(localStorage.getItem('profile'))
-  const course = useSelector(state => state.course);
 
   console.log(user);
   console.log(user1);
-  console.log(course);
 
+  const dispatch = useDispatch();
+    useEffect(() =>{
+  
+        dispatch(getCourse());
+        
+      },[dispatch])
 
   return (
     <>

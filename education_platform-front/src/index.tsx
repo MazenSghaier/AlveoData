@@ -6,23 +6,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { configureStore, applyMiddleware, compose } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
-import reducers_1 from './reducers/Userreducer.js'
-import reducers_2 from './reducers/CourseReducer.js'
-
-const store = configureStore({
-  reducer: {
-    user: reducers_1,
-    course : reducers_2,
-  },
-  middleware: [thunk],
-});
+import { PersistGate } from 'redux-persist/integration/react'; // Import PersistGate
+import { store, persistor } from './store/store.js'; 
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Provider store={store}>
-      <App />
+      {/* Wrap your App component with PersistGate */}
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </ThemeProvider>,
   document.getElementById('root')

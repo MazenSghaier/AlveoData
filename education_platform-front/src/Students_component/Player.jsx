@@ -40,7 +40,7 @@ const Player = () => {
 
   const [currentVideoIndex, setCurrentVideoIndex] = useState(null);
 
-  const [curresntVideo, setCurrentVideo] = useState(url);
+  const [curresntVideo, setCurrentVideo] = useState({url});
 
 
   const [videoState, setVideoState] = useState({
