@@ -1,11 +1,72 @@
+/* Default styles for larger screens */
 .testimonial__content h2 {
   font-weight: 600;
 }
+
 .carousel .control-dots .dot {
   background-color: rgb(83, 183, 255);
 }
 
-/* To change the color when the button is active (selected) */
 .carousel .control-dots .dot.selected {
   background-color: #35bbe3;
+}
+
+/* Media query for smaller screens, e.g., mobile devices */
+@media (max-width: 768px) {
+  /* Adjust styles for smaller screens here */
+  .testimonial__content {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .testimonial__img {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .carousel {
+    max-width: 100%;
+  }
+
+  .carousel .slide {
+    width: 100%;
+  }
+  
+  .testimonial__wrapper {
+    flex-direction: column-reverse;
+  }
+  
+  .testimonial__img {
+    order: 1;
+  }
+  
+  .testimonial__content {
+    order: 2;
+  }
+
+  /* Reduce the font size for content */
+  .single__testimonial {
+    font-size: 14px; /* Adjust the font size as needed */
+    
+    /* Allow text to wrap onto multiple lines */
+    word-wrap: break-word;
+  }
+
+  /* Make the content__testimonial and its parent containers fit the screen width */
+  .content__testimonial {
+    width: 100%;
+    max-width: 100%; /* Ensure it doesn't exceed screen width */
+    overflow-x: hidden; /* Hide horizontal overflow */
+  }
+  
+  .testimonial__wrapper {
+    width: 100%;
+    max-width: 100%; /* Ensure it doesn't exceed screen width */
+  }
+  
+  .content__testimonial{
+    width: 100%;
+    max-width: 100%; 
+  }
 }

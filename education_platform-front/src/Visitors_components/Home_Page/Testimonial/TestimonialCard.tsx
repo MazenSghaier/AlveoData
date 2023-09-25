@@ -20,7 +20,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         <Typography variant="h6" component="h6" className="mb-3 fw-bold">
           {title}
         </Typography>
-        <Typography>{content}</Typography>
+        <Typography className="content__testimonial">{content}</Typography>
 
         <div className="student__info mt-4">
           <Typography variant="h6" component="h6" className="fw-bold">
