@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from "./Visitors_pages/home";
 import AboutPage from './Visitors_pages/about_page';
 import CoursesPage from './Visitors_pages/courses_page';
+import Free_Course from './Visitors_pages/course_page';
 import SignIn from './Visitors_components/Signup/SignIn';
 import LogIn from './Visitors_components/Signup/LogIn';
 import SupportAdmin from './Visitors_components/Chat-bot/SupportAdmin';
@@ -22,6 +23,7 @@ function App() {
     <Route path="/" element={<Home/>} />
     <Route path="/about" element={<AboutPage/>} />
     <Route path="/content" element={<CoursesPage/>} />
+    <Route path="/freecourse/:courseName" element={<Free_Course props/>} />
     <Route path="/SignIn" element={<SignIn/>} />
     <Route path="/LogIn" element={<LogIn/>} />
     <Route path="/support" element={<SupportAdmin/>} />

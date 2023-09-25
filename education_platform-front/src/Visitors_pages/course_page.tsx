@@ -1,4 +1,5 @@
 import React, { Fragment } from "react"
+import { useLocation } from 'react-router-dom';
 import Header from "../Visitors_components/Header/Header";
 import Map, {NavigationControl, Marker} from 'react-map-gl';
 
@@ -6,6 +7,7 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 import Content_display from "../Visitors_components/Content_Page/Content_display";
+import FreetoWatch from "../Visitors_components/Courses_page/FreetoWhatch";
 
 import Company from "../Visitors_components/Company-section/Company";
 import FrequentlyAskedQuestions from "../Visitors_components/About_Page/Questions/Question";
@@ -14,18 +16,18 @@ import Footer from "../Visitors_components/Footer/Footer";
 import SupportEngine from "../Visitors_components/Chat-bot/SupportEngine";
 
 
-const CoursesPage = () => {
+const Free_Course = () => {
+
+   const location = useLocation(); 
+   const item = location.state;
+
   return (
     <Fragment>
       <Header />
       {/*<div style={{ display: "flex", flexDirection: "column", marginTop: "8rem", paddingTop: "0px" }}>*/}
       <div className="flex flex-col mt-32 pt-0">
-        
-        <Content_display/>
-        
-        <Content_display/>
-        
-        <Content_display/>
+
+        <FreetoWatch item={item}/>
 
         <FrequentlyAskedQuestions/>
 
@@ -51,10 +53,10 @@ const CoursesPage = () => {
         </Map>    
       </div>         
       <Footer/>
-      
+      <SupportEngine />
       </div>
     </Fragment>
   );
 };
 
-export default CoursesPage;
+export default Free_Course;

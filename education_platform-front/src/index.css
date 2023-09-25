@@ -48,6 +48,12 @@ button.btn {
   padding: 7px 25px;
   border-radius: 50px;
 }
+
+button.btn:hover {
+  color: #35bbe3; 
+  background: #fff;
+}
+
 button.bbtn {
   background: #e33535;
   color: #fff;

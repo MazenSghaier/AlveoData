@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import { Container, Grid, IconButton } from "@mui/material";
 import { PlayCircleOutline } from "@mui/icons-material";
 import ReactPlayer from "react-player";
-import chooseImg from "../../../assests/images/graphics-design.png";
-import "./OutPlat.css"
+import "../About_Page/Our_Plat/OutPlat.css"
 
-import img from '../../../assests/Courses_images/handScience.png'
 
-const OutPlat: React.FC = () => {
+interface FreetoWatchProps {
+  item: {
+    imageUrl: string;
+    label: string;
+    button: string;
+  };
+}
+
+const FreetoWatch: React.FC<FreetoWatchProps> =(props) => {
+  
+  const { item } = props;
+
   const [showVideo, setShowVideo] = useState(false);
   const [animateImage, setAnimateImage] = useState(false);
 
@@ -21,7 +31,9 @@ const OutPlat: React.FC = () => {
       <Container>
         <Grid container justifyContent="center">
           {/* Column */}
-          
+          <div className="text-center relative mb-2">
+            <h2 className="italic mb:4 lg:text-3xl font-semibold text-sky-500">{item.label}</h2>
+          </div>
           <Grid item xs={12}>
             <div className={`video-container relative ${animateImage ? "animate-image" : ""}`}>
               {showVideo ? (
@@ -35,9 +47,10 @@ const OutPlat: React.FC = () => {
                 <div className="image-container">
                   <div className="centered-image">
                     <img
-                      src={chooseImg}
+                      src={item.imageUrl}
                       alt=""
                       className="rounded-3xl"
+                      style={{ width: "800px", height: "500px" }} 
                     />
                   </div>
                   <div className="play-icon-container absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -58,4 +71,4 @@ const OutPlat: React.FC = () => {
   );
 };
 
-export default OutPlat;
+export default FreetoWatch;
