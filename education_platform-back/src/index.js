@@ -5,7 +5,7 @@ import cors from 'cors';
 
 import usersRoutes from './Routes/routerUsers.js';
 import coursesRoutes from './Routes/routerCourses.js';
-import { UserModel } from './Module/User.js';
+
 
 const app = express();
 const PORT = 5000;

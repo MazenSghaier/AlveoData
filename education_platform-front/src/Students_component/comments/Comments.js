@@ -52,11 +52,16 @@ const Comments = ({ commentsUrl, currentUserId }) => {
   };
 
   useEffect(() => {
-    getCommentsApi().then((data) => {
-      setBackendComments(data);
-    });
-  }, []);
-
+    // Fetch comments using the API function
+    getCommentsApi(commentsUrl)
+      .then((comments) => {
+        // Set the fetched comments in the state
+        setBackendComments(comments);
+      })
+      .catch((error) => {
+        console.error("Error fetching comments:", error);
+      });
+  }, [commentsUrl]);
   return (
     <div className="comments">
       <h3 className="comments-title">Comments</h3>

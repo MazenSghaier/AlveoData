@@ -10,7 +10,7 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchCourses = () => API.get('/courses');
+export const fetchCourses = (number) => API.get(`/courses/${number}`);
 export const createCourse = (newCourse) => API.Course('/courses', newCourse);
 export const likeCourse = (id) => API.patch(`/courses/${id}/likeCourse`);
 export const updateCourse = (id, updatedCourse) => API.patch(`/courses/${id}`, updatedCourse);

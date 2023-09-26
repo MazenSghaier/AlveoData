@@ -18,7 +18,7 @@ const persistConfig = {
 // Create a persisted reducer
 const persistedReducer = persistReducer(persistConfig, combineReducers({
   user: reducers_1,    // Reducer for user-related state
-  course: reducers_2,  // Reducer for course-related state
+  subject: reducers_2,  // Reducer for course-related state
   video: reducers_3,  // Reducer for videos-related state
 }));
 

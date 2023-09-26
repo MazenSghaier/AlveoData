@@ -49,16 +49,18 @@ const courses = [
 export default function Courses() {
     const nav = useNavigate();
 
-    const course = useSelector(state => state.course);
+    const subject = useSelector(state => state.subject);
 
-    console.log(course);
+    console.log(subject.subject.subject);
   
     const dispatch = useDispatch();
-    useEffect(() =>{
+    const handleCourseClick = (index) => {
+      // Dispatch an action with the index before navigating
+      dispatch(getCourse(index));
   
-        dispatch(getCourse());
-        
-      },[dispatch])
+      // Navigate to the course page
+      nav(`/course/${index}`);
+    };
 
   return (
     <>
@@ -86,7 +88,10 @@ export default function Courses() {
           >
             {courses.map((course, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
-                <Link to={`/course/${index}`} className="custom-link">
+               <div
+                  className="custom-link"
+                  onClick={() => handleCourseClick(index)}
+                >
                   <Card
                     sx={{
                       objectFit: 'contain',
@@ -130,7 +135,7 @@ export default function Courses() {
                       <LinearBuffer />
                     </CardContent>
                   </Card>
-                </Link>
+                </div>
               </Grid>
             ))}
           </Grid>

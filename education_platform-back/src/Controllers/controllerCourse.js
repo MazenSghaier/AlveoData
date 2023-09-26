@@ -15,10 +15,10 @@ export const getCourses = async (req, res) => {
 }
  
 export const getCourse = async (req, res) => { 
-    const { id } = req.params;
+    const targetNumber = req.params.number;
 
     try {
-        const course = await CourseModel.findById(id);
+        const course = await CourseModel.findOne({ number: targetNumber });
         
         res.status(200).json(course);
     } catch (error) {

@@ -1,4 +1,4 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import {course} from './course'
+import {subject} from './course'
 
-export default combineReducers({ course});
+export default combineReducers({subject});

@@ -24,10 +24,11 @@ const Player = () => {
 
   const dispatch =useDispatch();
 
-  const course = useSelector(state => state.course);
+  const subject = useSelector(state => state.subject);
 
-  const data =course.course;
-
+  const data =subject.subject.subject.courses;
+  const comments =subject.subject.subject.comments;
+  
   console.log(data);
 
   const url = `${process.env.PUBLIC_URL}/assests/videos/${data[0].video}`
@@ -290,7 +291,7 @@ useEffect(() => {
           {/*Play List section ends */}
 
           {/*comments section starts */}
-          <Comments commentsUrl="http://localhost:3004/comments"
+          <Comments commentsUrl={comments}
               currentUserId="1"/>
            {/*Comments section ends */}
     </main>

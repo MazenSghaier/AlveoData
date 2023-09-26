@@ -1,4 +1,5 @@
 import CommentForm from "./CommentForm";
+import Avatar from '@mui/material/Avatar';
 
 const Comment = ({
   comment,
@@ -30,7 +31,7 @@ const Comment = ({
   return (
     <div key={comment.id} className="comment">
       <div className="comment-image-container">
-        <img src="/user-icon.png" />
+        <Avatar src="/your-image-url.jpg" />
       </div>
       <div className="comment-right-part">
         <div className="comment-content">

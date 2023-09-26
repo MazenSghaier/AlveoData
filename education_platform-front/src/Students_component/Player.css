@@ -306,3 +306,17 @@
 .replies {
   margin-top: 20px;
 }
+
+/* Styles for smaller screens */
+@media (max-width: 767px) {
+  /* Adjust the layout to display video first */
+  .container {
+    display: flex;
+    flex-direction: column; /* Reverse the order for smaller screens */
+    width: 100%;
+  }
+  
+  .video_container {
+    margin-bottom: 0; /* Remove margin to save space */
+  }
+}

@@ -48,22 +48,17 @@ export default function Home() {
 
   const nav = useNavigate();
   
-  const user1 = useSelector(state => state.user);
-  const user = JSON.parse(localStorage.getItem('profile'))
-  
-  const videoaz = JSON.parse(localStorage.getItem('videoProgress'))
-  console.log(videoaz)
+  const subject = useSelector(state => state.subject);
 
-  console.log(user);
-  console.log(user1);
-
+  console.log(subject.subject.subject)
   const dispatch = useDispatch();
-    useEffect(() =>{
-  
-        dispatch(getCourse());
-        
-      },[dispatch])
+  const handleCourseClick = (index) => {
+    // Dispatch an action with the index before navigating
+    dispatch(getCourse(index));
 
+    // Navigate to the course page
+    nav(`/course/${index}`);
+  };
   return (
     <>
     <Navbar/>
@@ -143,8 +138,11 @@ export default function Home() {
             <Typography sx={{ p: 2, color: '#35bbe3', fontWeight: 'bold' }}>
               My progress
             </Typography>
-            {courses.map((course, index) => (
-              <Link href={`/course/${index}`} className="custom-link" key={index}>
+            {courses.map((item, index) => (
+                <div
+                  className="custom-link"
+                  onClick={() => handleCourseClick(index)}
+                >
                 <Card
                   sx={{
                     display: 'flex',
@@ -157,8 +155,8 @@ export default function Home() {
                 >
                   <div style={{display: 'grid', alignItems: 'center' }}>
                     <img
-                      src={course.cours}
-                      alt={course.name}
+                      src={item.cours}
+                      alt={item.name}
                       style={{ width: '30px', height: '30px', marginRight: '8px' }}
                     />
                     <div>
@@ -170,13 +168,13 @@ export default function Home() {
                         }}
                         style={{fontFamily: 'Poppins, sans-serif'}}
                       >
-                        {course.name}
+                        {item.name}
                       </Typography>
                       <LinearBuffer />
                     </div>
                   </div>
                 </Card>
-              </Link>
+              </div>
             ))}
            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '10px' }}>
             <Button

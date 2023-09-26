@@ -7,6 +7,7 @@ const router = express.Router();
 import auth from "../middleware/auth.js";
 
 router.get('/', getCourses);
+router.get('/:number', getCourse);
 router.post('/',auth,  createCourse);
 router.patch('/:id', auth, updateCourse);
 router.delete('/:id', auth, deleteCourse);
