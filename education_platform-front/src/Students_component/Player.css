@@ -138,7 +138,8 @@
 
 .video-playlist .title {
   padding-left: .5rem;
-  font-family:  'Poppins', sans-serif;
+  font-family: 'Poppins', serif;
+  font-weight: 550;
 }
 
 .video-playlist > p {
@@ -152,7 +153,9 @@
   margin: 0;
   padding: 0;
 }
-
+.video-playlist {
+  background-color: rgba(0, 208, 255, 0.1);
+}
 
 .video-playlist .videos{
   height: 70%;

@@ -28,7 +28,7 @@ const Player = () => {
 
   const data =subject.subject.subject.courses;
   const comments =subject.subject.subject.comments;
-  
+
   console.log(data);
 
   const url = `${process.env.PUBLIC_URL}/assests/videos/${data[0].video}`
@@ -44,6 +44,7 @@ const Player = () => {
 
   const [curresntVideo, setCurrentVideo] = useState({url});
 
+  const [title, setTitle] = useState('');
 
   const [videoState, setVideoState] = useState({
     playing: false,
@@ -71,13 +72,14 @@ const Player = () => {
   const formatDuration = formatTime(duration);
 
 
-  const PausePlayHandler = (index,video) => {
+  const PausePlayHandler = (index,video,title) => {
     //plays and pause the video (toggling)
     const newpauseStates = [...pause];
     newpauseStates[index] = !newpauseStates[index];
     setPause(newpauseStates);
     setCurrentVideo(video)
     setCurrentVideoIndex(index);
+    setTitle(title)
   };
 
   const playPauseHandler = () => {
@@ -233,13 +235,13 @@ useEffect(() => {
               onProgress={progressHandler}
               onBuffer={bufferStartHandler}
               onBufferEnd={bufferEndHandler}
-             
             />
 
             {buffer && <p>Loading</p>}
 
             <Control
               controlRef={controlRef}
+              title={title}
               onPlayPause={playPauseHandler}
               playing={playing}
               onRewind={rewindHandler}
@@ -258,7 +260,6 @@ useEffect(() => {
               onMouseSeekDown={onSeekMouseDownHandler}
               toggleFullScreen={handleClickFullscreen}
               isFullScreen={isFullScreen}
-              
             />
           </div>
         </Container>
@@ -267,11 +268,11 @@ useEffect(() => {
 
       {/*Play List section starts */}
       <section className="video-playlist">
-              <h3 className="title">Title of Video Playlist</h3>
-              <p className='duration'>10 lessions &nbsp; . &nbsp; 50m 48s</p>
+              <h3 className="title ">Title of Video Playlist</h3>
+              <p className='duration ml-3 text-sm font-semibold'>10 lessions &nbsp; . &nbsp; 50m 48s</p>
               <div class="videos">
                   {data.map((video,index) => (
-                    <div key={video.id} className="video" data-id={video.id}  onClick={() =>PausePlayHandler(index ,video.video)}>
+                    <div key={video.id} className="video" data-id={video.id}  onClick={() =>PausePlayHandler(index ,video.video,video.title)}>
                       <div key={video.id} className="icon__btn flex" >
                           <div className='mr-4'>
                             {currentVideoIndex === index && pause[index]  ? (

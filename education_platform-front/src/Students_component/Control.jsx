@@ -87,7 +87,8 @@ const Control = ({
   onMouseSeekDown,
   controlRef,
   toggleFullScreen,
-  isFullScreen
+  isFullScreen,
+  title,
 }) => {
   const classes = useStyles();
 
@@ -114,7 +115,7 @@ const Control = ({
   return (
     <div className="control_Container" ref ={controlRef}>
       <div className="top_container">
-        <h2 style={{ color:'white' }}>Video PLayer</h2>
+        <h2 style={{ color:'white' }}>{title}</h2>
       </div>
       <div className="mid__container">
         <div className="icon__btn" onClick={onRewind}>

@@ -162,7 +162,6 @@ export default function Profile() {
               </StyledButton>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Typography variant="h6">Personal Information</Typography>
               <InputAdornments />
             </Grid>
         </Box>
