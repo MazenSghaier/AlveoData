@@ -99,3 +99,40 @@ export const postUser = (req,res) => {
    }
 };
 
+export const updateUser = async (req,res) => {
+
+  const userId = req.params.id;
+  const updatedUserData = req.body;
+
+  try {
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Update only specific attributes
+    if (updatedUserData.username) {
+      user.username = updatedUserData.username;
+    }
+    if (updatedUserData.Email) {
+      user.Email = updatedUserData.Email;
+    }
+    if (updatedUserData.password) {
+      user.password = updatedUserData.password;
+    }
+    if (updatedUserData.birthday) {
+      user.birthday = updatedUserData.birthday;
+    }
+    if (updatedUserData.country) {
+      user.country = updatedUserData.country;
+    }
+    // Save the updated user
+    const updatedUser = await user.save();
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    res.status(500).json({ message: 'Something went wrong', error: error.message });
+  }
+
+}

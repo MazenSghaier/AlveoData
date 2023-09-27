@@ -51,6 +51,7 @@ export default function Profile() {
   const user = JSON.parse(localStorage.getItem('profile'))
   console.log(user);
   
+  const id= user.result.id;
 
   return (
     <>
@@ -162,7 +163,7 @@ export default function Profile() {
               </StyledButton>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <InputAdornments />
+              <InputAdornments id={id}/>
             </Grid>
         </Box>
         )}

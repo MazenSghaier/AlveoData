@@ -7,9 +7,9 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required:  true },
   birthday: { type: String, required:  true },
   country: { type: String, required:  true },
-  terms: { type: String, required:  true },
-  joinDate: { type: String, required:  true },
-  level : { type: String, required:  true },
+  terms: { type: String },
+  joinDate: { type: String },
+  level : { type: String },
   id: { type: String },
 });
 

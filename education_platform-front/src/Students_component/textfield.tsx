@@ -2,6 +2,9 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
+
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import Box from '@mui/material/Box';
 import {  Button, Typography } from '@mui/material';
@@ -23,6 +26,7 @@ import { updatedUser } from '../actions/user';
 
 import CountrySelect from '../Visitors_components/Signup/Country'
 import {countries} from '../Visitors_components/Signup/countries'
+
 
 interface FormValues {
   name: string;
@@ -47,16 +51,21 @@ export default function InputAdornments() {
   })
   const [error, setError] = useState(""); 
 
+  const profileData = localStorage.getItem('profile');
+  let userdata = null;
 
-  const dispatch = useDispatch();
+  if (profileData !== null) {
+    // Parse the JSON string only if it's not null
+    userdata = JSON.parse(profileData);
+  }
+  
+  const id= userdata.result._id;
+
+  const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-
-  const handleSubmit = (e:any) => {
-     
-  }
 
   const clear = () => {
 
@@ -94,6 +103,23 @@ export default function InputAdornments() {
         
       try{
 
+        const birthdayDate = new Date(values.birthday);
+
+        // Check if the Date is valid
+        if (isNaN(birthdayDate.getTime())) {
+          // Handle invalid date here, e.g., show an error message
+          setError("Invalid birthday date");
+          return;
+        }
+
+        // Format the birthday date as "27-9-2000"
+        const formattedBirthday =
+          birthdayDate.getDate() +
+          "-" +
+          (birthdayDate.getMonth() + 1) + // Months are zero-based, so add 1
+          "-" +
+          birthdayDate.getFullYear();
+
         console.log("Form submitted");
         console.log("Form values: ", values);
       
@@ -102,21 +128,18 @@ export default function InputAdornments() {
           username: values.name,
           Email: values.email,
           password: values.password,
-          birthday: values.birthday,
+          birthday: formattedBirthday,
           country: values.country,
-
         });
       
         console.log(user);
         if(user.Email !== ''){
            
-            
-            setError("Sign up was successful");
-            
+            dispatch(updatedUser(id,user));
+            setError("Sign up was successful");  
           }
           else{
-            setError("Sign up was not successful , try again");
-           
+            setError("Sign up was not successful , try again");          
           }
 
     }catch(e){ 
@@ -139,9 +162,9 @@ export default function InputAdornments() {
             <Grid item xs={6}>
               <TextField
                 label="Username"
-                id="outlined-start-adornment"
                 sx={{ width: '60%' , m:2 }}
                 InputProps={{
+                  className: 'outlined-start-adornment',
                   startAdornment: <InputAdornment position="start"></InputAdornment>,
                 }}
                 onChange={formik.handleChange}
@@ -152,15 +175,18 @@ export default function InputAdornments() {
             </Grid>
             <Grid item xs={6}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
-                sx={{ width: '60%', m: 2 }}
-                label="Your birthday date"
-                onChange={(date) => {
-                  formik.setFieldValue('birthday',date);
-                }}
-                value={formik.values.birthday} 
-              />
-            </LocalizationProvider>
+                <DatePicker
+                
+                  sx={{ width: '60%', m:2 }}
+                  label="Your birthday date"
+                  onChange={(date) => {
+                    // Convert the Date object to a string in your preferred format
+                    // Update the birthdate property in userData
+                    formik.setFieldValue('birthday',date);
+                  }}
+                  value={formik.values.birthday} 
+                />
+              </LocalizationProvider>
           </Grid>
 
             <Grid item xs={6}>
@@ -168,9 +194,8 @@ export default function InputAdornments() {
                   <InputLabel id="demo-simple-select-label">Sexe</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
-                    id="demo-simple-select"
                     label="Sexe"
-                    sx={{ width: '70%' }} 
+                    sx={{ width: '85%' }} 
                     name="gender" // Make sure to set the correct name attribute
                     onChange={formik.handleChange}
                     value={formik.values.gender|| ''}
@@ -201,9 +226,9 @@ export default function InputAdornments() {
               <Grid item xs={6}>
                     <TextField
                       label="Email"
-                      id="outlined-start-adornment"
                       sx={{ width: '60%' , m:2 }}
                       InputProps={{
+                        className: 'outlined-start-adornment',
                         startAdornment: <InputAdornment position="start"></InputAdornment>,
                       }}
                       onChange={formik.handleChange}
@@ -253,28 +278,10 @@ export default function InputAdornments() {
                 color: '#35bbe3', 
               },
               }}
-              onClick={handleSubmit}
               >
                 Modify
             </Button>
           </Grid> 
-          <Grid item xs={5}>
-            <Button
-              variant="outlined"
-              sx={{
-              width: '6rem',
-              mt: 3,
-              backgroundColor: '#35bbe3',
-              display: 'block', 
-              color:'white',
-              '&:hover': {
-                color: '#35bbe3', 
-              },
-              }}
-              >
-                Clear
-            </Button> 
-          </Grid>
       </Grid>
     </form>
     </Box>
