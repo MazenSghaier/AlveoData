@@ -87,6 +87,7 @@ const SignIn = () => {
     terms: "agreed",
     joinDate:"",
     level:'',
+    pictureName:'',
   })
 
   const formik = useFormik<FormValues>({
@@ -139,7 +140,8 @@ const SignIn = () => {
           country: values.country,
           terms: "agreed",
           joinDate: `${currentDay}-${currentMonth}-${currentYear}`,
-          level:'entry'
+          level:'entry',
+          pictureName:''
         });
       
         console.log(user);
@@ -319,7 +321,7 @@ const SignIn = () => {
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                 
-                  sx={{ width: '80%' }}
+                  sx={{ mt:1,mb:1, width: '80%' }}
                   label="Your birthday date"
                   onChange={(date) => {
                     // Convert the Date object to a string in your preferred format

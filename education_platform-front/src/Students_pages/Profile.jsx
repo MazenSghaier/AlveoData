@@ -12,31 +12,12 @@ import Grid from '@mui/material/Grid';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { useDispatch } from 'react-redux';
 import { getUser } from '../actions/user';
-import { useSelector } from 'react-redux';
-import { styled } from '@mui/material/styles';
+
+
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(40%)',
-  height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  whiteSpace: 'nowrap',
-  width: .5,
-});
 
-const StyledButton = styled(Button)({
-  backgroundColor: '#35bbe3',
-  margin:6,
-  color: 'white',
-  '&:hover': {
-    backgroundColor: 'white', 
-    color: '#35bbe3',
-  },
-});
 
 export default function Profile() {
 
@@ -51,8 +32,6 @@ export default function Profile() {
   const user = JSON.parse(localStorage.getItem('profile'))
   console.log(user);
   
-  const id= user.result.id;
-
   return (
     <>
       <Navbar />
@@ -81,7 +60,8 @@ export default function Profile() {
                 }}
                 badgeContent={<div style={{ width: 15, height: 15, backgroundColor: '#46d008', borderRadius: '50%' }} />}
               >
-                <Avatar sx={{ width: 80, height: 80 }} src="/your-image-url.jpg" />
+                <Avatar src={`${process.env.PUBLIC_URL}/assets/images/${user.result.pictureName }`} />
+                {console.log(`${process.env.PUBLIC_URL}/assets/images/${user.result.pictureName }`)}
               </Badge>
             </Box>
             <CardContent>
@@ -130,40 +110,24 @@ export default function Profile() {
         {show && (
           
           <Box sx={{ ml: 3, display: 'flex', flexDirection: 'column' }}>
-          <Button
-            variant="outlined"
-            onClick={toggleShow}
-            sx={{
-              width: '6rem',
-              mt: 3,
-              backgroundColor: '#35bbe3',
-              color: 'white',
-              '&:hover': {
-                color: '#35bbe3',
-              },
-            }}
-          >
-            Back
-          </Button>       
-            <Grid item xs={12} sm={6} sx={{display:'flex', alignContent:'center', justifyContent:'center'}}>
-              <Badge
-                overlap="circular"
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                badgeContent={<div style={{ width: 10, height: 10, backgroundColor: '#46d008', borderRadius: '50%' , mt:8}} />}
-              >
-                <Avatar src="/your-image-url.jpg" />
-              </Badge>
-
-              <StyledButton size="small" component="label" variant="contained" startIcon={<CloudUploadIcon />}>
-                Upload photo
-                <VisuallyHiddenInput sx={{color: '#35bbe3' , pl:'2'}}  type="image" />
-              </StyledButton>
-            </Grid>
+            <Button
+              variant="outlined"
+              onClick={toggleShow}
+              sx={{
+                width: '6rem',
+                mt: 3,
+                backgroundColor: '#35bbe3',
+                color: 'white',
+                '&:hover': {
+                  color: '#35bbe3',
+                },
+              }}
+              startIcon={<ArrowBackIosNewIcon />}
+            >
+              Back
+            </Button>   
             <Grid item xs={12} sm={6}>
-              <InputAdornments id={id}/>
+              <InputAdornments/>
             </Grid>
         </Box>
         )}

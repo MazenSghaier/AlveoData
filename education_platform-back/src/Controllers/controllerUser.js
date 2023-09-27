@@ -29,7 +29,7 @@ export const signin = async (req, res) => {
 };
 
 export const signup = async (req, res) => {
-  const { Email, password, username, birthday,country,terms,joinDate,level } = req.body;
+  const { Email, password, username, birthday,country,terms,joinDate,level ,pictureName } = req.body;
 
   try {
     const oldUser = await UserModel.findOne({ Email });
@@ -38,7 +38,7 @@ export const signup = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const result = await UserModel.create({ Email, password: hashedPassword, username, birthday,country,terms,joinDate,level});
+    const result = await UserModel.create({ Email, password: hashedPassword, username, birthday,country,terms,joinDate,level ,pictureName});
 
     const token = jwt.sign( { Email: result.Email, id: result._id }, secret, { expiresIn: "1h" } );
 
@@ -119,7 +119,8 @@ export const updateUser = async (req,res) => {
       user.Email = updatedUserData.Email;
     }
     if (updatedUserData.password) {
-      user.password = updatedUserData.password;
+      const hashedPassword = await bcrypt.hash(updatedUserData.password, 12);
+      user.password = hashedPassword;
     }
     if (updatedUserData.birthday) {
       user.birthday = updatedUserData.birthday;
@@ -127,10 +128,16 @@ export const updateUser = async (req,res) => {
     if (updatedUserData.country) {
       user.country = updatedUserData.country;
     }
+    if (updatedUserData.pictureName) {
+      user.pictureName = updatedUserData.pictureName;
+    }
     // Save the updated user
-    const updatedUser = await user.save();
+    const result = await user.save();
 
-    res.status(200).json(updatedUser);
+
+    const token = jwt.sign( { Email: result.Email, id: result._id }, secret, { expiresIn: "1h" } );
+
+    res.status(201).json({ result, token });
   } catch (error) {
     res.status(500).json({ message: 'Something went wrong', error: error.message });
   }

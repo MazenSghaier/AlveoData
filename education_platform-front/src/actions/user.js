@@ -1,5 +1,5 @@
 import * as api from '../api/apiUser';
-import { AUTH, UPDATE } from '../constants/actionTypes';
+import { AUTH, UPDATEUSER } from '../constants/actionTypes';
 
 export const getUser = (id) => async (dispatch) => {
 
@@ -19,7 +19,7 @@ export const updatedUser = (id,user) => async (dispatch) => {
 
         const {data} = await api.changeUser(id,user);
 
-        dispatch({ type: UPDATE, data});
+        dispatch({ type: UPDATEUSER, data});
   
     }catch (error){
 

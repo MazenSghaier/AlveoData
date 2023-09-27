@@ -18,14 +18,42 @@ import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
+import Badge from '@mui/material/Badge';
+import Avatar from '@mui/material/Avatar';
 import FaceIcon from '@mui/icons-material/Face';
 import Face3Icon from '@mui/icons-material/Face3';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { styled } from '@mui/material/styles';
 
 import { useDispatch } from 'react-redux';
 import { updatedUser } from '../actions/user';
 
 import CountrySelect from '../Visitors_components/Signup/Country'
 import {countries} from '../Visitors_components/Signup/countries'
+
+
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(40%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: .5,
+});
+
+const buttonStyle = {
+  backgroundColor: '#35bbe3',
+  margin: 5,
+  color: 'white',
+  '&:hover': {
+    backgroundColor: 'white', 
+    color: '#35bbe3',
+  },
+};
+
 
 
 interface FormValues {
@@ -39,7 +67,6 @@ interface FormValues {
 }
 
 
-
 export default function InputAdornments() {
 
   const [user,setUser] = useState ({
@@ -48,14 +75,16 @@ export default function InputAdornments() {
     password: "",
     birthday:"",
     country: "",
+    pictureName:""
   })
   const [error, setError] = useState(""); 
+  const [selectedFileName, setSelectedFileName] = useState("");
 
   const profileData = localStorage.getItem('profile');
   let userdata = null;
 
   if (profileData !== null) {
-    // Parse the JSON string only if it's not null
+    
     userdata = JSON.parse(profileData);
   }
   
@@ -63,13 +92,7 @@ export default function InputAdornments() {
 
   const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
 
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
 
-  const clear = () => {
-
-  }
 
   const formik = useFormik<FormValues>({
     initialValues: {
@@ -130,13 +153,15 @@ export default function InputAdornments() {
           password: values.password,
           birthday: formattedBirthday,
           country: values.country,
+          pictureName: selectedFileName,
         });
       
         console.log(user);
         if(user.Email !== ''){
            
             dispatch(updatedUser(id,user));
-            setError("Sign up was successful");  
+            setError("Sign up was successful"); 
+            console.log("Selected file name:", selectedFileName); 
           }
           else{
             setError("Sign up was not successful , try again");          
@@ -150,13 +175,51 @@ export default function InputAdornments() {
     },
   })
 
+  const handleFileChange = (e:any) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setSelectedFileName(selectedFile.name);
+      
+    }
+  };
+
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap' , mt:4 , mb: 4 }}>
       <form
             onSubmit={formik.handleSubmit}
            
-          >
-        <Grid container spacing={2}>
+          >    
+            <Grid item xs={12} sm={6} sx={{display:'flex', alignContent:'center', justifyContent:'center'}}>
+              <Badge
+                overlap="circular"
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+                badgeContent={<div style={{ width: 10, height: 10, backgroundColor: '#46d008', borderRadius: '50%', marginTop:4 }} />}
+              >
+                <Avatar src={`${process.env.PUBLIC_URL}/assets/images/${selectedFileName || '/your-image-url.jpg'}`} />
+              </Badge>
+              <input
+                  type="file"
+                  id="fileInput"
+                  onChange={handleFileChange}
+                  style={{ display: 'none' }}
+                />
+                <label htmlFor="fileInput">
+                  <Button
+                    size="small"
+                    component="label"
+                    variant="contained"
+                    startIcon={<CloudUploadIcon />}
+                    htmlFor="fileInput"
+                    style={buttonStyle}
+                  >
+                    Upload photo
+                  </Button>
+                </label>
+            </Grid>
+        <Grid container spacing={2} sx={{mt:3}}>
           <Typography variant="h6">Personal Information</Typography>
           <Grid container spacing={2}>
             <Grid item xs={6}>
@@ -191,22 +254,22 @@ export default function InputAdornments() {
 
             <Grid item xs={6}>
                 <FormControl sx={{ width: '70%', m: 2, position: 'relative' }}>
-                  <InputLabel id="demo-simple-select-label">Sexe</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Gender</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
-                    label="Sexe"
+                    label="Gender"
                     sx={{ width: '85%' }} 
                     name="gender" // Make sure to set the correct name attribute
                     onChange={formik.handleChange}
                     value={formik.values.gender|| ''}
                     onBlur={formik.handleBlur}
                   >
-                    <MenuItem value={"mas"} sx={{ color: '#35bbe3' }}><FaceIcon sx={{ color: '#35bbe3', padding: '3px' }}/> Man</MenuItem>
+                    <MenuItem value={"man"} sx={{ color: '#35bbe3' }}><FaceIcon sx={{ color: '#35bbe3', padding: '3px' }}/> Man</MenuItem>
                     <MenuItem value={"fem"} sx={{ color: '#35bbe3' }}><Face3Icon sx={{ color: '#35bbe3', padding: '3px' }}/> Woman</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={6} >
+              <Grid item xs={2} sx={{p:1}}>
                 <CountrySelect
                  value={formik.values.country ? countries.find(country => country.label === formik.values.country) || null : null}
                  onChange={(selectedCountry) => {
@@ -263,16 +326,15 @@ export default function InputAdornments() {
                 </Grid>
             </Grid>
           </Grid>
-        <Grid container sx={{ display: 'flex', justifyContent: 'center', alignItems:'center' }}>
-          <Grid item xs={5}>
+        <Grid container >
+          <Grid item xs={7} >
             <Button
               type="submit" 
               variant="outlined"
               sx={{
               width: '6rem',
               mt: 3,
-              backgroundColor: '#35bbe3',
-              display: 'block', 
+              backgroundColor: '#35bbe3', 
               color:'white',
               '&:hover': {
                 color: '#35bbe3', 

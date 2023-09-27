@@ -51,6 +51,10 @@ export default function Home() {
   const subject = useSelector(state => state.subject);
 
   console.log(subject.subject.subject)
+
+  const user = JSON.parse(localStorage.getItem('profile'))
+  console.log('new user',user);
+
   const dispatch = useDispatch();
   const handleCourseClick = (index) => {
     // Dispatch an action with the index before navigating

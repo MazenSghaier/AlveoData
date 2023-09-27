@@ -26,7 +26,7 @@ export default function CountrySelect(props: CountrySelectProps) {
       onChange(newValue); // Call the onChange callback with the selected country
     }}
       id="country-select-demo"
-      sx={{ width: 300 }}
+      sx={{ width: 320 }}
       options={countries}
       autoHighlight
       getOptionLabel={(option) => option.label}
