@@ -38,10 +38,8 @@ const courses = [
    {cours : analysis, name :"Analysis"},
   ];
 
-const style = {
-  width: '100%',
-  maxWidth: 360,
-  bgcolor: 'background.paper',
+const  myprogresscontainer = {
+    order: 3,
 };
 
 export default function Home() {
@@ -74,7 +72,7 @@ export default function Home() {
       <Stack direction='row'>
         <Grid container spacing={2} >
           
-          <Grid item xs={6} md={8} lg={12} >
+          <Grid item xs={8} md={8} lg={10} >
             <Card sx={{ width: 500, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 16px' }}>
                 <div>
@@ -112,7 +110,7 @@ export default function Home() {
             </Card>
           </Grid>
 
-          <Grid item xs={6} md={8} lg={12}>
+          <Grid item xs={8} md={8} lg={10}>
             <Card sx={{ width: 500, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 16px' }}>
                     <div>
@@ -135,9 +133,9 @@ export default function Home() {
             </Card>
           </Grid>
         </Grid>
-        <Grid container spacing={2} >
-          
-        <Grid item xs={12} md={12} lg={6} sx={{ p:5 }}>
+        <div style={myprogresscontainer}>
+        <Grid container spacing={2} >      
+        <Grid item xs={12} md={12} lg={6} sx={{ p: 5, display: 'flex', flexDirection: 'column' }}>
           <Card sx={{ width: 300, boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.5)'}}>
             <Typography sx={{ p: 2, color: '#35bbe3', fontWeight: 'bold' }}>
               My progress
@@ -199,7 +197,9 @@ export default function Home() {
 
 
         </Grid>
+        </div>
         </Stack>
+
       </Box>
 
       </Box>

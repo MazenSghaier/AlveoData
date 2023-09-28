@@ -110,11 +110,14 @@ const Player = () => {
       setVideoState({ ...videoState, ...state });
     }
     const currentTiming = state.playedSeconds; // Get the current time in seconds
-    // Update Redux store with currentTime
-    dispatch(updateVideoProgress(currentTiming));
-    // Save currentTime in localStorage
-    localStorage.setItem('videoProgress', currentTime.toString())
+    if (currentTiming !== null && currentTiming !== undefined) {
+      // Update Redux store with currentTime
+      dispatch(updateVideoProgress(currentTiming));
+      
+      // Save currentTime in localStorage
+      localStorage.setItem('videoProgress', currentTiming.toString());
   };
+}
 
   const seekHandler = (e, value) => {
     setVideoState({ ...videoState, played: parseFloat(value / 100) });

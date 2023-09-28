@@ -83,7 +83,7 @@ const FreeCourse = () => {
               <FreeCourseCard key={index}
                 item={item}
                 shouldAnimate={shouldAnimate}
-                ref={(el) => (coursesRef.current[index] = el)}
+                
               />
             </Col>
           ))}

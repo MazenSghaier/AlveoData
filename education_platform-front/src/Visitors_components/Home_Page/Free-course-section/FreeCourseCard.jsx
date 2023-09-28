@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { RiUserLine, RiStarFill } from "react-icons/ri";
 
-const FreeCourseCard = forwardRef(({ item, shouldAnimate }, ref) => {
+const FreeCourseCard = forwardRef(({ item, shouldAnimate }) => {
   const { imgUrl, title, students, rating } = item;
   const nav = useNavigate();
   return (
     <div
       className={`single__free__course ${shouldAnimate ? "show-card" : ""}`}
-      ref={ref}
     >
       <div className="free__course__img mb-5">
         <img src={imgUrl} alt="" className="w-100" />
