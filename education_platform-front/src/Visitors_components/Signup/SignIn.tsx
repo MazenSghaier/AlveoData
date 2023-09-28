@@ -26,6 +26,7 @@ import { AUTH } from '../../constants/actionTypes';
 import {countries} from './countries'
 import dayjs from 'dayjs';
 
+
 import './styles.css'
 
 interface FormValues {
@@ -132,6 +133,11 @@ const SignIn = () => {
         console.log("Form values: ", values);
       
         // Update the user state with form values including the formatted birthday
+
+        const pictureNames = ['gorilla.png', 'panda.png', 'elephant.png', 'tiger.png', 'horse.png','bird.png'];
+        const randomIndex = Math.floor(Math.random() * pictureNames.length);
+        const randomPictureName = pictureNames[randomIndex];
+
         setUser({
           username: values.name,
           Email: values.email,
@@ -141,9 +147,9 @@ const SignIn = () => {
           terms: "agreed",
           joinDate: `${currentDay}-${currentMonth}-${currentYear}`,
           level:'entry',
-          pictureName:''
+          pictureName:randomPictureName,
         });
-      
+
         console.log(user);
         if(user.Email !== ''){
             setIsSignin(true);

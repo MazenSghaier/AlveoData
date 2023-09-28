@@ -31,7 +31,7 @@ const Comment = ({
   return (
     <div key={comment.id} className="comment">
       <div className="comment-image-container">
-        <Avatar src="/your-image-url.jpg" />
+        <Avatar src={`${process.env.PUBLIC_URL}/assests/logos/bird.png`} />
       </div>
       <div className="comment-right-part">
         <div className="comment-content">

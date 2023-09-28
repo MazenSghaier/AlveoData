@@ -17,7 +17,7 @@ import { getUser } from '../actions/user';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
-
+import tiger from '../assests/logos/tiger.png'
 
 export default function Profile() {
 
@@ -60,8 +60,8 @@ export default function Profile() {
                 }}
                 badgeContent={<div style={{ width: 15, height: 15, backgroundColor: '#46d008', borderRadius: '50%' }} />}
               >
-                <Avatar src={`${process.env.PUBLIC_URL}/assets/images/${user.result.pictureName }`} />
-                {console.log(`${process.env.PUBLIC_URL}/assets/images/${user.result.pictureName }`)}
+                <Avatar sx={{width: 65, height: 65,}} src={`${process.env.PUBLIC_URL}/assests/logos/${user.result.pictureName}`} />
+                {console.log(`${process.env.PUBLIC_URL}/assests/logos/${user.result.pictureName}`)}
               </Badge>
             </Box>
             <CardContent>

@@ -128,9 +128,6 @@ export const updateUser = async (req,res) => {
     if (updatedUserData.country) {
       user.country = updatedUserData.country;
     }
-    if (updatedUserData.pictureName) {
-      user.pictureName = updatedUserData.pictureName;
-    }
     // Save the updated user
     const result = await user.save();
 
