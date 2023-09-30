@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactPlayer from "react-player";
 import { findDOMNode } from 'react-dom'
-import { Container } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import screenfull from 'screenfull'
 import {formatTime} from './Tools/Format'
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import {updateVideoProgress} from '../actions/videos'
+import {updateVideoProgress, finishedVideo} from '../actions/videos'
 
 import "@fontsource/poppins/400-italic.css"; 
 
@@ -31,13 +31,17 @@ const Player = () => {
 
   console.log(data);
 
+  const titleVideo = data.title ;
+
   const url = `${process.env.PUBLIC_URL}/assests/videos/${data[0].video}`
   console.log(url)
+
   const videoPlayerRef = useRef(null);
   const controlRef = useRef(null);
 
   const [pause , setPause] = useState(data.map(() => false));
-
+  const [lessonCompletion, setLessonCompletion] = useState(data.map(() => false));
+  
   const [isFullScreen, setIsFullScreen] = useState(false);
 
   const [currentVideoIndex, setCurrentVideoIndex] = useState(null);
@@ -72,6 +76,18 @@ const Player = () => {
   const formatDuration = formatTime(duration);
 
 
+  const isVideoFinished = (index) => {
+    const finishedKey = `videoFinished_${index}`;
+    const finishedValue = localStorage.getItem(finishedKey);
+    return finishedValue === 'true';
+  };
+  
+  for (let index = 0; index < data.length; index++) {
+    if (isVideoFinished(index)) {
+      data[index].finished = true;
+    }
+  }
+
   const PausePlayHandler = (index,video,title) => {
     //plays and pause the video (toggling)
     const newpauseStates = [...pause];
@@ -80,6 +96,25 @@ const Player = () => {
     setCurrentVideo(video)
     setCurrentVideoIndex(index);
     setTitle(title)
+  };
+
+  const LessonComplete = () => {
+    if (currentVideoIndex !== null) {
+      const newLessonCompletion = [...lessonCompletion];
+      newLessonCompletion[currentVideoIndex] = true; // Mark as complete when video ends
+      setLessonCompletion(newLessonCompletion);
+    }
+  };
+
+  const handleVideoEnded = () => {
+    if (currentVideoIndex !== null) {
+      const newLessonCompletion = [...lessonCompletion];
+      newLessonCompletion[currentVideoIndex] = true; 
+      setLessonCompletion(newLessonCompletion);
+      dispatch(finishedVideo(currentVideoIndex));
+  
+      localStorage.setItem(`videoFinished_${currentVideoIndex}`, 'true');
+    }
   };
 
   const playPauseHandler = () => {
@@ -112,10 +147,10 @@ const Player = () => {
     const currentTiming = state.playedSeconds; // Get the current time in seconds
     if (currentTiming !== null && currentTiming !== undefined) {
       // Update Redux store with currentTime
-      dispatch(updateVideoProgress(currentTiming));
+      dispatch(updateVideoProgress(currentTiming, currentVideoIndex));
       
       // Save currentTime in localStorage
-      localStorage.setItem('videoProgress', currentTiming.toString());
+      localStorage.setItem(`videoProgress_${currentVideoIndex}`, currentTiming.toString());
   };
 }
 
@@ -206,7 +241,7 @@ const Player = () => {
 
 useEffect(() => {
   // Retrieve the saved video progress from local storage
-  const savedProgress = localStorage.getItem('videoProgress');
+  const savedProgress = localStorage.getItem(`videoProgress_${currentVideoIndex}`);
 
   if (savedProgress && videoPlayerRef.current ) {
     // Parse the saved progress as a float
@@ -218,7 +253,7 @@ useEffect(() => {
       videoPlayerRef.current.seekTo(savedProgressFloat);
     }
   }
-}, []);
+}, [currentVideoIndex]);
 
   return (
     <main className="container">
@@ -238,10 +273,11 @@ useEffect(() => {
               onProgress={progressHandler}
               onBuffer={bufferStartHandler}
               onBufferEnd={bufferEndHandler}
+              onEnded={handleVideoEnded}
             />
 
             {buffer && <p>Loading</p>}
-
+              
             <Control
               controlRef={controlRef}
               title={title}
@@ -264,7 +300,9 @@ useEffect(() => {
               toggleFullScreen={handleClickFullscreen}
               isFullScreen={isFullScreen}
             />
+            
           </div>
+          <Button variant='outlined' className='btna' sx={{mt:4}} onClick={LessonComplete}> Lesson complete </Button>
         </Container>
       </div>
       {/*Video section ends */}
@@ -273,20 +311,21 @@ useEffect(() => {
       <section className="video-playlist">
               <h3 className="title ">Title of Video Playlist</h3>
               <p className='duration ml-3 text-sm font-semibold'>10 lessions &nbsp; . &nbsp; 50m 48s</p>
-              <div class="videos">
+              <div className="videos">
                   {data.map((video,index) => (
-                    <div key={video.id} className="video" data-id={video.id}  onClick={() =>PausePlayHandler(index ,video.video,video.title)}>
-                      <div key={video.id} className="icon__btn flex" >
-                          <div className='mr-4'>
-                            {currentVideoIndex === index && pause[index]  ? (
-                                <PauseCircleIcon fontSize="large" />
-                              ) : (
-                                <PlayCircleIcon fontSize="large" />
-                              )}{" "} 
-                          </div>
-                          <img style={{ width: '5rem', height: '3rem' }} src={`${process.env.PUBLIC_URL}/assests/images/${video.image}`} alt="" />
+                    <div key={video.id} className="video" data-id={video.id} onClick={() => PausePlayHandler(index, video.video, video.title)}>
+                      <div key={video.id} className="icon__btn flex">
+                        <div className='mr-4'>
+                          {currentVideoIndex === index && pause[index] ? (
+                            <PauseCircleIcon fontSize="large" />
+                          ) : (
+                            <PlayCircleIcon fontSize="large" />
+                          )}
+                        </div>
+                        <img style={{ width: '5rem', height: '3rem' }} src={`${process.env.PUBLIC_URL}/assests/images/${video.image}`} alt="" />
                       </div>
                       <h3 className="title">{video.title}</h3>
+                      {lessonCompletion[index] && <CheckCircleIcon sx={{color:'green'}} />} 
                       <p className="time">{video.duration}</p>
                     </div>
                   ))}

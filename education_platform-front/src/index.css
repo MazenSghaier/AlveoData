@@ -54,6 +54,19 @@ button.btn:hover {
   background: #fff;
 }
 
+button.btna {
+  background: #35bbe3;
+  color: #fff;
+  padding: 7px 25px;
+  border-radius: 5px;
+}
+
+button.btna:hover {
+  color: #35bbe3; 
+  background: #fff;
+}
+
+
 button.bbtn {
   background: #e33535;
   color: #fff;

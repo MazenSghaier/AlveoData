@@ -17,3 +17,4 @@ export const FETCH = 'FETCH';
 export const UPDATEUSER = 'UPDATEUSER';
 
 export const UPDATE_VIDEO_PROGRESS = 'UPDATE_VIDEO_PROGRESS';
+export const FINISHED_VIDEO  = 'FINISHED_VIDEO';

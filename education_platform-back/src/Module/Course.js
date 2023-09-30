@@ -11,6 +11,7 @@ const courseSchema = new mongoose.Schema({
     image: { type: String, required:  true },
     video: { type: String, required:  true },
     duration: { type: String, required:  true },
+    finished:{ type: String },
  },
   id: { type: String },
   comments: { 
