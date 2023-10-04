@@ -1,12 +1,30 @@
-import {UPDATE_VIDEO_PROGRESS, FINISHED_VIDEO} from '../constants/actionTypes'
+import { UPDATE_VIDEO_PROGRESS, FINISHED_VIDEO } from '../constants/actionTypes';
 
-export const  video = (state = 0 , action) =>{
-    switch (action.type) {
-        case UPDATE_VIDEO_PROGRESS:
-          return action.payload;
-        case FINISHED_VIDEO:
-          return action.payload;
-        default:
-          return state;
-      }
-} 
+const initialState = {
+  videoProgress: {},
+  lessonCompletion: [], // Initialize it as an empty array
+};
+
+const video = (state = initialState, action) => {
+  switch (action.type) {
+    case UPDATE_VIDEO_PROGRESS:
+      return {
+        ...state,
+        videoProgress: {
+          ...state.videoProgress,
+          [action.payload.videoIndex]: action.payload.progress,
+        },
+      };
+    case FINISHED_VIDEO:
+      console.log('lessonCompletion:', state.lessonCompletion);
+      console.log('FINISHED_VIDEO payload:', action.payload);
+      return {
+        ...state,
+        lessonCompletion: [...state.lessonCompletion, action.payload],
+      };
+    default:
+      return state;
+  }
+};
+
+export default video;

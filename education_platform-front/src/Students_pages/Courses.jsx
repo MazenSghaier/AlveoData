@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
@@ -47,6 +47,9 @@ const courses = [
     ];
 
 export default function Courses() {
+
+  const [progressPercentages, setProgressPercentages] = useState([]);
+
     const nav = useNavigate();
 
     const subject = useSelector(state => state.subject);
@@ -54,6 +57,9 @@ export default function Courses() {
     console.log(subject.subject.subject);
   
     const dispatch = useDispatch();
+
+  
+
     const handleCourseClick = (index) => {
       // Dispatch an action with the index before navigating
       dispatch(getCourse(index));
@@ -61,7 +67,7 @@ export default function Courses() {
       // Navigate to the course page
       nav(`/course/${index}`);
     };
-
+  
   return (
     <>
       <Navbar />
@@ -132,7 +138,7 @@ export default function Courses() {
                       >
                         {course.name}
                       </Typography>
-                      <LinearBuffer />
+                      <LinearBuffer/>
                     </CardContent>
                   </Card>
                 </div>

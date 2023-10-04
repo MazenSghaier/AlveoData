@@ -1,15 +1,15 @@
-import {UPDATE_VIDEO_PROGRESS, FINISHED_VIDEO} from '../constants/actionTypes.js'
-
+// Actions.js
+import { UPDATE_VIDEO_PROGRESS, FINISHED_VIDEO } from '../constants/actionTypes';
 
 export const updateVideoProgress = (currentTime, currentIndex) => ({
   type: UPDATE_VIDEO_PROGRESS,
   payload: {
-    currentTime,
+    progress: currentTime, // Use "progress" instead of "currentTime"
     currentIndex,
   },
 });
 
-export const finishedVideo  = (currentIndex) => ({
+export const markLessonComplete = (lessonIndex) => ({
   type: FINISHED_VIDEO,
-  payload: currentIndex,
+  payload: lessonIndex,
 });

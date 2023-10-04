@@ -1,20 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactPlayer from "react-player";
-import { findDOMNode } from 'react-dom'
-import { Button, Container } from "@mui/material";
+import { Container, Button } from "@mui/material";
 import screenfull from 'screenfull'
-import {formatTime} from './Tools/Format'
+import { formatTime } from './Tools/Format'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import {updateVideoProgress, finishedVideo} from '../actions/videos'
-
-import "@fontsource/poppins/400-italic.css"; 
-
-import './Player.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { updateVideoProgress, markLessonComplete } from '../actions/videos'
+import "@fontsource/poppins/400-italic.css";
+import './Player.css';
 import Comments from "./comments/Comments";
 import Control from './Control';
-
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
@@ -22,31 +17,34 @@ let count = 0;
 
 const Player = () => {
 
-  const dispatch =useDispatch();
-
+  const dispatch = useDispatch();
   const subject = useSelector(state => state.subject);
+  const data = subject.subject.subject.courses;
+  const comments = subject.subject.subject.comments;
 
-  const data =subject.subject.subject.courses;
-  const comments =subject.subject.subject.comments;
+  
 
-  console.log(data);
+  const titleVideo = data.title;
 
-  const titleVideo = data.title ;
+  const url = `${process.env.PUBLIC_URL}/assests/videos/${data[0].video}`;
 
-  const url = `${process.env.PUBLIC_URL}/assests/videos/${data[0].video}`
-  console.log(url)
 
   const videoPlayerRef = useRef(null);
   const controlRef = useRef(null);
 
-  const [pause , setPause] = useState(data.map(() => false));
-  const [lessonCompletion, setLessonCompletion] = useState(data.map(() => false));
+  const [pause, setPause] = useState(data.map(() => false));
+
+  const [lessonCompletion, setLessonCompletion] = useState(() => {
+    // Initialize lessonCompletion from local storage or as an array of `false` values
+    const storedLessonCompletion = localStorage.getItem('lessonCompletion');
+    return storedLessonCompletion ? JSON.parse(storedLessonCompletion) : Array(data.length).fill(false);
+  });
   
   const [isFullScreen, setIsFullScreen] = useState(false);
 
   const [currentVideoIndex, setCurrentVideoIndex] = useState(null);
 
-  const [curresntVideo, setCurrentVideo] = useState({url});
+  const [currentVideo, setCurrentVideo] = useState(url);
 
   const [title, setTitle] = useState('');
 
@@ -76,18 +74,6 @@ const Player = () => {
   const formatDuration = formatTime(duration);
 
 
-  const isVideoFinished = (index) => {
-    const finishedKey = `videoFinished_${index}`;
-    const finishedValue = localStorage.getItem(finishedKey);
-    return finishedValue === 'true';
-  };
-  
-  for (let index = 0; index < data.length; index++) {
-    if (isVideoFinished(index)) {
-      data[index].finished = true;
-    }
-  }
-
   const PausePlayHandler = (index,video,title) => {
     //plays and pause the video (toggling)
     const newpauseStates = [...pause];
@@ -97,23 +83,23 @@ const Player = () => {
     setCurrentVideoIndex(index);
     setTitle(title)
   };
-
+  
   const LessonComplete = () => {
     if (currentVideoIndex !== null) {
       const newLessonCompletion = [...lessonCompletion];
-      newLessonCompletion[currentVideoIndex] = true; // Mark as complete when video ends
+      newLessonCompletion[currentVideoIndex] = true;
       setLessonCompletion(newLessonCompletion);
+      // Save the updated lessonCompletion to local storage
+      localStorage.setItem('lessonCompletion', JSON.stringify(newLessonCompletion));
     }
-  };
-
+  }
+  
   const handleVideoEnded = () => {
     if (currentVideoIndex !== null) {
       const newLessonCompletion = [...lessonCompletion];
-      newLessonCompletion[currentVideoIndex] = true; 
+      newLessonCompletion[currentVideoIndex] = true;
       setLessonCompletion(newLessonCompletion);
-      dispatch(finishedVideo(currentVideoIndex));
-  
-      localStorage.setItem(`videoFinished_${currentVideoIndex}`, 'true');
+      localStorage.setItem('lessonCompletion', JSON.stringify(newLessonCompletion));
     }
   };
 
@@ -135,24 +121,24 @@ const Player = () => {
   //console.log("========", (controlRef.current.style.visibility = "false"));
   const progressHandler = (state) => {
     if (count > 2) {
-      console.log("close");
       controlRef.current.style.visibility = "hidden"; // toggling player control container
     } else if (controlRef.current.style.visibility === "visible") {
       count += 1;
     }
-
+  
     if (!seeking) {
       setVideoState({ ...videoState, ...state });
     }
+  
     const currentTiming = state.playedSeconds; // Get the current time in seconds
     if (currentTiming !== null && currentTiming !== undefined) {
-      // Update Redux store with currentTime
-      dispatch(updateVideoProgress(currentTiming, currentVideoIndex));
-      
-      // Save currentTime in localStorage
+      // Update local storage with currentTime
       localStorage.setItem(`videoProgress_${currentVideoIndex}`, currentTiming.toString());
+  
+      // Dispatch the action to update the Redux store
+      dispatch(updateVideoProgress(currentTiming, currentVideoIndex));
+    }
   };
-}
 
   const seekHandler = (e, value) => {
     setVideoState({ ...videoState, played: parseFloat(value / 100) });
@@ -160,8 +146,6 @@ const Player = () => {
   };
 
   const seekMouseUpHandler = (e, value) => {
-    console.log(value);
-
     setVideoState({ ...videoState, seeking: false });
     videoPlayerRef.current.seekTo(value / 100);
   };
@@ -201,7 +185,6 @@ const Player = () => {
   };
 
   const bufferStartHandler = () => {
-    console.log("Bufering.......");
     setVideoState({ ...videoState, buffer: true });
   };
 
@@ -243,7 +226,7 @@ useEffect(() => {
   // Retrieve the saved video progress from local storage
   const savedProgress = localStorage.getItem(`videoProgress_${currentVideoIndex}`);
 
-  if (savedProgress && videoPlayerRef.current ) {
+  if (savedProgress && videoPlayerRef.current) {
     // Parse the saved progress as a float
     const savedProgressFloat = parseFloat(savedProgress);
 
@@ -253,92 +236,114 @@ useEffect(() => {
       videoPlayerRef.current.seekTo(savedProgressFloat);
     }
   }
-}, [currentVideoIndex]);
+}, [currentVideoIndex]); 
 
-  return (
-    <main className="container">
-      {/*Video section starts */}
-      <div className="video_container">
-        <Container maxWidth="md" justify="center">
-          <div className="player__wrapper" onMouseMove={mouseMoveHandler}>
-            <ReactPlayer
-              ref={videoPlayerRef}
-              className="player"
-              url={`${process.env.PUBLIC_URL}/assests/videos/${curresntVideo}`}
-              width="100%"
-              height="100%"
-              playing={playing}
-              volume={volume}
-              muted={muted}
-              onProgress={progressHandler}
-              onBuffer={bufferStartHandler}
-              onBufferEnd={bufferEndHandler}
-              onEnded={handleVideoEnded}
-            />
+return (
+  <main className="container">
+    {/* Video section starts */}
+    <div className="video_container">
+      <Container maxWidth="md" justify="center">
+        <div className="player__wrapper" onMouseMove={mouseMoveHandler}>
+          <ReactPlayer
+            ref={videoPlayerRef}
+            className="player"
+            url={`${process.env.PUBLIC_URL}/assests/videos/${currentVideo}`}
+            width="100%"
+            height="100%"
+            playing={playing}
+            volume={volume}
+            muted={muted}
+            onProgress={progressHandler}
+            onBuffer={bufferStartHandler}
+            onBufferEnd={bufferEndHandler}
+            onEnded={handleVideoEnded}
+          />
 
-            {buffer && <p>Loading</p>}
-              
-            <Control
-              controlRef={controlRef}
-              title={title}
-              onPlayPause={playPauseHandler}
-              playing={playing}
-              onRewind={rewindHandler}
-              onForward={handleFastFoward}
-              played={played}
-              onSeek={seekHandler}
-              onSeekMouseUp={seekMouseUpHandler}
-              volume={volume}
-              onVolumeChangeHandler={volumeChangeHandler}
-              onVolumeSeekUp={volumeSeekUpHandler}
-              mute={muted}
-              onMute={muteHandler}
-              playRate={playbackRate}
-              duration={formatDuration}
-              currentTime={formatCurrentTime}
-              onMouseSeekDown={onSeekMouseDownHandler}
-              toggleFullScreen={handleClickFullscreen}
-              isFullScreen={isFullScreen}
-            />
-            
-          </div>
-          <Button variant='outlined' className='btna' sx={{mt:4}} onClick={LessonComplete}> Lesson complete </Button>
-        </Container>
-      </div>
-      {/*Video section ends */}
+          {buffer && <p>Loading</p>}
 
-      {/*Play List section starts */}
-      <section className="video-playlist">
-              <h3 className="title ">Title of Video Playlist</h3>
-              <p className='duration ml-3 text-sm font-semibold'>10 lessions &nbsp; . &nbsp; 50m 48s</p>
-              <div className="videos">
-                  {data.map((video,index) => (
-                    <div key={video.id} className="video" data-id={video.id} onClick={() => PausePlayHandler(index, video.video, video.title)}>
-                      <div key={video.id} className="icon__btn flex">
-                        <div className='mr-4'>
-                          {currentVideoIndex === index && pause[index] ? (
-                            <PauseCircleIcon fontSize="large" />
-                          ) : (
-                            <PlayCircleIcon fontSize="large" />
-                          )}
-                        </div>
-                        <img style={{ width: '5rem', height: '3rem' }} src={`${process.env.PUBLIC_URL}/assests/images/${video.image}`} alt="" />
-                      </div>
-                      <h3 className="title">{video.title}</h3>
-                      {lessonCompletion[index] && <CheckCircleIcon sx={{color:'green'}} />} 
-                      <p className="time">{video.duration}</p>
-                    </div>
-                  ))}
+          <Control
+            controlRef={controlRef}
+            title={title}
+            onPlayPause={playPauseHandler}
+            playing={playing}
+            onRewind={rewindHandler}
+            onForward={handleFastFoward}
+            played={played}
+            onSeek={seekHandler}
+            onSeekMouseUp={seekMouseUpHandler}
+            volume={volume}
+            onVolumeChangeHandler={volumeChangeHandler}
+            onVolumeSeekUp={volumeSeekUpHandler}
+            mute={muted}
+            onMute={muteHandler}
+            playRate={playbackRate}
+            duration={formatDuration}
+            currentTime={formatCurrentTime}
+            onMouseSeekDown={onSeekMouseDownHandler}
+            toggleFullScreen={handleClickFullscreen}
+            isFullScreen={isFullScreen}
+          />
+        </div>
+        <Button
+          variant='outlined'
+          className='btna'
+          sx={{ mt: 4 }}
+          onClick={LessonComplete}
+        >
+          Lesson complete
+        </Button>
+      </Container>
+    </div>
+    {/* Video section ends */}
+
+    {/* Play List section starts */}
+    <section className="video-playlist">
+      <h3 className="title ">Title of Video Playlist</h3>
+      <p className='duration ml-3 text-sm font-semibold'>
+        10 lessons &nbsp; . &nbsp; 50m 48s
+      </p>
+      <div className="videos">
+        {data.map((video, index) => (
+          <div
+            key={video.id}
+            className="video"
+            data-id={video.id}
+            onClick={() =>
+              PausePlayHandler(index, video.video, video.title)
+            }
+          >
+            <div key={video.id} className="icon__btn flex">
+              <div className='mr-4'>
+                {currentVideoIndex === index && pause[index] ? (
+                  <PauseCircleIcon fontSize="large" />
+                ) : (
+                  <PlayCircleIcon fontSize="large" />
+                )}
               </div>
-          </section>
-          {/*Play List section ends */}
+              <img
+                style={{ width: '5rem', height: '3rem' }}
+                src={`${process.env.PUBLIC_URL}/assests/images/${video.image}`}
+                alt=""
+              />
+            </div>
+            <h3 className="title">{video.title}</h3>
+            {lessonCompletion[index] && (
+              <CheckCircleIcon sx={{ color: 'green' }} />
+            )}
+            <p className="time">{video.duration}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+    {/* Play List section ends */}
 
-          {/*comments section starts */}
-          <Comments commentsUrl={comments}
-              currentUserId="1"/>
-           {/*Comments section ends */}
-    </main>
-  );
-}
+    {/* comments section starts */}
+    <Comments
+      commentsUrl={comments}
+      currentUserId="1"
+    />
+    {/* comments section ends */}
+  </main>
+);
+};
 export default Player;
-

@@ -178,13 +178,6 @@ const Control = ({
 
             <div className="quality__speed">
             <div className="icon__btn" onClick={toggleFullScreen}>
-              {isFullScreen ? (
-                // Display an exit full-screen icon
-                <FullscreenExitIcon fontSize="medium" />
-              ) : (
-                // Display a full-screen icon
-                <FullscreenIcon fontSize="medium" />
-              )}
             </div>
           </div>
           </div>
