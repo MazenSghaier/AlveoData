@@ -3,7 +3,7 @@ import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgres
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
+export default function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Box sx={{ width: '100%', mr: 1 }}>
@@ -14,16 +14,6 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number })
           props.value,
         )}%`}</Typography>
       </Box>
-    </Box>
-  );
-}
-
-export default function LinearWithValueLabel() {
-  const [progress, setProgress] = React.useState(10);
-
-  return (
-    <Box sx={{ width: '100%' }}>
-      <LinearProgressWithLabel value={progress} />
     </Box>
   );
 }

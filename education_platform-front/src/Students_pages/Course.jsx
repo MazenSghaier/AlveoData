@@ -4,13 +4,13 @@ import Sidenav from '../Students_component/Sidenav'
 import Player from '../Students_component/Player';
 import { Box } from '@mui/material'
 import { useParams } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 
 
-
-export default function Course() {
-    const { id } = useParams();
-    
+export default function Course(props) {
+  const location = useLocation();
+  const pageIndex = location.state?.pageIndex;
   return (
     <>
     <Navbar/>
@@ -21,7 +21,7 @@ export default function Course() {
 
         <Box component="main" sx={{flexGrow: 1,p: 3}}>
 
-          <Player />
+          <Player item={pageIndex}/>
 
         </Box>
 

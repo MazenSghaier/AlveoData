@@ -31,7 +31,7 @@ function App() {
     <Route path='/profile' element={<Profile/>} ></Route>
     <Route path='/courses' element={<Courses/>} ></Route>
     <Route path='/settings' element={<Settings/>} ></Route>
-    <Route path="/course/:id" element={<Course />} />
+    <Route path="/course/:id" element={<Course props/>} />
     <Route path="/"  element={<FreeCourse/>} />
    </Routes>
   </Router>

@@ -15,14 +15,16 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
 let count = 0;
 
-const Player = () => {
+const Player = (item) => {
 
+  
   const dispatch = useDispatch();
   const subject = useSelector(state => state.subject);
   const data = subject.subject.subject.courses;
   const comments = subject.subject.subject.comments;
 
-  
+  const index = item.item;
+
 
   const titleVideo = data.title;
 
@@ -34,11 +36,11 @@ const Player = () => {
 
   const [pause, setPause] = useState(data.map(() => false));
 
-  const [lessonCompletion, setLessonCompletion] = useState(() => {
-    // Initialize lessonCompletion from local storage or as an array of `false` values
-    const storedLessonCompletion = localStorage.getItem('lessonCompletion');
-    return storedLessonCompletion ? JSON.parse(storedLessonCompletion) : Array(data.length).fill(false);
-  });
+  const savedProgress = localStorage.getItem(`lessonCompletion_${index}`);
+  const initialLessonCompletion = savedProgress ? JSON.parse(savedProgress) : Array(data.length).fill(false);
+
+  // Setting in state
+  const [lessonCompletion, setLessonCompletion] = useState(initialLessonCompletion);
   
   const [isFullScreen, setIsFullScreen] = useState(false);
 
@@ -90,7 +92,7 @@ const Player = () => {
       newLessonCompletion[currentVideoIndex] = true;
       setLessonCompletion(newLessonCompletion);
       // Save the updated lessonCompletion to local storage
-      localStorage.setItem('lessonCompletion', JSON.stringify(newLessonCompletion));
+      localStorage.setItem(`lessonCompletion_${index}`, JSON.stringify(newLessonCompletion));
     }
   }
   
@@ -99,7 +101,7 @@ const Player = () => {
       const newLessonCompletion = [...lessonCompletion];
       newLessonCompletion[currentVideoIndex] = true;
       setLessonCompletion(newLessonCompletion);
-      localStorage.setItem('lessonCompletion', JSON.stringify(newLessonCompletion));
+      localStorage.setItem(`lessonCompletion_${index}`, JSON.stringify(newLessonCompletion));
     }
   };
 

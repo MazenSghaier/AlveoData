@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import MuiAppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -69,6 +70,8 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 export default function Navbar() {
+  const nav = useNavigate();
+
   const updateOpen = useAppStore((state) => state.updateOpen);
   const dopen = useAppStore((state) => state.dopen);
   const updateShow = useContactAndSocial((state) => state.updateShow);
@@ -115,8 +118,8 @@ export default function Navbar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={() => {nav("/profile")}}>Profile</MenuItem>
+      <MenuItem onClick={() => {nav("/profile")}}>My account</MenuItem>
     </Menu>
   );
 
