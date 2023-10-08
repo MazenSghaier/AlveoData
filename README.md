@@ -2,7 +2,8 @@
 
 ## Overview
 
-This MERN stack project is an educational platform designed to provide a seamless learning experience for both visitors and students. The project utilizes TypeScript, Tailwind CSS, Redux, and Redux Persist to create a feature-rich platform.
+This MERN stack project is an educational platform designed to provide a seamless learning experience for both visitors and students. The project utilizes MongoDB, Node, Express, React, TypeScript, Javascript, Tailwind CSS, Redux, and Redux Persist to create a feature-rich platform.
+
 
 ## Usage
 
@@ -110,22 +111,32 @@ Welcome to our educational platform! This section provides a guide on how users 
 ## Installation
 
 Clone this repository to your local machine using this command :
+```bash
+# Clone this repository to your local machine
 git clone https://github.com/MazenSghaier/EducationalPlatform.git
-Import the project into your IDE.
-Open the index.js file located in education_platform-back/ and update the database credentials with your own.
+
+# Import the project into your IDE.
+
+# Open the index.js file located in education_platform-back/ and update the database credentials with your own.
+# Modify the MongoDB connection URL and CORS configuration as needed:
+
 spring:
-datasource:
-  const ConnectionURL = "mongodb+srv://{POSTGRES_HOST:localhost}:{POSTGRES_Password:1234}@firstcluster.v33gplb.mongodb.net/?";
-  // Configure CORS middleware
-  const corsOptions = {
-    origin: 'http://localhost:3000', // Replace with your React app's URL
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // Allow cookies, if your API uses cookies for authentication
-  };
-  
-To install packages npm start
-Run the backend via your IDE, npm start.
-Run the frontend via your IDE, or using the following command npm start.
+  datasource:
+    const ConnectionURL = "mongodb+srv://{POSTGRES_HOST:localhost}:{POSTGRES_Password:1234}@firstcluster.v33gplb.mongodb.net/?";
+    // Configure CORS middleware
+    const corsOptions = {
+      origin: 'http://localhost:3000', // Replace with your React app's URL
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      credentials: true, // Allow cookies, if your API uses cookies for authentication
+    };
+
+# To install packages
+npm install
+
+# Run the backend via your IDE, npm start.
+
+# Run the frontend via your IDE, or using the following command
+npm start
 
 ## Contributing
 
