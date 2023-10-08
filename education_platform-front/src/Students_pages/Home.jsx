@@ -1,10 +1,10 @@
-import React , {useEffect} from 'react'
+import React , {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import Navbar from '../Students_component/Navbar'
 import Sidenav from '../Students_component/Sidenav'
 import CustomCard from '../Students_component/CustomCard';
-import LinearBuffer from '../Students_component/Progressbar'
+import Progressbar from '../Students_component/Progressbar'
 
 import { getCourse } from '../actions/course';
 import { useDispatch } from 'react-redux';
@@ -42,10 +42,25 @@ const  myprogresscontainer = {
     order: 3,
 };
 
+
+function calculatePlaylistCompletion(index, lessonCompletion) {
+  const lessonsPerPlaylist = 9; // Assuming each playlist has 9 lessons
+  const lessonsInPlaylist = lessonCompletion.slice(0, 9);
+
+  const completedLessons = lessonsInPlaylist.filter((completed) => completed).length;
+
+  console.log(`lessonCompletion for course ${index}:`, lessonCompletion);
+  console.log(`Completed Lessons for Playlist ${index}: ${completedLessons}`);
+  console.log(`Total Lessons for Playlist ${index}: ${lessonsPerPlaylist}`);
+
+  return (completedLessons / lessonsPerPlaylist) * 100;
+}
+
 export default function Home() {
 
   const nav = useNavigate();
-  
+  const [completionPercentages, setCompletionPercentages] = useState([]);
+
   const subject = useSelector(state => state.subject);
 
   console.log(subject.subject.subject)
@@ -61,6 +76,34 @@ export default function Home() {
     // Navigate to the course page
     nav(`/course/${index}`);
   };
+
+
+  useEffect(() => {
+    const calculateCompletionPercentages = () => {
+      const allCompletionPercentages = [];
+  
+      for (let index = 0; index < courses.length; index++) {
+        const lessonCompletionData = localStorage.getItem(`lessonCompletion_${index}`);
+        try {
+        const lessonCompletion = lessonCompletionData ? JSON.parse(lessonCompletionData) : [];
+  
+        console.log(`lessonCompletion for course ${index}:`, lessonCompletion);
+  
+        const completionPercentage = calculatePlaylistCompletion(index, lessonCompletion);
+  
+        allCompletionPercentages.push({
+          name: courses[index].name,
+          completionPercentage: isNaN(completionPercentage) ? 0 : completionPercentage,
+        });
+  
+      setCompletionPercentages(allCompletionPercentages);
+    } catch (error) {
+      console.error(`Error parsing lessonCompletion data for course ${index}:`)
+    }
+    };
+  }
+    calculateCompletionPercentages();
+  }, []);
   return (
     <>
     <Navbar/>
@@ -172,7 +215,11 @@ export default function Home() {
                       >
                         {item.name}
                       </Typography>
-                      <LinearBuffer />
+                      {completionPercentages[index] && (
+                          <Progressbar
+                            value={ completionPercentages[index].completionPercentage || 0 }
+                          />
+                        )}
                     </div>
                   </div>
                 </Card>
