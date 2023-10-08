@@ -111,7 +111,7 @@ Welcome to our educational platform! This section provides a guide on how users 
 ## Installation
 
 Clone this repository to your local machine using this command :
-```bash
+```
 # Clone this repository to your local machine
 git clone https://github.com/MazenSghaier/EducationalPlatform.git
 
@@ -137,7 +137,7 @@ npm install
 
 # Run the frontend via your IDE, or using the following command
 npm start
-
+```
 ## Contributing
 
 1. Fork this repository to your GitHub account.
