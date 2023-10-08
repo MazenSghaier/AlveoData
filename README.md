@@ -120,7 +120,6 @@ git clone https://github.com/MazenSghaier/EducationalPlatform.git
 # Open the index.js file located in education_platform-back/ and update the database credentials with your own.
 # Modify the MongoDB connection URL and CORS configuration as needed:
 
-spring:
   datasource:
     const ConnectionURL = "mongodb+srv://{POSTGRES_HOST:localhost}:{POSTGRES_Password:1234}@firstcluster.v33gplb.mongodb.net/?";
     // Configure CORS middleware
