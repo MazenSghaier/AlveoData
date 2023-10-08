@@ -107,12 +107,12 @@ Welcome to our educational platform! This section provides a guide on how users 
 - **Backend:** Node.js, Express.js
 - **Data Base** MongoDB 
 
-## Getting Started
+## Installation
 
 Clone this repository to your local machine using this command :
 git clone https://github.com/MazenSghaier/EducationalPlatform.git
 Import the project into your IDE.
-Open the application.yml file located in src/main/resources/ and update the database credentials with your own.
+Open the index.js file located in education_platform-back/ and update the database credentials with your own.
 spring:
 datasource:
   const ConnectionURL = "mongodb+srv://{POSTGRES_HOST:localhost}:{POSTGRES_Password:1234}@firstcluster.v33gplb.mongodb.net/?";
@@ -122,6 +122,7 @@ datasource:
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Allow cookies, if your API uses cookies for authentication
   };
+  
 To install packages npm start
 Run the backend via your IDE, npm start.
 Run the frontend via your IDE, or using the following command npm start.
