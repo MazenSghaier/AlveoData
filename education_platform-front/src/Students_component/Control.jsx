@@ -86,26 +86,6 @@ const Control = ({
 }) => {
   const classes = useStyles();
 
-  const [selectedQuality, setSelectedQuality] = useState("auto");
-  const [selectedSpeed, setSelectedSpeed] = useState(1);
-
-  const qualityOptions = ["auto", "360p", "720p", "1080p"];
-  const speedOptions = [0.5, 1, 1.5, 2];
-
-  const handleQualityChange = (event) => {
-    const newQuality = event.target.value;
-    setSelectedQuality(newQuality);
-    // You can implement logic to set the video quality based on the selected option
-    // For example, using ReactPlayer's setPlaybackQuality method
-  };
-  
-  const handleSpeedChange = (event) => {
-    const newSpeed = event.target.value;
-    setSelectedSpeed(newSpeed);
-    // You can implement logic to set the video playback speed based on the selected option
-    // For example, using ReactPlayer's setPlaybackRate method
-  };
-
   return (
     <div className="control_Container" ref ={controlRef}>
       <div className="top_container">

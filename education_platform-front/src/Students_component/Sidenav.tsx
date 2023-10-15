@@ -22,11 +22,10 @@ import ListItemText from '@mui/material/ListItemText';
 
 import { useNavigate } from 'react-router-dom';
 
-import { HomeOutlined , PersonOutlined , BookOutlined , SettingsOutlined , SupportAgentOutlined, Padding} from '@mui/icons-material'
+import { HomeOutlined , PersonOutlined , BookOutlined , SettingsOutlined , SupportAgentOutlined} from '@mui/icons-material'
 import { useAppStore } from '../AppSotre';
 import { useContactAndSocial } from '../AppSotre';
 
-import { makeStyles } from '@mui/styles';
 
 import youTube from '../assests/Social_media/youtube.png';
 import twitter from '../assests/Social_media/twitter.png';
@@ -64,10 +63,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-}
-
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -86,16 +81,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const useStyles: any = makeStyles((theme: Theme) => ({
-  listItem: {
-    justifyContent: 'center', 
-  },
-}));
 
 export default function MiniDrawer() {
   const theme = useTheme();
   const nav = useNavigate();
-  const classes = useStyles();
   
   const show = useContactAndSocial((state) => state.show);
   
