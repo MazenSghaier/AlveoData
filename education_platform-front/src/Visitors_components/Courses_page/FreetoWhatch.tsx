@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
 import { Container, Grid, IconButton } from "@mui/material";
 import { PlayCircleOutline } from "@mui/icons-material";
 import ReactPlayer from "react-player";

@@ -1,9 +1,7 @@
-module.exports = {
-    purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-    darkMode: 'media', // Change this line
-    theme: {
-      extend: {},
-    },
-    variants: {},
-    plugins: [],
-  };
+export const content = ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'];
+export const darkMode = 'media';
+export const theme = {
+  extend: {},
+};
+export const variants = {};
+export const plugins = [];

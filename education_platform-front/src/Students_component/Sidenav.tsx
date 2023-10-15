@@ -31,9 +31,6 @@ import { makeStyles } from '@mui/styles';
 import youTube from '../assests/Social_media/youtube.png';
 import twitter from '../assests/Social_media/twitter.png';
 import facebook from '../assests/Social_media/facebook.png';
-import linkedin from '../assests/Social_media/linkedin.png';
-import instagram from '../assests/Social_media/instagram.png';
-import { useState } from 'react';
 
 const drawerWidth = 240;
 

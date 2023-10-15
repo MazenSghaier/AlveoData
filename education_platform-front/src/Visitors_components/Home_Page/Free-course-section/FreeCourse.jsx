@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import FreeCourseCard from "./FreeCourseCard";
 import courseImg01 from "../../../assests/images/web-development.png";
 import courseImg02 from "../../../assests/images/kids-learning.png";

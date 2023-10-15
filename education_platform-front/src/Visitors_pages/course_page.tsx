@@ -6,10 +6,8 @@ import Map, {NavigationControl, Marker} from 'react-map-gl';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
-import Content_display from "../Visitors_components/Content_Page/Content_display";
 import FreetoWatch from "../Visitors_components/Courses_page/FreetoWhatch";
 
-import Company from "../Visitors_components/Company-section/Company";
 import FrequentlyAskedQuestions from "../Visitors_components/About_Page/Questions/Question";
 
 import Footer from "../Visitors_components/Footer/Footer";

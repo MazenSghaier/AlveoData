@@ -5,8 +5,6 @@ import ReactPlayer from "react-player";
 import chooseImg from "../../../assests/images/graphics-design.png";
 import "./OutPlat.css"
 
-import img from '../../../assests/Courses_images/handScience.png'
-
 const OutPlat: React.FC = () => {
   const [showVideo, setShowVideo] = useState(false);
   const [animateImage, setAnimateImage] = useState(false);

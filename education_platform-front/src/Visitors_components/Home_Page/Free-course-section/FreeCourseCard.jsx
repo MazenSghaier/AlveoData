@@ -1,6 +1,5 @@
 import React, { forwardRef } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { RiUserLine, RiStarFill } from "react-icons/ri";
 
 const FreeCourseCard = forwardRef(({ item, shouldAnimate }) => {

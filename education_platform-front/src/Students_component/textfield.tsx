@@ -5,25 +5,17 @@ import * as Yup from "yup";
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 
-import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import Box from '@mui/material/Box';
 import {  Button, Typography } from '@mui/material';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
-import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
-import FaceIcon from '@mui/icons-material/Face';
-import Face3Icon from '@mui/icons-material/Face3';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { styled } from '@mui/material/styles';
+
 
 import { useDispatch } from 'react-redux';
 import { updatedUser } from '../actions/user';

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
 import Navbar from '../Students_component/Navbar'
@@ -10,14 +9,11 @@ import { Box } from '@mui/material'
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 
 import { getCourse } from '../actions/course';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 
 import statistics from './../assests/Courses/statistics.png'
 import matlab from './../assests/Courses/matlab.png'
@@ -30,7 +26,6 @@ import java from './../assests/Courses/java.png'
 import machine_learning from './../assests/Courses/machine_learning.png'
 import probability from './../assests/Courses/probability.png'
 import python from './../assests/Courses/python.png'
-import Course from './Course';
 
 const courses = [
     {cours : statistics , name :"Statistics"},

@@ -11,12 +11,10 @@ import CompanySection from "../Visitors_components/Company-section/Company";
 import About from "../Visitors_components/Home_Page/About/About";
 import Courses from "../Visitors_components/Home_Page/Courses-section/Courses";
 import Choose from "../Visitors_components/Home_Page/Choose/Choose";
-import Features from "../Visitors_components/About_Page/Feature-section/Features";
 import FreeCourse from "../Visitors_components/Home_Page/Free-course-section/FreeCourse";
 
 import Testimonials from "../Visitors_components/Home_Page/Testimonial/Testimonials";
 
-import Newsletter from "../Visitors_components/About_Page/Newsletter/Newsletter";
 import Footer from "../Visitors_components/Footer/Footer";
 
 import SupportEngine from "../Visitors_components/Chat-bot/SupportEngine";

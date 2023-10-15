@@ -22,9 +22,7 @@ import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import Icon from './icon'
 import { useState } from "react";
 import { signup } from '../../actions/user';
-import { AUTH } from '../../constants/actionTypes';
 import {countries} from './countries'
-import dayjs from 'dayjs';
 
 
 import './styles.css'

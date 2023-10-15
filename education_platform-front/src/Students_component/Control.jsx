@@ -1,11 +1,8 @@
 import React , {useState} from 'react';
-import PropTypes from 'prop-types';
 
-import ReactPlayer from "react-player";
-import { Container } from "@mui/material";
 import './Player.css'
 
-import { makeStyles, Slider, withStyles, Button,  Tooltip,  Popover,Grid } from "@material-ui/core";
+import { makeStyles, Slider, withStyles} from "@material-ui/core";
 
 import FastForward from '@mui/icons-material/FastForward';
 import FastRewind from '@mui/icons-material/FastRewind';
@@ -14,10 +11,7 @@ import PlayArrow from '@mui/icons-material/PlayArrow';
 import SkipNext from '@mui/icons-material/SkipNext';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import VolumeOff from '@mui/icons-material/VolumeOff';
-import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
-import FullscreenIcon from '@mui/icons-material/Fullscreen';
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
+
 
 const useStyles = makeStyles({
   volumeSlider: {

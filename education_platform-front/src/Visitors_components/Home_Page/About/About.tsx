@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import Lottie from 'react-lottie';
 import animationData from '../../../lotties/lottieflow-attention-05-26C6DA-easey.json';
 import aboutImg from "../../../assests/images/about-us.png";

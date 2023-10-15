@@ -1,11 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactPlayer from "react-player";
 import { Container, Button } from "@mui/material";
-import screenfull from 'screenfull'
 import { formatTime } from './Tools/Format'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateVideoProgress, markLessonComplete } from '../actions/videos'
+import { updateVideoProgress } from '../actions/videos'
 import "@fontsource/poppins/400-italic.css";
 import './Player.css';
 import Comments from "./comments/Comments";
@@ -24,9 +23,6 @@ const Player = (item) => {
   const comments = subject.subject.subject.comments;
 
   const index = item.item;
-
-
-  const titleVideo = data.title;
 
   const url = `${process.env.PUBLIC_URL}/assests/videos/${data[0].video}`;
 

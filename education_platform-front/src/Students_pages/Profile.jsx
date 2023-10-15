@@ -1,28 +1,20 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState} from 'react';
 import Sidenav from '../Students_component/Sidenav';
 import InputAdornments from  '../Students_component/textfield';
 import Navbar from '../Students_component/Navbar';
 import { Box, Button, Divider, Typography } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 import Grid from '@mui/material/Grid';
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import { useDispatch } from 'react-redux';
-import { getUser } from '../actions/user';
 
 
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
-import tiger from '../assests/logos/tiger.png'
 
 export default function Profile() {
 
-
-  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
   const toggleShow = () => {

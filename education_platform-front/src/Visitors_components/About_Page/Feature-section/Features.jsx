@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import { RiDraftLine, RiDiscussLine, RiContactsBookLine } from 'react-icons/ri';
 
 const FeatureData = [

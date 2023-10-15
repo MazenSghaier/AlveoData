@@ -9,7 +9,6 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import OurPlat from "../Visitors_components/About_Page/Our_Plat/OutPlat";
 import OurStorySection from "../Visitors_components/About_Page/Our-Story/OurStory";
 import Features from "../Visitors_components/About_Page/Feature-section/Features";
-import Content_display from "../Visitors_components/Content_Page/Content_display";
 
 import Company from "../Visitors_components/Company-section/Company";
 import FrequentlyAskedQuestions from "../Visitors_components/About_Page/Questions/Question";

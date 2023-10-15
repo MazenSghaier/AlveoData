@@ -7,7 +7,6 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 
 import Content_display from "../Visitors_components/Content_Page/Content_display";
 
-import Company from "../Visitors_components/Company-section/Company";
 import FrequentlyAskedQuestions from "../Visitors_components/About_Page/Questions/Question";
 
 import Footer from "../Visitors_components/Footer/Footer";

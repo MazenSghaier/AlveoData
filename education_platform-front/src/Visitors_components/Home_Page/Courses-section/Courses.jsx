@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col } from "reactstrap";
+import {  Row, Col } from "reactstrap";
 import courseImg1 from "../../../assests/images/web-design.png";
 import courseImg2 from "../../../assests/images/graphics-design.png";
 import courseImg3 from "../../../assests/images/ui-ux.png";

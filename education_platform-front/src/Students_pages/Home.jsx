@@ -17,7 +17,6 @@ import { Box, Divider, Stack } from '@mui/material'
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
-import CardMedia from '@mui/material/CardMedia';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import image_1 from '../assests/images/image_1.jpg'
