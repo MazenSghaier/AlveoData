@@ -55,7 +55,7 @@ const About: React.FC = () => {
                     }}
                     height={150}
                     width={150}
-                    style={{ color: '#26C6DA' }}
+                    style={{ color: '#3B82F6' }}
                   />
                 </div>
                 <div className="lottie-animation-container-right">
@@ -67,7 +67,7 @@ const About: React.FC = () => {
                     }}
                     height={150}
                     width={150}
-                    style={{ color: '#26C6DA' }}
+                    style={{ color: '#3B82F6' }}
                   />
                 </div>
             </div>
@@ -77,7 +77,7 @@ const About: React.FC = () => {
           {/* Column 2 */}
           <Col lg="8" md="12" className="flex items-center ">
             <div className="about__content text-center w-90 ">
-              <p className="non-italic lg:text-xl font-meduim text-black pb-2 pt-3 ">
+              <p className=" text-black pb-2 pt-3 ">
                 Educational platforms offer a diverse range of scientific courses,
                 catering to individuals with a passion for understanding the natural world. 
                 These courses span various disciplines,

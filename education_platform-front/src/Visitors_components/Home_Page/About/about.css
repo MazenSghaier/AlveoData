@@ -1,4 +1,11 @@
-/* Add this CSS to your global stylesheet or HTML <style> tag */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Poppins:ital,wght@0,400;0,600;0,700;1,600&display=swap');
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem/* 20px */;
+  line-height: 1.75rem/* 28px */;
+}
+
 .about__content{
   width: 60%; /* Adjust the width as needed */
   margin: 0 auto; /* Center horizontally */
@@ -17,7 +24,7 @@
     transform: translateY(-50%);
     width: 30px;
     height: 3px;
-    background: #26C6DA;
+    background: #3B82F6;
   }
   
   .lottie-animation-container-left {
@@ -31,12 +38,12 @@
     position: absolute;
     top: 30%;
     right: -200px; /* Adjust this value for proper spacing */
-    transform: translateY(-50%);
+    transform: translateY(-55%);
   }
   
   .arrow:before,
   .arrow:after {
-    background: #26C6DA;
+    background: #3B82F6;
     content: '';
     display: block;
     height: 3px;
