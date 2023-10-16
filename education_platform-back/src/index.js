@@ -9,7 +9,7 @@ import coursesRoutes from './Routes/routerCourses.js';
 
 const app = express();
 const PORT = 5000;
-const ConnectionURL = "mongodb+srv://Alveodata:Alveodata123@firstcluster.v33gplb.mongodb.net/?";
+const ConnectionURL = "mongodb+srv://Alveodata:kTPctM7rPqNeNGa@firstcluster.v33gplb.mongodb.net/?";
 
 // Configure CORS middleware
 const corsOptions = {
