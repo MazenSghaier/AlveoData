@@ -2,14 +2,16 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 import usersRoutes from './Routes/routerUsers.js';
 import coursesRoutes from './Routes/routerCourses.js';
 
+dotenv.config();
 
 const app = express();
 const PORT = 5000;
-const ConnectionURL = "mongodb+srv://Alveodata:kTPctM7rPqNeNGa@firstcluster.v33gplb.mongodb.net/?";
+const ConnectionURL = process.env.MONGODB_Connection_URL;
 
 // Configure CORS middleware
 const corsOptions = {
