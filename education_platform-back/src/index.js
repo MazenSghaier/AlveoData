@@ -14,14 +14,16 @@ const PORT = 5000;
 const ConnectionURL = process.env.MONGODB_Connection_URL;
 
 // Configure CORS middleware
+
 const corsOptions = {
   origin: 'http://localhost:3000', // Replace with your React app's URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Allow cookies, if your API uses cookies for authentication
 };
 
+const cors = require('cors');
+app.use(cors({ origin: '*' }));
 
-app.use(cors(corsOptions));
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
