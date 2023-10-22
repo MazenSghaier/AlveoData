@@ -11,8 +11,6 @@ import Comments from "./comments/Comments";
 import Control from './Control';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import {courses} from "./Tools/videos.js"
-import {comment} from "./Tools/comments.js"
 
 let count = 0;
 
@@ -20,9 +18,10 @@ const Player = (item) => {
 
   
   const dispatch = useDispatch();
-  const data = courses;
-  console.log(data)
-  const comments = comment;
+  const subject = useSelector(state => state.subject);
+  const data = subject.subject.subject.courses;
+  const comments = subject.subject.subject.comments;
+
   const index = item.item;
 
   const url = `${process.env.PUBLIC_URL}/assests/videos/${data[0].video}`;
@@ -324,7 +323,6 @@ return (
                 src={`${process.env.PUBLIC_URL}/assests/images/${video.image}`}
                 alt=""
               />
-              {console.log(`${process.env.PUBLIC_URL}/assests/images/${video.image}`)}
             </div>
             <h3 className="title">{video.title}</h3>
             {lessonCompletion[index] && (
