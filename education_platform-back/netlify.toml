@@ -1,15 +1,15 @@
 [build]
-  command = "npm run build"  
-  publish = "src"
+  command = "npm run build"  # Replace with your build command
+  publish = "dist/"  # Replace with the output directory for your built code
 
 [context.production]
-  command = "npm run start"  
+  command = "npm run start"  # Replace with the command to start your backend server
   environment = {
     NODE_ENV = "production",
   }
 
 [context.deploy-preview]
-  command = "npm run start"  
+  command = "npm run start"  # Replace with the command to start your backend server
   environment = {
     NODE_ENV = "preview",
   }
