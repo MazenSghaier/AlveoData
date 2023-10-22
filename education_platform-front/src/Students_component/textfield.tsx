@@ -47,7 +47,9 @@ export default function InputAdornments() {
   })
   const [error, setError] = useState(""); 
 
-  const profileData = localStorage.getItem('profile');
+  // ******remove {} to use full mern stack code *******
+
+  {/*const profileData = localStorage.getItem('profile');
   let userdata = null;
 
   if (profileData !== null) {
@@ -58,8 +60,9 @@ export default function InputAdornments() {
   const id = userdata.result._id;
   const picture = userdata.result.pictureName;
 
-  const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
-
+  const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();*/
+  
+}
 
 
   const formik = useFormik<FormValues>({
@@ -125,8 +128,8 @@ export default function InputAdornments() {
       
         console.log(user);
         if(user.Email !== ''){
-           
-            dispatch(updatedUser(id,user));
+            // ******remove {} to use full mern stack code *******
+            {/*dispatch(updatedUser(id,user));*/}
             setError("Sign up was successful"); 
           }
           else{
@@ -156,7 +159,7 @@ export default function InputAdornments() {
                 }}
                 badgeContent={<div style={{ width: 20, height: 20, backgroundColor: '#46d008', borderRadius: '50%', marginTop:2 }} />}
               >
-                <Avatar sx={{width: 100, height: 100,}} src={`${process.env.PUBLIC_URL}/assests/logos/${picture || '/your-image-url.jpg'}`} />
+                <Avatar sx={{width: 100, height: 100,}} src={`${process.env.PUBLIC_URL}/assests/logos/bird.png`}  />
               </Badge>
               
             </Grid>
