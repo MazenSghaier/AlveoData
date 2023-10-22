@@ -9,6 +9,6 @@
   environment = {
     NODE_ENV = "preview"
   }
-  [build]
-  command = "npm run build" # Replace with your build command
-  publish = "src/" 
+
+[build]
+  command = "npm run build" 
