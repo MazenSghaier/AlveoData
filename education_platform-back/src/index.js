@@ -16,7 +16,7 @@ const ConnectionURL = process.env.MONGODB_Connection_URL;
 // Configure CORS middleware
 console.log("[TEST]!");
 const corsOptions = {
-  origin: 'http://localhost:3000', // Replace with your React app's URL
+  origin: 'https://learners-mazen-sghaier.netlify.app/', // Replace with your React app's URL
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Allow cookies, if your API uses cookies for authentication
 };
