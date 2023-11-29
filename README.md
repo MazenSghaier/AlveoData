@@ -2,7 +2,7 @@
 
 ## Overview
 
-This MERN stack project is an educational platform designed to provide a seamless learning experience for both visitors and students. The project utilizes MongoDB, Node, Express, React, TypeScript, Javascript, Tailwind CSS, Redux, and Redux Persist to create a feature-rich platform.
+This MERN stack project is an educational platform designed to provide a seamless user experience for both visitors and students. The project utilizes MongoDB, Node, Express, React, TypeScript, Javascript, Tailwind CSS, Redux, and Redux Persist to create a feature-rich platform.
 
 
 ## Usage
