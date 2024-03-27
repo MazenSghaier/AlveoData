@@ -3,7 +3,7 @@ import farina from "../../../assests/farina.jpg"
 export const styles = {
     chatWithMeButton: {
         cursor: 'pointer',
-        boxShadow: '0px 0px 16px 6px rgba(0, 0, 0, 0.33)',
+        boxShadow: '0px 0px 16px 6px rgba(0, 0, 0, 0.2)',
         // Border
         borderRadius: '50%',
         // Background 
@@ -22,7 +22,7 @@ export const styles = {
         top: 'calc(50% - 24px)', 
         // Layering
         zIndex: '10000',
-        boxShadow: '0px 0px 16px 6px rgba(0, 0, 0, 0.33)',
+        boxShadow: '0px 0px 16px 6px rgba(0, 0, 0, 0.2)',
         // Border
         padding: '12px 12px 12px 16px',
         borderRadius: '24px', 
@@ -46,7 +46,7 @@ export const styles = {
         border: `2px solid #35bbe3`,
         overflow: 'hidden',
         // Shadow
-        boxShadow: '0px 0px 16px 6px rgba(0, 0, 0, 0.33)',
+        boxShadow: '0px 0px 16px 6px rgba(0, 0, 0, 0.2)',
     },
     emailFormWindow: { 
         width: '100%',  

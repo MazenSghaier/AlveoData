@@ -8,7 +8,7 @@ import usersRoutes from './Routes/routerUsers.js';
 import coursesRoutes from './Routes/routerCourses.js';
 
 dotenv.config();
-
+ 
 const app = express();
 const PORT = 5000;
 const ConnectionURL = process.env.MONGODB_Connection_URL;

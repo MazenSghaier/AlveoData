@@ -29,10 +29,10 @@ const ChatEngine = props => {
                 <ChatEngineWrapper>
                     <Socket 
                         projectID={process.env.REACT_APP_CE_PROJECT_ID}
-                        userName={props.user.email}
-                        userSecret={props.user.email}
+                        userName={"props.user.email"}
+                        userSecret={"props.user.email"}
                     />
-                    <ChatFeed activeChat={props.chat.id} />
+                    <ChatFeed activeChat={1} />
                 </ChatEngineWrapper>
             }
         </div>

@@ -12,7 +12,6 @@ const persistConfig = {
   key: 'root', // Key for the persisted state
   storage,     // Storage method (e.g., local storage)
   // Optionally, you can whitelist specific reducers to be persisted
-  // whitelist: ['user', 'course'],
 };
 
 // Create a persisted reducer
