@@ -1,0 +1,11 @@
+node_modules/
+package-lock.json
+.env
+**/__tests__/*
+**/test/**/*.js
+.tmp/
+tmp/
+logs/
+output.log
+.idea/
+.vscode/

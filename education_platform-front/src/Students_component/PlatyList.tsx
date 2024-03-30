@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import Player from '../Students_component/Player';
+import Player from '../Students_component/Player2';
 import Video_0 from '../assests/videos/Video_0.mp4';
 
 

@@ -51,7 +51,6 @@ const Free_Course = () => {
         </Map>    
       </div>         
       <Footer/>
-      <SupportEngine />
       </div>
     </Fragment>
   );

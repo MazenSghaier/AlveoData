@@ -53,7 +53,6 @@ const AboutPage = () => {
         </Map>    
       </div>   
       <Footer/>
-      <SupportEngine />
       </div>
     </Fragment>
   );

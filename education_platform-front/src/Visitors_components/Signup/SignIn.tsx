@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {useNavigate } from "react-router-dom"; // Import useNavigate
+import {useNavigate } from "react-router-dom"; 
 import { motion as m } from "framer-motion";
 import { GoogleLogin } from 'react-google-login'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -64,7 +64,7 @@ const SignIn = () => {
       console.log("Google Sign In was unsuccessful. Try agin later")
   };
  
-  const navigate = useNavigate(); // Use useNavigate to get the navigation function
+  const navigate = useNavigate(); 
 
   const [message, setMessage] = React.useState<Stateof>({
     open: false,
@@ -130,7 +130,6 @@ const SignIn = () => {
         console.log("Form submitted");
         console.log("Form values: ", values);
       
-        // Update the user state with form values including the formatted birthday
 
         const pictureNames = ['gorilla.png', 'panda.png', 'elephant.png', 'tiger.png', 'horse.png','bird.png'];
         const randomIndex = Math.floor(Math.random() * pictureNames.length);
@@ -159,7 +158,7 @@ const SignIn = () => {
             }, 4000);
             setTimeout(() => {
 
-              navigate('/students'); // Replace '/students' with your desired route
+              navigate('/students'); 
             }, 4000);
           }
           else{
@@ -182,7 +181,7 @@ const SignIn = () => {
       exit={{ opacity: 0 }}
       className="absolute w-full"
     >
-      {isSignin ? ( // Conditionally render loading animation or form
+      {isSignin ? (
       <div className="flex items-center justify-center h-screen">
         {error && 
 
@@ -193,7 +192,7 @@ const SignIn = () => {
             message={error}
             key={vertical + horizontal}
             ContentProps={{
-              className: 'custom-snackbar', // Apply your custom class here
+              className: 'custom-snackbar', 
             }}
 
           />
@@ -202,7 +201,7 @@ const SignIn = () => {
           options={{
             loop: true,
             autoplay: true,
-            animationData: animationData, // Replace with your animation data
+            animationData: animationData, 
           }}
           height={150}
           width={150}

@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: "mongo"
+    volumes:
+      - data:/data/db
+
+  backend:
+    build: ./education_platform-back
+    ports:
+      - "80:80"
+    volumes:
+      - logs:/app/logs  # Persist application logs
+      - ./education_platform-back:/app  # Mount your backend application code
+    depends_on:
+      - mongodb  # Ensure mongodb starts before backend
+
+  frontend:
+    build: ./education_platform-front
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./education_platform-front/src:/app/src  # Mount your frontend code
+    depends_on:
+      - backend  # Ensure backend starts before frontend
+
+volumes:
+  data:  # Persistent volume for MongoDB data
+  logs:   # Persistent volume for backend application logs
