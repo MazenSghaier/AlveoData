@@ -1,4 +1,4 @@
-# Stage 1 (Optional for Multi-Stage Builds)
+
 FROM node:alpine AS builder
 
 WORKDIR /app
@@ -9,7 +9,7 @@ RUN npm install
 RUN mkdir /tmp/dependencies
 COPY --from=0 /app/node_modules /tmp/dependencies
 
-# Stage 2 (or Single Stage if not using Multi-Stage)
+
 FROM node:slim
 
 WORKDIR /app
@@ -17,11 +17,9 @@ WORKDIR /app
 COPY --from=builder /tmp/dependencies /app/node_modules 
 COPY package.json ./
 COPY src/ ./  
-# Assuming application code is in src subfolder
 
-# Environment Variables (replace with your actual values)
 ENV DB_HOST mongodb+srv://Alveodata:kTPctM7rPqNeNGa@firstcluster.v33gplb.mongodb.net/?
-ENV DB_PORT 5432
+ENV DB_PORT 27017
 
 EXPOSE 80
 

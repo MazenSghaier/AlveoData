@@ -11,7 +11,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - logs:/app/logs  # Persist application logs
+      - logs:/app/logs  
       - ./education_platform-back:/app  # Mount your backend application code
     depends_on:
       - mongodb  # Ensure mongodb starts before backend
