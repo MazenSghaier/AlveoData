@@ -1,4 +1,3 @@
-
 FROM node:alpine AS builder
 
 WORKDIR /app
@@ -19,7 +18,7 @@ COPY package.json ./
 COPY src/ ./  
 
 ENV DB_HOST mongodb+srv://Alveodata:kTPctM7rPqNeNGa@firstcluster.v33gplb.mongodb.net/?
-ENV DB_PORT 27017
+ENV DB_PORT 5000
 
 EXPOSE 80
 
